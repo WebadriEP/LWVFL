@@ -1,0 +1,27 @@
+.list-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.engagement-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    border: 1px solid gray;
+    padding: 1rem;
+    margin: .2rem;
+}
+
+.pci {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.pci h3 {
+    margin-right: 1rem;
+}
