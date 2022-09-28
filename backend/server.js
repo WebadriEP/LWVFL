@@ -1,9 +1,9 @@
 require("dotenv").config();
 
+const memberRoutes = require('./routes/members')
+
 const express = require("express");
-const volunteerRoutes = require('./routes/volunteers')
-const opportunityRoutes = require('./routes/opportunities')
-const userRoutes = require('./routes/user')
+
 const mongoose = require("mongoose");
 
 // Initialize express

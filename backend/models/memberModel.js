@@ -1,4 +1,7 @@
-const volunteerSchema = new Schema({
+const mongoose = require("mongoose")
+const Schema = mongoose.Schema
+
+const memberSchema = new Schema({
     
     firstName: {
       type: String,
@@ -12,8 +15,7 @@ const volunteerSchema = new Schema({
       type: String,
       required: true,
       unique: true,
-    },
-    
+    }
     
   })
   
