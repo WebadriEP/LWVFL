@@ -1,13 +1,10 @@
 const Navbar = () => {
     return (
-    <nav className="navbar">
-      <h1>LWVFL</h1>
-      <div className="links">
-        <a href={""}>Home</a>
-        <a href={""}>New Blog</a>
-        <a href={""}>Create Account</a>
-      </div>
-    </nav>
+      <nav className="navbar">
+        <h1>LWVFL</h1>
+        <p>Add main page Links</p>
+        <hr></hr>
+      </nav>
   );
 }
 
