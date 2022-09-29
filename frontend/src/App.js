@@ -18,6 +18,7 @@ function App() {
          <Routes>
             <Route path = "/member" element ={ <Member /> } />
             <Route path = "/engagement" element ={ <Engagement /> } />
+            <Route path = "/register" element = {<CreateAccount/>}></Route>
          </Routes>
         </div>
       </BrowserRouter>
