@@ -12,18 +12,15 @@ import CreateAccount from './pages/CreateAccount';
 function App() {
   return (
     <div className="App">
-    <BrowserRouter>
+      <BrowserRouter>
         <Navbar />
-    <div classname ="pages">
-     <Routes>
-        <Route path = "/member" element ={ <Member /> } />
-        <Route path = "/engagement" element ={ <Engagement /> } />
-     </Routes>
-    </div>
-    </BrowserRouter>
-
-
-
+        <div className ="pages">
+         <Routes>
+            <Route path = "/member" element ={ <Member /> } />
+            <Route path = "/engagement" element ={ <Engagement /> } />
+         </Routes>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }
