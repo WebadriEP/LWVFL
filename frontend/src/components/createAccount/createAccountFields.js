@@ -1,7 +1,7 @@
 
 import './createAccount.css'
 import {useState} from 'react';
-import { UseUserContext } from '../../Hooks/UseUserContext'; 
+import { UseUserContext } from '../../Hooks/UseUserContext';
 
 const CreateAccountFields = () => {
     const {dispatch} = UseUserContext()
@@ -53,7 +53,7 @@ const CreateAccountFields = () => {
 
     return (
         <div className="createAccount-fields-item">
-            <form className="create" onSubmit={handleSubmit}></form>
+            <form className="create" onSubmit={handleSubmit}>
             <h2>Add a new User</h2>
             <div className="fields">
                 <label>First Name</label>
@@ -86,7 +86,9 @@ const CreateAccountFields = () => {
                 />
             </div>
             <button>Create User</button>
+            </form>
         </div>
+        
     )
 }
 

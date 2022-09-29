@@ -6,6 +6,8 @@ const Navbar = () => {
         <h1>LWVFL</h1>
         <p>Add main page Links</p>
         <hr></hr>
+        <Link to="/register">Register</Link>
+
       </nav>
   );
 }
