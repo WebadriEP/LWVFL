@@ -1,17 +1,17 @@
 
 // components
-import createAccountFields from '../components/createAccount/createAccountFields';
+import CreateAccountFields from '../components/createAccount/CreateAccountFields';
 import '../components/createAccount/createAccount.css'
 
-const createAccount = () => {
+const CreateAccount = () => {
     return (
         <>
             <h1>Create Account</h1>
             <div className="list-container">
-                <createAccountFields />
+            <CreateAccountFields />
             </div>
         </>
     );
 }
 
-export default createAccount;
+export default CreateAccount;

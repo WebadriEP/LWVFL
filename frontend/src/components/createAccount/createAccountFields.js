@@ -1,13 +1,12 @@
 
 import './createAccount.css'
 import {useState} from 'react';
-import { useUsersContext } from '../../Hooks/useUserContext';
-import { useUsersContext } from '../../Hooks/useUserContext'; 
+import { UseUserContext } from '../../Hooks/UseUserContext'; 
 
-const createAccountFields = () => {
-    const {dispatch} = useUserContext()
+const CreateAccountFields = () => {
+    const {dispatch} = UseUserContext()
 
-    const  [firstName, setFirstName] = useState('')
+    const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -26,12 +25,11 @@ const createAccountFields = () => {
         password
     }
 
-    const response = await fetch('/api/Create_Account', {
+    const response = await fetch('/register', {
         method: 'POST',
         body: JSON.stringify(user),
         headers:{
-            'Content-Type': 'application.json',
-            'Authorization': 'Bearer $(user.token)'
+            'Content-Type': 'application.json'
         }
     })
     const json = await response.json()
@@ -48,6 +46,7 @@ const createAccountFields = () => {
         setEmail('')
         setPassword('')
 
+        dispatch({type: 'CREATE_USER', payload: json})
     }
 }
 
@@ -91,4 +90,4 @@ const createAccountFields = () => {
     )
 }
 
-export default createAccountFields;
+export default CreateAccountFields;
