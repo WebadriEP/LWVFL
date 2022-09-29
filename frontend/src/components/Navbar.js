@@ -1,3 +1,4 @@
+
 const Navbar = () => {
     return (
     <nav className="navbar">
@@ -5,7 +6,7 @@ const Navbar = () => {
       <div className="links">
         <a href={""}>Home</a>
         <a href={""}>New Blog</a>
-        <a href={""}>Create Account</a>
+        <a href={"../../pages/createAccount.js"}>New Blog</a>
       </div>
     </nav>
   );
