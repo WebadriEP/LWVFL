@@ -1817,3 +1817,4 @@ backend/node_modules/whatwg-url/lib/VoidFunction.js
 backend/package-lock.json
 backend/package.json
 .env
+backend/.env
