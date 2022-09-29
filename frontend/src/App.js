@@ -19,7 +19,7 @@ function App() {
             <Route path = "/member" element ={ <Member /> } />
             <Route path = "/member/add" element ={ <AddMemberForm /> } />
             <Route path = "/engagement" element ={ <Engagement /> } />
-            <Route path = "/register" element = {<CreateAccount/>}></Route>
+            <Route path = "/register" element = {<CreateAccount/>} />
          </Routes>
         </div>
       </BrowserRouter>
