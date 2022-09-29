@@ -1,6 +1,6 @@
 
 // components
-import CreateAccountFields from '../components/createAccount/CreateAccountFields';
+import CreateAccountFields from '../components/createAccount/createAccountFields';
 import '../components/createAccount/createAccount.css'
 
 
