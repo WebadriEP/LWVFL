@@ -17,6 +17,7 @@ function App() {
         <div className ="pages">
          <Routes>
             <Route path = "/member" element ={ <Member /> } />
+            <Route path = "/member/add" element ={ <AddMemberForm /> } />
             <Route path = "/engagement" element ={ <Engagement /> } />
             <Route path = "/register" element = {<CreateAccount/>}></Route>
          </Routes>
