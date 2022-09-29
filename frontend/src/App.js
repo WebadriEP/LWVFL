@@ -13,7 +13,7 @@ function App() {
     <div className="App">
     <BrowserRouter>
         <Navbar />
-      <Engagement />
+        <Engagement />
 
     <div classname ="pages">
      <Routes>

@@ -1,6 +1,6 @@
 //components
 
-import MemberList from "../components/member/memberList";
+import MemberList from "../components/member/MemberList";
 
 const Member = () => {
     return(
