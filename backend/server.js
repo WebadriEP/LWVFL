@@ -35,3 +35,5 @@ app.use('/api/users', userRoutes)
   .catch((error) => {
     console.log(error);
   });
+
+  
