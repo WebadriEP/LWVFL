@@ -21,7 +21,7 @@ export const membersReducer = (state, action) => {
   }
 }
 
-export const MembersProvider = ({ children }) => {
+export const MemberProvider = ({ children }) => {
   const [state, dispatch] = useReducer(membersReducer, {
     members: null,
   });

@@ -1,11 +1,12 @@
 import { useState } from 'react';
+import { useMemberContext } from '../../Hooks/useMemberContext';
 
 const AddMemberForm = () => {
     
     const { dispatch } = useMemberContext(); // Allow access to manage members
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
-    const [Email, setEmail] = useState('');
+    const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [emptyFields, setEmptyFields] = useState([]);
 
