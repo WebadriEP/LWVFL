@@ -1,4 +1,5 @@
 // components
+import MemberActionBar from "../components/members/MemberActionBar";
 import MemberList from "../components/members/MemberList";
 
 // css
@@ -8,6 +9,7 @@ const Members = () => {
     return(
         <>
             <h1>Members List</h1>
+            <MemberActionBar />
             <div className="member-list-labels">
                 <h3>Member Name</h3>
                 <h3>Email</h3>

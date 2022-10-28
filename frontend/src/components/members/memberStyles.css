@@ -25,3 +25,14 @@
   font-size: .8rem;
   color: rgb(49, 49, 49)
 }
+
+/* Action Bar */
+.member-action-bar {
+  display: flex;
+  border-radius: .5rem;
+  align-items: center;
+  padding: .75rem;
+  margin-top: 2rem;
+  background: rgb(255, 255, 255);
+  box-shadow: 0 10px 20px 0 rgb(206, 206, 206);
+}
