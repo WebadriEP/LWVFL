@@ -6,7 +6,7 @@ import './memberStyles.css'
 
 const MemberList = () => {
     return (
-        <div className="member-list">
+        <div className="member-list shadow">
             <MemberListItem />
             <MemberListItem />
             <MemberListItem />

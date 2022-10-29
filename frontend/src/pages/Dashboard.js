@@ -1,4 +1,7 @@
 // components
+import QuickActions from "../components/dashboard/QuickActions";
+import MembersGraph from "../components/dashboard/MembersGraph";
+
 
 // css
 import '../components/dashboard/dashboardStyles.css'
@@ -6,8 +9,27 @@ import '../components/dashboard/dashboardStyles.css'
 const Dashboard = () => {
   return (
     <>
-      <h1 className="text-3xl font-bold">Dashboard</h1>
-      <p>This is the dashboard page. Use the navbar above to get around the site (or type your direct URL in the address bar)</p>
+      {/* Page heading */}
+      <h1>Dashboard</h1>
+
+      {/* Quick Actions */}
+      <QuickActions />
+
+      {/* Graphs Section */}
+      <section className='graphs'>
+
+        {/* New Members */}
+        <div className='graph shadow'>
+          <h2>New Members by Month</h2>
+          <MembersGraph />
+        </div>
+        
+        {/* Another Statistic */}
+        <div className='graph shadow'>
+          <h2>Another Statistic</h2>
+          <MembersGraph />
+        </div>
+      </section>
     </>
   )
 }
