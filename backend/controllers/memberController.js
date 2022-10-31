@@ -1,4 +1,5 @@
 const Members = require('../models/memberModel')
+const mongoose = require('mongoose')
 
 //Find all Members
 const getMembers = async (req, res) => {
@@ -9,9 +10,32 @@ const getMembers = async (req, res) => {
 
 //Find a single member. Currently has same code as getting all Members, will change with MongoDB integration
 const getMember = async (req, res) => {
-    const members = await Members.find({}).sort({createdAt: -1})
+    const { id } = req.params
 
-    res.status(200).json(members)
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(404).json({error: 'No such member'})
+    }
+
+    const member = await Members.findById(id)
+
+    if (!member) {
+        return res.status(404).json({error: 'No such member'})
+    }
+
+    res.status(200).json(member)
+
+}
+
+const createMember = async (req, res) => {
+    const {firstName, lastName, email} = req.body
+  
+    // add to the database
+    try {
+      const member = await Members.create({ firstName, lastName, email })
+      res.status(200).json(member)
+    } catch (error) {
+      res.status(400).json({ error: error.message })
+    }
 }
 
 const updateMember = async (req, res) => {
@@ -31,10 +55,26 @@ const updateMember = async (req, res) => {
     res.status(200).json(member)
 }
 
+const deleteMember = async (req, res) => {
+    const { id } = req.params
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error: 'No such member'})
+    }
+  
+    const member = await Members.findOneAndDelete({_id: id})
+  
+    if(!member) {
+      return res.status(400).json({error: 'No such member'})
+    }
+  
+    res.status(200).json(member)
+  }
+
 module.exports = {
     getMembers,
     getMember,
-    updateMember
-
-
+    createMember,
+    updateMember,
+    deleteMember
 }

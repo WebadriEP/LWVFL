@@ -17,5 +17,5 @@ const memberSchema = new Schema({
       unique: true,
     }
     
-  })
-  
+  }, {timestamps:true})
+  module.exports = mongoose.model('Member', memberSchema)
