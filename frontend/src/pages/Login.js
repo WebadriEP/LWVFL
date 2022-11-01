@@ -1,10 +1,12 @@
-import React from 'react'
+import LoginFields from '../components/login/loginFields';
 
 const Login = () => {
   return (
-    <div>
-      <h1>Log In</h1>
-    </div>
+    <>
+    <div className="list-container">
+            <LoginFields />
+            </div>
+    </>
   )
 }
 
