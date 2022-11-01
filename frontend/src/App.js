@@ -6,6 +6,7 @@ import Navbar from './components/navigation/Navbar';
 // pages
 import Engagement from './pages/Engagement';
 import Members from './pages/Members';
+import AddMember from './pages/AddMember';
 import CreateAccount from './pages/createAccount';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
@@ -21,7 +22,7 @@ function App() {
         <Navbar />
         <div className="pages">
          <Routes>
-            <Route path = "/member" element ={ <Member /> } />
+            <Route path = "/member" element ={ <Members /> } />
             <Route path = "/member/add" element ={ <AddMember /> } />
             <Route path = "/engagement" element ={ <Engagement /> } />
             <Route path="/" element={<Dashboard />} />

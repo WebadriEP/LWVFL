@@ -27,8 +27,8 @@ export const MemberProvider = ({ children }) => {
   });
 
   return (
-    <MemberContext.Provider value={{ ...state, dispatch }}>
+    <memberContext.Provider value={{ ...state, dispatch }}>
       {children}
-    </MemberContext.Provider>
+    </memberContext.Provider>
   );
 }
