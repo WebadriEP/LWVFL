@@ -1,6 +1,6 @@
 import { createContext, useReducer } from 'react';
 
-export const MemberContext = createContext();
+export const memberContext = createContext();
 
 export const membersReducer = (state, action) => {
   switch (action.type) {

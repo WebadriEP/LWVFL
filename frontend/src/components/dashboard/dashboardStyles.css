@@ -1,0 +1,46 @@
+.quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  background: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+  padding: 1rem;
+}
+
+.quick-action {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 8vh;
+  padding: .5rem 2rem;
+  border-radius: 0.5rem;
+  transition: all 200ms ease;
+}
+
+.quick-action:hover {
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+}
+
+/* Graphs */
+.graphs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  min-height: 40vh;
+}
+
+.graph {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgb(255, 255, 255);
+  border-radius: 0.5rem;
+  overflow: scroll;
+  padding: 1.5rem;
+}
+
+.graph h2 {
+  margin-bottom: 1rem;
+}

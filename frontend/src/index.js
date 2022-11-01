@@ -4,11 +4,12 @@ import App from './App';
 import { UserContextProvider } from './context/userContext';
 import { MemberProvider } from './context/MemberContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
     <MemberProvider>
     <UserContextProvider>
-    <App />
+      <App />
     </UserContextProvider>
     </MemberProvider>
   </React.StrictMode>

@@ -1,10 +1,10 @@
 
 import './createAccount.css'
 import {useState} from 'react';
-import { UseUserContext } from '../../hooks/useUserContext';
+import { UseUserContext } from '../../Hooks/useUserContext';
 
 const CreateAccountFields = () => {
-    const {dispatch} = UseUserContext()
+    const {dispatch} = useUserContext()
 
     const [firstName, setFirstName] = useState('')
     const [lastName, setLastName] = useState('')

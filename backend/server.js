@@ -3,7 +3,6 @@ require("dotenv").config();
 const memberRoutes = require('./routes/members')
 const userRoutes = require('./routes/users')
 const express = require("express");
-
 const mongoose = require("mongoose");
 
 // Initialize express
@@ -21,16 +20,14 @@ app.use((req, res, next) => {
 app.use('/api/members', memberRoutes)
 app.use('/api/users', userRoutes)
 
-// Use mongoose to connect to the database (MongoDB)
-
-  // Connect to given URI (stored in .env for security)
+// Connect to DB
   mongoose.connect(process.env.MONGO_URI)
   .then(() => {
-    // Listen for requests on specified port
     app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`);
     });
   })
+
   // Catch any errors that occur and output message to console
   .catch((error) => {
     console.log(error);

@@ -2,4 +2,41 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}
+
+/* 
+  Dark mode by default because we are night owls 
+  This is for DEVELOPMENT ONLY
+*/
+
+body {
+  background: #f4f4f4;
+}
+
+/* TEXT STYLES */
+h1 {
+  font-weight: 700;
+}
+
+h2 {
+  font-weight: 700;
+  font-size: 1.35rem;
+}
+
+.text-description {
+  font-size: 0.9rem;
+  color: #757575;
+}
+
+.pages {
+  max-width: 1800px;
+  padding: 0 1.25rem;
+  margin: 0 auto;
+}
+
+/* Shadows */
+.shadow {
+  box-shadow: 0 15px 35px 0 rgb(231, 231, 231);
 }
