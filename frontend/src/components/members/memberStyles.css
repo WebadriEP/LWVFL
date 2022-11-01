@@ -13,6 +13,7 @@
 
 .member-list {
   background: rgb(240, 240, 240);
+  border-radius: .5rem;
 }
 
 .member-list-item {
@@ -22,7 +23,7 @@
   margin-bottom: 1px;
   background: rgb(255, 255, 255);
   font-size: .8rem;
-  color: rgb(49, 49, 49)
+  color: rgb(49, 49, 49);
 }
 
 /* Action Bar */
@@ -30,7 +31,8 @@
   display: flex;
   border-radius: .5rem;
   align-items: center;
-  padding: .75rem;
+  justify-content: flex-end;
+  padding: .35rem;
   margin-top: 2rem;
   background: rgb(255, 255, 255);
   box-shadow: 0 10px 20px 0 rgb(206, 206, 206);

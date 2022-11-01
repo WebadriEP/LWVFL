@@ -3,7 +3,7 @@ const Members = require('../models/memberModel')
 //Find all Members
 const getMembers = async (req, res) => {
     const members = await Members.find({}).sort({createdAt: -1})
-
+    
     res.status(200).json(members)
 }
 
