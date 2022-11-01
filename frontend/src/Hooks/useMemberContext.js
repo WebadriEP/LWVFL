@@ -1,4 +1,4 @@
-import { MemberContext }  from "../Context/MemberContext.js";
+import { MemberContext }  from "../context/MemberContext.js";
 import { useContext } from "react";
 
 

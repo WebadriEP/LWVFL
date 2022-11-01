@@ -7,11 +7,21 @@ const getMembers = async (req, res) => {
     res.status(200).json(members)
 }
 
-//Find a single member. Currently has same code as getting all Members, will change with MongoDB integration
+//Find a single member
 const getMember = async (req, res) => {
-    const members = await Members.find({}).sort({createdAt: -1})
+    const { id } = req.params
 
-    res.status(200).json(members)
+    if(!mongoose.Types.ObjectId.isValid(id)){
+        return res.status(404).json({error: 'That member does not exist'})
+    }
+    
+    const member = await Member.findById(id)
+    
+    if(!member){
+        return res.status(404).json({error: 'That member does not exist'})
+    }
+
+    res.status(200).json(member)
 }
 
 const updateMember = async (req, res) => {

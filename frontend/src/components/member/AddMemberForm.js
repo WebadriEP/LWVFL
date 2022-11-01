@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMemberContext } from '../../Hooks/useMemberContext';
+import { useMemberContext } from '../../hooks/useMemberContext';
 
 const AddMemberForm = () => {
     
