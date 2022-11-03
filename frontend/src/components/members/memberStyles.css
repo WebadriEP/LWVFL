@@ -13,6 +13,7 @@
 
 .member-list {
   background: rgb(240, 240, 240);
+  border-radius: .5rem;
 }
 
 .member-list-item {
@@ -22,16 +23,32 @@
   margin-bottom: 1px;
   background: rgb(255, 255, 255);
   font-size: .8rem;
-  color: rgb(49, 49, 49)
+  color: rgb(49, 49, 49);
 }
 
 /* Action Bar */
 .member-action-bar {
   display: flex;
-  border-radius: .5rem;
+  height: 52px;
   align-items: center;
-  padding: .75rem;
   margin-top: 2rem;
   background: rgb(255, 255, 255);
   box-shadow: 0 10px 20px 0 rgb(206, 206, 206);
+}
+
+.btn-action {
+  height: 100%;
+  width: 50px;
+  background: rgb(255, 255, 255);
+  color: rgb(53, 53, 53);
+  font-size: 1.25rem;
+  font-weight: normal;
+  transition: all 200ms ease;
+  margin-left: .75rem;
+  border: none;
+}
+
+.btn-action:hover {
+  background: rgb(245, 245, 245);
+  cursor: pointer;
 }
