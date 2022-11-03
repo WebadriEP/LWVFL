@@ -13,17 +13,41 @@
 
 .member-list {
   background: rgb(240, 240, 240);
-  border-radius: .5rem;
 }
 
 .member-list-item {
+  height: 2.75rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 3fr 3fr;
+  align-items: center;
   padding: .5rem;
   margin-bottom: 1px;
   background: rgb(255, 255, 255);
   font-size: .8rem;
   color: rgb(49, 49, 49);
+}
+
+/* Member List Item Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-column: 5;
+  height: 100%;
+}
+
+.actions > button {
+  margin-left: .5rem;
+  height: 100%;
+  padding: .3rem .65rem;
+  transition: all 200ms ease;
+  background: white;
+  border: none;
+}
+
+.actions > button:hover {
+  background: rgb(240, 240, 240);
+  cursor: pointer;
 }
 
 /* Action Bar */

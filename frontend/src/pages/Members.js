@@ -23,14 +23,14 @@ const Members = () => {
 
     return(
         <>
-            <h1>Members List</h1>
+            <h1>Member Management</h1>
 
             <MemberActionBar members={members} setQueryResults={setQueryResults} />
 
             <div className="member-list-labels">
-                <h3>Member Name</h3>
+                <h3>Name</h3>
                 <h3>Email</h3>
-                <h3>Phone Number</h3>
+                <h3>City</h3>
             </div>
 
             <MemberList queryResults={queryResults} />
