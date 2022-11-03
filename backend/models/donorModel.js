@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
 
-const memberSchema = new Schema({
+const donorSchema = new Schema({
   firstName: {
     type: String,
     required: true,
@@ -19,7 +19,7 @@ const memberSchema = new Schema({
     type: String,
     required: true,
   },
-  homeAddress: {
+  address: {
     type: String,
     required: true,
   },
@@ -38,19 +38,8 @@ const memberSchema = new Schema({
     type: String,
     required: true,
   },
-  gender: {
-    type: String,
-  },
-  birthMonth: {
-    type: String,
-  },
-  birthDay: {
-    type: String,
-  },
-  birthYear: {
-    type: String,
-  }
+  donations: [{type: mongoose.Schema.Types.ObjectId, ref: 'Donation'}],
 })
   
 
-module.exports = mongoose.model("Member", memberSchema)
+module.exports = mongoose.model("Donor", donorSchema)
