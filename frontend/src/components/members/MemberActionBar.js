@@ -1,16 +1,18 @@
 // components
-import Search from "../search/Search";
+import MemberSearch from "../search/MemberSearch";
 import PrimaryButton from "../buttons/PrimaryButton"
 
 // css
 import './memberStyles.css'
 import '../buttons/buttonStyles.css'
 
-const MemberActionBar = () => {
+const MemberActionBar = ({ members, setQueryResults }) => {
   return (
     <div className="member-action-bar shadow">
-      <button className="btn-flex btn-action">Create Member +</button>
-      <Search searchType='members' />
+      <MemberSearch members={members} setQueryResults={setQueryResults} />
+      
+      {/* NEW MEMBER BUTTON */}
+      <button className="btn-action">+</button>
     </div>
   )
 }
