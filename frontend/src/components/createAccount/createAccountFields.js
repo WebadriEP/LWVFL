@@ -29,7 +29,7 @@ const CreateAccountFields = () => {
         method: 'POST',
         body: JSON.stringify(user),
         headers:{
-            'Content-Type': 'application.json'
+            'Content-Type': 'application/json'
         }
     })
     const json = await response.json()

@@ -1,43 +1,14 @@
 import {useState} from 'react';
 
-import {useAuthContext} from '../../hooks/useAuthContext';
-
+import { useLogin } from '../../hooks/useLogin';
 
 const LoginFields = () => {
-    const {dispatch} = useAuthContext()
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const {login, isLoading, error} = useLogin()
 
-    const [error, setError] = useState(null)
-    const [isLoading,setIsLoading] = useState(null)
-
-    const login = async(email, password) => {
-        setIsLoading(true)
-        setError(null)
-
-        const response = await fetch('/login', {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({email, password})
-           
-        })
-        const json = await response.json()
     
-
-    if(!response.ok){
-        setIsLoading(false)
-        setError(json.error)
-    }
-    if(response.ok){
-        localStorage.setItem('user', JSON.stringify(json))
-
-        dispatch({type: "LOGIN", payload:json})
-
-        setIsLoading(false)
-    }
-}
-
 
 
     const handleSubmit = async (e) => {
