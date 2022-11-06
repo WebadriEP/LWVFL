@@ -3,7 +3,8 @@ const express = require("express")
 const{
     getDonors,
     getDonor,
-    updateDonor
+    updateDonor,
+    createDonor
 } = require('../controllers/donorController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -17,6 +18,10 @@ router.get('/', getDonors)
 //get a single Donor
 router.get('/:id', getDonor)
 
+//create new donor
+router.post('/', createDonor)
+
+//edit donor
 router.patch('/:id', updateDonor)
 
 
