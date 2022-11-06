@@ -1,6 +1,6 @@
 const Donors = require('../models/donorModel')
 
-//Find all Members
+//Find all Donors
 const getDonors = async (req, res) => {
     const donors = await Donors.find({}).sort({createdAt: -1})
 
@@ -24,6 +24,33 @@ const getDonor = async (req, res) => {
     res.status(200).json(donor)
 }
 
+//create new donor
+const createDonor = async(req,res) => {
+    const {firstName, lastName, email} = req.body
+    let emptyFields = []
+
+    if(!firstName){
+        emptyFields.push('firstName')
+    }
+    if(!lastName){
+        emptyFields.push('lastName')
+    }
+    if(!email){
+        emptyFields.push('email')
+    }
+    
+    if(emptyFields.length>0){
+        return res.status(400).json({ error: 'Make sure to fill in the required fields: ', emptyFields})
+    }
+    
+    try{
+        const donor = await Donors.create({firstName, lastName, email})
+        res.status(200).json(donor)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
 const updateDonor = async (req, res) => {
     const { id } = req.params
 
@@ -44,7 +71,8 @@ const updateDonor = async (req, res) => {
 module.exports = {
     getDonors,
     getDonor,
-    updateDonor
+    updateDonor,
+    createDonor
 
 
 }
