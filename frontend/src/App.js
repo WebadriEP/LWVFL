@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 
 // components
 import Navbar from './components/navigation/Navbar';
+import Footer from './components/Footer';
 
 // pages
 import Engagement from './pages/Engagement';
@@ -42,6 +43,7 @@ function App() {
           {/* <Route path = "/create" element={ <CreateAccount />} /> */}
          </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
     </div>
   );
