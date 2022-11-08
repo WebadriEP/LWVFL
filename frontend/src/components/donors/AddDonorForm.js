@@ -22,7 +22,7 @@ const AddDonorForm = () => {
 
     }
 
-    const response = await fetch('/api/donors/', {
+    const response = await fetch('http://localhost:3000/api/donors/', {
         method: 'POST',
         body: JSON.stringify(donor),
         headers: {

@@ -11,7 +11,7 @@ const Donors = () => {
 
     useEffect(() => {
         const fetchDonors = async () => {
-          const response = await fetch('/api/donors')
+          const response = await fetch('http://localhost:3000/api/donors')
           const json = await response.json(); 
   
           if (response.ok) {

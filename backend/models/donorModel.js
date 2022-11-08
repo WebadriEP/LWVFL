@@ -23,4 +23,4 @@ const donorSchema = new Schema({
       }
 })
 
-export default donorSchema;
+module.exports = mongoose.model('Donor', donorSchema)
