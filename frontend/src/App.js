@@ -34,7 +34,7 @@ function App() {
           <Route path="/reports" element={ <Reports /> } />
           
           {/* Other routes */}
-          <Route path="/member/:id" element={<Member />} />
+          <Route exact path="/member/:id" element={<Member />} />
           <Route path="/reports/new" element={<NewReport />} />
 
 

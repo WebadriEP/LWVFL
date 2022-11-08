@@ -9,7 +9,7 @@ const MemberListItem = ({ member }) => {
     return (
         <div className='member-list-item'>
             {/* Make the name clickable -> Links to that member's detailed page */}
-            <Link to={`/member/${member._id}`} data={member}>
+            <Link to={`/member/${member._id}`} state={member}>
                 <h3>{firstName} {lastName}</h3>
             </Link>
             <h3>{email}</h3>

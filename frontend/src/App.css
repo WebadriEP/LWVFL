@@ -25,6 +25,11 @@ h2 {
   font-size: 1.35rem;
 }
 
+h3 {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
 .text-description {
   font-size: 0.9rem;
   color: #757575;
