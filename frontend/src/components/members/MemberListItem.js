@@ -10,10 +10,10 @@ const MemberListItem = ({ member }) => {
         <div className='member-list-item'>
             {/* Make the name clickable -> Links to that member's detailed page */}
             <Link to={`/member/${member._id}`} state={member}>
-                <h3>{firstName} {lastName}</h3>
+                <p>{firstName} {lastName}</p>
             </Link>
-            <h3>{email}</h3>
-            <h3>{city}</h3>
+            <p>{email}</p>
+            <p>{city}</p>
 
             <div className="actions">
                 <button className="edit"><i className="fa fa-pencil"></i></button>

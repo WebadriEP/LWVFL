@@ -46,4 +46,11 @@ h3 {
   box-shadow: 0 15px 35px 0 rgb(231, 231, 231);
 }
 
-/* Icons */
+/* Footer */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: #757575;
+}
