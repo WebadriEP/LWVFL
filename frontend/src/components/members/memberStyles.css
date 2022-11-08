@@ -24,6 +24,11 @@
   margin-bottom: 1px;
   background: rgb(255, 255, 255);
   font-size: .8rem;
+  font-weight: normal;
+  color: rgb(49, 49, 49);
+}
+
+.member-list-item a {
   color: rgb(49, 49, 49);
 }
 
