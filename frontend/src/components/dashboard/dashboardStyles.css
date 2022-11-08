@@ -3,7 +3,6 @@
   grid-template-columns: 1fr 1fr;
   gap: 0.75rem;
   background: rgb(255, 255, 255);
-  border-radius: 0.5rem;
   margin: 1rem 0;
   padding: 1rem;
 }
@@ -14,8 +13,9 @@
   justify-content: center;
   height: 8vh;
   padding: .5rem 2rem;
-  border-radius: 0.5rem;
   transition: all 200ms ease;
+  text-decoration: none;
+  color: rgb(49, 49, 49);
 }
 
 .quick-action:hover {
@@ -36,11 +36,25 @@
   flex-direction: column;
   justify-content: center;
   background: rgb(255, 255, 255);
-  border-radius: 0.5rem;
   overflow: scroll;
   padding: 1.5rem;
 }
 
 .graph h2 {
   margin-bottom: 1rem;
+}
+
+/* Media Queries */
+@media screen and (max-width: 956px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+  }
+
+  .quick-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .graphs {
+    grid-template-columns: 1fr;
+  }
 }

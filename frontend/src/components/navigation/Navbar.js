@@ -25,6 +25,7 @@ const Navbar = () => {
             <div className="nav-links">
               <NavLink page='/' text='Dashboard' />
               <NavLink page='/members' text='Members' />
+              <NavLink page='/donors' text='Donors' />
               <NavLink page='/engagement' text='Engagement' />
               <NavLink page='/reports' text='Reports' />
             </div>
