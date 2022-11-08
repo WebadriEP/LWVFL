@@ -12,7 +12,13 @@ export const getAllMembers = async () => {
 }
 
 // Get a single member by ID
-export const getMember = async (id) => {
-  const response = await api.get(`/members/${id}`);
+export const getSingleMember = async (id) => {
+  const response = await api.get('/members/' + id);
+  return response.data;
+}
+
+// Create a member
+export const createMember = async (member) => {
+  const response = await api.post('/members', member);
   return response.data;
 }

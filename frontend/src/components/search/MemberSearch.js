@@ -27,7 +27,7 @@ const Search = ({ members, setQueryResults }) => {
 
   return (
     <form className='search' onSubmit={handleSubmit}>
-      <input type='text' placeholder='Search members by name or email' onChange={handleQueryChange} />
+      <input type='text' placeholder='Search by name or email...' onChange={handleQueryChange} />
     </form>
   )
 }
