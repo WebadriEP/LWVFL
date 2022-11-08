@@ -1,7 +1,7 @@
 // components
 import MemberActionBar from "../components/members/MemberActionBar";
 import MemberList from "../components/members/MemberList";
-
+import AddMember from "./AddMember"
 // css
 import '../components/members/memberStyles.css'
 
@@ -15,7 +15,7 @@ const Members = () => {
                 <h3>Email</h3>
                 <h3>Phone Number</h3>
             </div>
-            <MemberList />
+            <AddMember />
         </>
     );
 }

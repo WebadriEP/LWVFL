@@ -10,6 +10,7 @@ import CreateAccount from './pages/createAccount';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
+import AddMember from './pages/AddMember';
 
 // css
 import './App.css';
@@ -24,6 +25,7 @@ function App() {
             <Route path="/" element={<Dashboard />} />
             <Route path="/login" element={<Login />} />
             <Route path="/members" element ={ <Members /> } />
+            <Route path="/addmember" element ={ <AddMember /> } />
             <Route path="/engagement" element ={ <Engagement /> } />
             <Route path="/reports" element={ <Reports /> } />
             {/* <Route path = "/member/add" element ={ <AddMemberForm /> } /> */}
