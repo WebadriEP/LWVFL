@@ -3,7 +3,7 @@ const mongoose = require('mongoose')
 
 //Find all Donors
 const getDonors = async (req, res) => {
-    const donors = await Donors.find({}).sort({createdAt: -1})
+    const donors = await Donors.find({})
 
     res.status(200).json(donors)
 }

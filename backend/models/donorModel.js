@@ -18,7 +18,7 @@ const donorSchema = new Schema({
       },
 
       donations: {
-        tpye: Array,
+        type: Array,
         required: false
       }
 })
