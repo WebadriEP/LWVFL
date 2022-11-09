@@ -4,7 +4,7 @@ import DonorDetails from '../components/donors/DonorDetails';
 import { useDonorContext } from '../hooks/useDonorContext';
 
 // css
-import '../components/members/memberStyles.css'
+import '../components/donors/donorStyles.css'
 
 const Donors = () => {
     const { donors, dispatch } = useDonorContext();
@@ -25,19 +25,19 @@ const Donors = () => {
         <div>
           <div>
             <h2>Manage Donors</h2>
-            <div>
-              <Link to="/donors/add">
-                <button className="btnAdd">Add Donor</button>
-              </Link>
-            </div>
+           
           </div>
           
-          <div>
+          <div className="member-list">
             {donors && donors.map((donor) => (
               <DonorDetails key={donor._id} donor={donor} />
             ))}
             
+            <Link to="/donors/add" float="right">
+              <button className="btnAdd" float="right">Add Donor</button>
+            </Link>
           </div>
+
         </div>
       )
 }
