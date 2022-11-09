@@ -1,19 +1,24 @@
+import { Link } from "react-router-dom";
+
 // css
 import './memberStyles.css'
 
-const MemberListItem = () => {
+const MemberListItem = ({ member }) => {
+    let { firstName, lastName, email, city } = member;
 
-    let memberFirstName = "John";
-    let memberLastName = "Doe";
-    let memberEmail = "john@gmail.com";
-    let memberPhone = "123-456-7890";
-
-    return(
+    return (
         <div className='member-list-item'>
             {/* Make the name clickable -> Links to that member's detailed page */}
-            <h3>{memberFirstName} {memberLastName}</h3>
-            <h3>{memberEmail}</h3>
-            <h3>{memberPhone}</h3>
+            <Link to={`/member/${member._id}`} state={member}>
+                <p>{firstName} {lastName}</p>
+            </Link>
+            <p>{email}</p>
+            <p>{city}</p>
+
+            <div className="actions">
+                <button className="edit"><i className="fa fa-pencil"></i></button>
+                <button className="delete"><i className="fa fa-remove"></i></button>
+            </div>
         </div>
     );
 }

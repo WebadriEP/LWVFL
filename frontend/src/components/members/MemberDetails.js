@@ -19,7 +19,7 @@ const MemberDetails = ({ member }) => {
 
   return (
     <div className="member-details">
-      <p>{member.firstName}</p>
+      <p><strong>First Name: </strong>{member.firstName}</p>
       <p><strong>Last Name: </strong>{member.lastName}</p>
       <p><strong>Email: </strong>{member.email}</p>
       <span className="material-symbols-outlined" onClick={handleClick}>delete</span>
