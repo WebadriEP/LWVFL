@@ -1,5 +1,7 @@
 const mongoose = require("mongoose")
 const Schema = mongoose.Schema
+const bcrypt = require("bcryptjs");
+const validator = require("validator");
 
 const userSchema = new Schema({
     
@@ -23,5 +25,54 @@ const userSchema = new Schema({
     }
     
     
-  })
+  });
+
+
+  userSchema.statics.register = async function (firstName, lastName, email, password) {
+    if (!email || !password || !firstName || !lastName) {
+      throw Error('All fields are required')
+    }
+
+    if (!validator.isEmail(email)) {
+      throw Error('Email is invalid')
+    }
+    // if (!validator.isStrongPassword(password)) {
+    //   throw Error('Password not strong enough');
+    // }
+
+    const exists = await this.findOne({ email })
+
+    if (exists) {
+      throw Error('Email already exists')
+    }
+
+     const salt = await bcrypt.genSalt(10)
+     const hash = await bcrypt.hash(password, salt)
+    
+    const user = await this.create({ firstName, lastName, email, password: hash})
+    console.log(user)
+
+    return user
+  }
+  
+  userSchema.statics.login = async function (email, password) {
+    if (!email || !password) {
+      throw new Error("All fields are required");
+    }
+    const user = await this.findOne({ email })
+
+    if (!user) {
+      throw new Error("User does not exist");
+    }
+    const match = await bcrypt.compare(password, user.password);
+
+  // if passwords do not match, throw error
+  if (!match) {
+    throw new Error("Incorrect password");
+  }
+
+  return user;
+};
+
+  module.exports = mongoose.model('User', userSchema)
   

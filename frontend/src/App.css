@@ -40,3 +40,8 @@ h2 {
 .shadow {
   box-shadow: 0 15px 35px 0 rgb(231, 231, 231);
 }
+.btn-in-reg {
+  background-color: black;
+  border: 1px solid white;
+  color: white;
+}

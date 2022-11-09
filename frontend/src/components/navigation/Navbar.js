@@ -4,11 +4,19 @@ import { Link } from "react-router-dom";
 import PrimaryButton from "../buttons/PrimaryButton";
 import SecondaryButton from "../buttons/SecondaryButton";
 import NavLink from "./NavLink";
-
+import { useLogout } from "../../hooks/useLogout";
+import { useAuthContext } from "../../hooks/useAuthContext";
 // css
 import './navStyles.css';
 
 const Navbar = () => {
+  const {user} =  useAuthContext()
+  const {logout} = useLogout()
+
+  const handleClick = () => {
+    logout()
+  }
+
     return (
       <nav className="navbar">
         <div className="nav-container">
@@ -31,13 +39,22 @@ const Navbar = () => {
             </div>
 
             {/* Nav Rear */}
+            {!user && (
             <div className="nav-rear">
-
             {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-            <SecondaryButton page='/register' text='Register' />
-            <PrimaryButton page='/login' text='Log In' />
+              <SecondaryButton page='/create' text='Create Account' />
+              <PrimaryButton page='/login' text='Log In' />
+              </div>
+        )}
+        {user && (
+            <div className="nav-rear">
+            {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
+              <button className="btn btn-primary" onClick={handleClick}>Log Out</button>
+              </div>
+        )}
+        
           </div>
-        </div>
+       
 
       </nav>
   );
