@@ -16,7 +16,7 @@ export const userReducer = (state, action) => {
       return {
         users: state.users.filter(v => v._id !== action.payload._id)
       }
-    default: return state
+    default: return state;
   }
 }
 

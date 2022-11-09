@@ -25,14 +25,14 @@ const CreateAccountFields = () => {
         password
     }
 
-    const response = await fetch('/register', {
+    const response = await fetch('/api/user/register', {
         method: 'POST',
         body: JSON.stringify(user),
         headers:{
             'Content-Type': 'application/json'
         }
-    })
-    const json = await response.json()
+    });
+    const json = await response.json();
 
     if(!response.ok){
         setError(json.error)
