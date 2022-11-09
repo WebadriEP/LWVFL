@@ -12,7 +12,10 @@ import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
 import Donors from './pages/Donors';
+import Donations from './pages/Donations';
 import AddDonor from './pages/AddDonor';
+import AddDonation from './pages/AddDonation';
+
 
 // css
 import './App.css';
@@ -31,6 +34,8 @@ function App() {
             <Route path="/members" element ={ <Members /> } />
             <Route path="/donors" element ={ <Donors /> } />
             <Route path="/donors/add" element ={ <AddDonor/> } />
+            <Route path="/donations" element ={ <Donations /> } />
+            <Route path="/donations/add" element ={ <AddDonation/> } />
             <Route path="/engagement" element ={ <Engagement /> } />
             <Route path="/reports" element={ <Reports /> } />
             

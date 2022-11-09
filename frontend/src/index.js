@@ -4,16 +4,19 @@ import App from './App';
 import { UserContextProvider } from './context/userContext';
 import { MemberProvider } from './context/MemberContext';
 import { DonorProvider } from './context/DonorContext';
+import { DonationProvider } from './context/DonationContext';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <DonorProvider>
+    <DonationProvider>
+      <DonorProvider>
     <MemberProvider>
     <UserContextProvider>
       <App />
     </UserContextProvider>
     </MemberProvider>
     </DonorProvider>
+    </DonationProvider>
   </React.StrictMode>
 );

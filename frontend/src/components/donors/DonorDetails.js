@@ -1,4 +1,5 @@
 import { useDonorContext } from "../../hooks/useDonorContext";
+import { Link } from 'react-router-dom';
 import './donorStyles.css';
 
 
@@ -13,7 +14,8 @@ const DonorDetails = ({ donor }) => {
     <div className="donor-item">
       <h4>{donor.firstName} {donor.lastName}</h4>
       <p><strong>Email:</strong> {donor.email}</p>
-      <button>View Donations for Donor</button>
+      <Link to='/donations'><button>View Donations for Donor</button>
+      </Link>
       
       
     </div>
