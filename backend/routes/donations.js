@@ -3,7 +3,8 @@ const express = require("express")
 const{
     getDonations,
     getDonation,
-    updateDonation
+    updateDonation,
+    createDonation
 } = require('../controllers/donationController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -16,6 +17,9 @@ router.get('/', getDonations)
 
 //get a single Donation
 router.get('/:id', getDonation)
+
+//create a new Donation
+router.post('/', createDonation)
 
 router.patch('/:id', updateDonation)
 

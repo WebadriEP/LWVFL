@@ -2,7 +2,7 @@ const Donations = require('../models/donationModel')
 
 //Find all donations
 const getDonations = async (req, res) => {
-    const donations = await Donations.find({}).sort({createdAt: -1})
+    const donations = await Donations.find({})
 
     res.status(200).json(donations)
 }
@@ -41,10 +41,38 @@ const updateDonation = async (req, res) => {
     res.status(200).json(donor)
 }
 
+//create new donation
+const createDonation = async(req,res) => {
+    const {donorID, date, amount, type, notes} = req.body
+    let emptyFields = []
+
+    if(!donorID){
+        emptyFields.push('donor ID')
+    }
+    if(!date){
+        emptyFields.push('date')
+    }
+    if(!amount){
+        emptyFields.push('amount')
+    }
+    
+    if(emptyFields.length>0){
+        return res.status(400).json({ error: 'Make sure to fill in the required fields: ', emptyFields})
+    }
+    
+    try{
+        const donation = await Donations.create({donorID, date, amount, type, notes})
+        res.status(200).json(donation)
+    } catch (error) {
+        res.status(400).json({ error: error.message })
+    }
+}
+
 module.exports = {
     getDonations,
     getDonation,
-    updateDonation
+    updateDonation,
+    createDonation
 
 
 }
