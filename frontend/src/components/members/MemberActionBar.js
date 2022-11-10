@@ -9,9 +9,10 @@ import '../buttons/buttonStyles.css'
 const MemberActionBar = ({ members, setQueryResults }) => {
   return (
     <div className="member-action-bar shadow">
+      {/* Serach Bar */}
       <MemberSearch members={members} setQueryResults={setQueryResults} />
       
-      {/* NEW MEMBER BUTTON */}
+      {/* Add New Member Button */}
       <button className="btn-action">+</button>
     </div>
   )
