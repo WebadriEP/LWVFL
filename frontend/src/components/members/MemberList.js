@@ -2,7 +2,7 @@
 import MemberListItem from './MemberListItem';
 
 // css
-import './memberStyles.css'
+//import './memberStyles.css'
 
 const MemberList = ({ queryResults }) => {
     // Generate a list of MemberListItem components

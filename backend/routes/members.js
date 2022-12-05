@@ -4,10 +4,11 @@ const{
     getMembers,
     getMember,
     createMember,
-    updateMember
+    updateMember,
+    deleteMember
 } = require('../controllers/memberController')
 
-const requireAuth = require('../middleware/requireAuth')
+//const requireAuth = require('../middleware/requireAuth')
 const router = express.Router()
 
 //router.use(requireAuth)
@@ -18,10 +19,10 @@ router.get('/', getMembers)
 //get a single Member
 router.get('/:id', getMember)
 
-// Create a Member
 router.post('/', createMember)
 
 router.patch('/:id', updateMember)
 
+router.delete('/:id', deleteMember)
 
 module.exports = router

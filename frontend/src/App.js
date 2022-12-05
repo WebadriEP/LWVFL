@@ -13,6 +13,7 @@ import CreateAccount from './pages/createAccount';
 import Dashboard from './pages/Dashboard';
 import Reports from './pages/Reports';
 import Login from './pages/Login';
+import AddMember from './pages/AddMember';
 import Donors from './pages/Donors';
 import Donations from './pages/Donations';
 import AddDonor from './pages/AddDonor';
@@ -41,6 +42,7 @@ function App() {
           {/* <Route path = "/create" element={ <CreateAccount />} /> */}
           
           {/* Donor Routes */}
+            <Route path="/addmember" element ={ <AddMember /> } />
           <Route path="/donors" element ={ <Donors /> } />
           <Route path="/donors/add" element ={ <AddDonor/> } />
           

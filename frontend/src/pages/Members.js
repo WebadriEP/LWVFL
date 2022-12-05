@@ -1,11 +1,13 @@
-import axios from 'axios';
+import axios from 'axios'
 import { useState, useEffect, useMemo } from 'react';
 import { getAllMembers } from '../api/axios';
+import { Link } from "react-router-dom";
+
 
 // components
 import MemberActionBar from "../components/members/MemberActionBar";
 import MemberList from "../components/members/MemberList";
-
+import AddMember from "./AddMember"
 // css
 import '../components/members/memberStyles.css'
 
@@ -23,20 +25,18 @@ const Members = () => {
 
     return(
         <>
-            <h1>Member Management</h1>
-
-            {/* Action bar containing search + filters + add */}
+            <h1>Members List</h1>
             <MemberActionBar members={members} setQueryResults={setQueryResults} />
-
-            {/* List column labels */}
             <div className="member-list-labels">
                 <h3>Name</h3>
                 <h3>Email</h3>
                 <h3>City</h3>
             </div>
-
-            {/* Member List -- receives query results to filter */}
             <MemberList queryResults={queryResults} />
+            <br></br>
+      <Link to='/AddMember'>Edit Member List</Link>
+            
+
         </>
     );
 }

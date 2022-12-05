@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import { UserContextProvider } from './context/userContext';
+import './index.css';import { UserContextProvider } from './Context/userContext';
+import { MembersContextProvider } from './Context/MembersContext'
 import { AuthProvider } from './context/AuthContext';
 import { MemberProvider } from './context/MemberContext';
 import { DonorProvider } from './context/DonorContext';
@@ -11,13 +12,13 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
-      <UserContextProvider>
+      <MembersContextProvider>
         <DonorProvider>
           <DonationProvider>
             <App />
           </DonationProvider>
         </DonorProvider>
-      </UserContextProvider>
+      </MembersContextProvider>
     </AuthProvider>
   </React.StrictMode>
 );

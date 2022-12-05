@@ -1,11 +1,16 @@
 import { Link } from "react-router-dom";
 
+import { Link } from "react-router-dom";
+
 // css
 import './memberStyles.css'
 
 const MemberListItem = ({ member }) => {
     let { firstName, lastName, email, city } = member;
+const MemberListItem = ({ member }) => {
+    let { firstName, lastName, email, city } = member;
 
+    return (
     return (
         <div className='member-list-item'>
 
@@ -19,6 +24,16 @@ const MemberListItem = ({ member }) => {
 
             <div className="actions">
                 {/* TODO: Add functionality to these action buttons */}
+                <button className="edit"><i className="fa fa-pencil"></i></button>
+                <button className="delete"><i className="fa fa-remove"></i></button>
+            </div>
+            <Link to={`/member/${member._id}`} state={member}>
+                <p>{firstName} {lastName}</p>
+            </Link>
+            <p>{email}</p>
+            <p>{city}</p>
+
+            <div className="actions">
                 <button className="edit"><i className="fa fa-pencil"></i></button>
                 <button className="delete"><i className="fa fa-remove"></i></button>
             </div>
