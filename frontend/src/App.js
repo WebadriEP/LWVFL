@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-
+import { useAuthContext } from './hooks/useAuthContext';
 // components
 import Navbar from './components/navigation/Navbar';
 import Footer from './components/Footer';
@@ -24,26 +24,39 @@ import NewReport from './components/reports/NewReport';
 import './App.css';
 
 function App() {
+  const { user } = useAuthContext()
+
   return (
     <div className="App">
       <BrowserRouter>
         <Navbar />
         <div className="pages">
          <Routes>
-            <Route path = "/member" element ={ <Members /> } />
-            <Route path = "/engagement" element ={ <Engagement /> } />
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/members" element ={ <Members /> } />
-            <Route path="/donors" element ={ <Donors /> } />
-            <Route path="/donors/add" element ={ <AddDonor/> } />
-            <Route path="/donations" element ={ <Donations /> } />
-            <Route path="/donations/add" element ={ <AddDonation/> } />
-            <Route path="/engagement" element ={ <Engagement /> } />
-            <Route path="/reports" element={ <Reports /> } />
-            
-            {/* <Route path = "/member/add" element ={ <AddMemberForm /> } /> */}
-            {/* <Route path = "/create" element={ <CreateAccount />} /> */}
+          {/* Main routes */}
+          <Route path="/" element={user ? <Dashboard /> : <Navigate to="/login"/>} />
+          <Route path="/engagement" element ={user ?  <Engagement /> : <Navigate to="/"/>} />
+          
+          {/* Auth Routes */}
+          <Route path="/login" element={!user ?  <Login /> : <Navigate to="/"/>}/>
+          {/* <Route path = "/create" element={ <CreateAccount />} /> */}
+          
+          {/* Donor Routes */}
+          <Route path="/donors" element ={ <Donors /> } />
+          <Route path="/donors/add" element ={ <AddDonor/> } />
+          
+          {/* Donation Routes */}
+          <Route path="/donations" element ={ <Donations /> } />
+          <Route path="/donations/add" element ={ <AddDonation/> } />
+          
+          {/* Member Routes */}
+          <Route path="/members" element ={user ?  <Members /> : <Navigate to="/"/>} />
+          <Route path = "/create" element={!user ?  <CreateAccount /> : <Navigate to="/"/>} /> 
+          <Route exact path="/member/:id" element={<Member />} />
+          {/* <Route path = "/member/add" element ={ <AddMemberForm /> } /> */}
+          
+          {/* Reports Routes */}
+          <Route path="/reports" element={user ?  <Reports /> : <Navigate to="/"/>} />
+          <Route path="/reports/new" element={<NewReport />} />
          </Routes>
         </div>
         <Footer />

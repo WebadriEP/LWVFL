@@ -6,9 +6,7 @@ const donorRoutes = require('./routes/donors')
 const donationRoutes = require('./routes/donations')
 const express = require("express");
 const mongoose = require("mongoose");
-const cors = require('cors');
-
-
+const cors = require("cors");
 // Initialize express
 const app = express();
 
@@ -24,6 +22,7 @@ app.use((req, res, next) => {
 
 // Routes
 app.use('/api/members', memberRoutes)
+app.use('/api/user', userRoutes)
 app.use('/api/users', userRoutes)
 app.use('/api/donors', donorRoutes)
 app.use('/api/donations', donationRoutes)
