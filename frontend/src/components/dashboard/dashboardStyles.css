@@ -36,7 +36,6 @@
   flex-direction: column;
   justify-content: center;
   background: rgb(255, 255, 255);
-  overflow: scroll;
   padding: 1.5rem;
 }
 
