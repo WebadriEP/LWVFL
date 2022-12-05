@@ -4,7 +4,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js"
+    "start": "nodemon server.js",
+    "azure-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../frontend && npm run build --prefix ../frontend"
   },
   "keywords": [],
   "author": "Webadri Enterprises",
@@ -18,6 +19,7 @@
     "mongoose": "^6.7.0"
   },
   "devDependencies": {
+    "cors": "^2.8.5",
     "nodemon": "^2.0.20"
   },
   "description": ""

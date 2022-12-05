@@ -25,6 +25,11 @@ h2 {
   font-size: 1.35rem;
 }
 
+h3 {
+  font-weight: 700;
+  font-size: 1.15rem;
+}
+
 .text-description {
   font-size: 0.9rem;
   color: #757575;
@@ -39,4 +44,13 @@ h2 {
 /* Shadows */
 .shadow {
   box-shadow: 0 15px 35px 0 rgb(231, 231, 231);
+}
+
+/* Footer */
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3rem;
+  color: #757575;
 }

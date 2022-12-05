@@ -12,6 +12,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next(); // Pass the request to the next middleware
@@ -20,6 +21,16 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/members', memberRoutes)
 app.use('/api/users', userRoutes)
+
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('../frontend/build'));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  });
+}
 
 // Connect to DB
   mongoose.connect(process.env.MONGO_URI)

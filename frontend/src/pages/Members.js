@@ -15,22 +15,22 @@ const Members = () => {
     const [members, setMembers] = useState([]); // State for members
     const [queryResults, setQueryResults] = useState([]); // State for search results
 
-    // Fetch all members
+    // Fetch all members -- Used for search functionality
     useEffect(() => {
         getAllMembers().then(json => {
             setMembers(json)
             setQueryResults(json)
         })
     }, [])
-    
+
     return(
         <>
             <h1>Members List</h1>
             <MemberActionBar members={members} setQueryResults={setQueryResults} />
             <div className="member-list-labels">
-                <h3>Member Name</h3>
+                <h3>Name</h3>
                 <h3>Email</h3>
-                <h3>Phone Number</h3>
+                <h3>City</h3>
             </div>
             <MemberList queryResults={queryResults} />
             <br></br>
