@@ -52,7 +52,6 @@ const createMember = async (req, res) => {
     } catch (error) {
         res.status(400).json({error: error.message })
     }
-}
 
     const { id } = req.params
 
@@ -68,33 +67,6 @@ const createMember = async (req, res) => {
 
     res.status(200).json(member)
 
-}
-
-const createMember = async (req, res) => {
-    const {firstName, lastName, email} = req.body
-  
-    let emptyFields = []
-
-    if (!firstName) {
-        emptyFields.push('firstName')
-    }
-    if (!lastName) {
-        emptyFields.push('lastName')
-    }
-    if (!email) {
-        emptyFields.push('email')
-    }
-    if (emptyFields.length > 0) {
-        return res.status(400).json({ error: 'Please fill in all fields', emptyFields })
-    }
-    
-    // add to the database
-    try {
-      const member = await Member.create({ firstName, lastName, email })
-      res.status(200).json(member)
-    } catch (error) {
-      res.status(400).json({ error: error.message })
-    }
 }
 
 const updateMember = async (req, res) => {

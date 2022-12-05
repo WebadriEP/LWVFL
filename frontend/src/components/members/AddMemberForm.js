@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useMembersContext } from '../../Hooks/useMembersContext'
+import { useMembersContext } from '../../hooks/useMembersContext'
 
 const AddMemberForm = () => {
     const { dispatch } = useMembersContext()

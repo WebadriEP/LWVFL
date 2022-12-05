@@ -1,16 +1,11 @@
 import { Link } from "react-router-dom";
 
-import { Link } from "react-router-dom";
-
 // css
 import './memberStyles.css'
 
 const MemberListItem = ({ member }) => {
     let { firstName, lastName, email, city } = member;
-const MemberListItem = ({ member }) => {
-    let { firstName, lastName, email, city } = member;
 
-    return (
     return (
         <div className='member-list-item'>
 
@@ -41,4 +36,4 @@ const MemberListItem = ({ member }) => {
     );
 }
 
-export default MemberListItem;
+export default MemberListItem

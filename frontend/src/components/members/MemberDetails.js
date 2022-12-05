@@ -1,4 +1,4 @@
-import { useMembersContext } from '../../Hooks/useMembersContext'
+import { useMembersContext } from '../../hooks/useMembersContext'
 
 // date fns
 //import formatDistanceToNow from 'date-fns/formatDistanceToNow'

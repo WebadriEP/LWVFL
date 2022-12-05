@@ -1,4 +1,4 @@
-import { MembersContext } from "../Context/MembersContext"
+import { MembersContext } from "../context/MembersContext"
 import { useContext } from "react"
 
 export const useMembersContext = () => {
