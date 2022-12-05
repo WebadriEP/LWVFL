@@ -2,14 +2,19 @@ require("dotenv").config();
 
 const memberRoutes = require('./routes/members')
 const userRoutes = require('./routes/users')
+const donorRoutes = require('./routes/donors')
+const donationRoutes = require('./routes/donations')
 const express = require("express");
 const mongoose = require("mongoose");
+const cors = require('cors');
+
 
 // Initialize express
 const app = express();
 
 // Middleware
 app.use(express.json());
+app.use(cors());
 
 
 app.use((req, res, next) => {
@@ -20,6 +25,8 @@ app.use((req, res, next) => {
 // Routes
 app.use('/api/members', memberRoutes)
 app.use('/api/users', userRoutes)
+app.use('/api/donors', donorRoutes)
+app.use('/api/donations', donationRoutes)
 
 // Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {

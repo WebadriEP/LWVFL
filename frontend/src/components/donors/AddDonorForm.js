@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { useMemberContext } from '../../hooks/useMemberContext';
+import { useDonorContext } from '../../hooks/useDonorContext';
 
-const AddMemberForm = () => {
+const AddDonorForm = () => {
     
-    const { dispatch } = useMemberContext(); // Allow access to manage members
+    const { dispatch } = useDonorContext(); // Allow access to manage donors
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
@@ -14,7 +14,7 @@ const AddMemberForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault(); // Prevent page refresh on submit
 
-    const member = {
+    const donor = {
       
       firstName,
       lastName,
@@ -22,9 +22,9 @@ const AddMemberForm = () => {
 
     }
 
-    const response = await fetch('/api/members', {
+    const response = await fetch('http://localhost:3000/api/donors/', {
         method: 'POST',
-        body: JSON.stringify(member),
+        body: JSON.stringify(donor),
         headers: {
           'Content-Type': 'application/json'
         }
@@ -47,7 +47,7 @@ const AddMemberForm = () => {
       setLastName('')
       setEmail('')
       
-      dispatch({ type: 'ADD_MEMBER', payload: json });
+      dispatch({ type: 'ADD_DONOR', payload: json });
     }
 
   }
@@ -55,7 +55,7 @@ const AddMemberForm = () => {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h2>Add a New Member</h2>
+        <h2>Add a New Donor</h2>
 
         
         <div>
@@ -90,7 +90,7 @@ const AddMemberForm = () => {
           />
         </div>
         
-        <button>Add Member</button>
+        <button>Add Donor</button>
 
 
           {error && <div>{error}</div>}
@@ -104,4 +104,4 @@ const AddMemberForm = () => {
     
 }
 
-export default AddMemberForm
+export default AddDonorForm
