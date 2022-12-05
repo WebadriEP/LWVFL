@@ -1,0 +1,18 @@
+.search {
+  display: flex;
+  width: 50%;
+}
+
+.search input {
+  display: flex;
+  height: 100%;
+  border: none;
+  padding: 1rem;
+  width: 100%;
+  transition: all 200ms ease;
+  font-size: .9rem;
+}
+
+.search input:focus {
+  outline: none;
+}

@@ -28,3 +28,19 @@
   border: 1px solid white;
   color: white;
 }
+
+.btn-flex {
+  display: flex;
+  height: 2.5rem;
+  padding: .5rem 1rem;
+  border: none;
+  background-color: black;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+  border-radius: 0.5rem;
+  margin: 0 1rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}

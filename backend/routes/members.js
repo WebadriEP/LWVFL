@@ -3,6 +3,7 @@ const express = require("express")
 const{
     getMembers,
     getMember,
+    createMember,
     updateMember
 } = require('../controllers/memberController')
 
@@ -16,6 +17,9 @@ router.get('/', getMembers)
 
 //get a single Member
 router.get('/:id', getMember)
+
+// Create a Member
+router.post('/', createMember)
 
 router.patch('/:id', updateMember)
 
