@@ -1,4 +1,5 @@
-import { AreaChart, Area, Tooltip, YAxis, XAxis, ResponsiveContainer } from 'recharts';
+import Highcharts from 'highcharts'
+import HighchartsReact from 'highcharts-react-official'
 
 const data = [
   {month: 'July', members: 128, amt: 1000},
@@ -8,22 +9,65 @@ const data = [
   {month: 'November', members: 189, amt: 1000}
 ]
 
+// css
+import './dashboardStyles.css'
+
 /* 
-  The graph uses Recharts
+  The graph uses Highcharts
   It's in a responsive container provided by the library
 */
 
 const MembersGraph = () => {
+  // options for the graph
+  const options = {
+    chart: {
+      type: 'spline'
+    },
+    legend: {
+      enabled: false
+    },
+    title: {
+      text: ''
+    },
+    yAxis: {
+      title: {
+        text: 'Members'
+      }
+    },
+    series: [
+      {
+        name: 'Members',
+        data: [
+          {
+            name: 'July',
+            y: 128
+          },
+          {
+            name: 'August',
+            y: 96
+          },
+          {
+            name: 'September',
+            y: 387
+          },
+          {
+            name: 'October',
+            y: 253
+          },
+          {
+            name: 'November',
+            y: 623
+          },
+        ]
+      }
+    ]
+  }
+
   return (
-    <ResponsiveContainer width='100%' height='100%'>
-      <AreaChart width={200} height={60} data={data} margin={{ top: 10, right: 0, left: 0, bottom: 0, }}>
-        <XAxis dataKey="month" />
-        <YAxis />
-        <Tooltip />
-        <Area type="monotone" dataKey="members" stroke="#595959" fill="#a9a9a9"/>
-        
-      </AreaChart>
-    </ResponsiveContainer>
+    <div className="graph-container" id="membersGraph">
+      {/* Line chart showing data */}
+      <HighchartsReact highcharts={Highcharts} options={options} />
+    </div>
   )
 }
 

@@ -16,22 +16,116 @@
 }
 
 .member-list-item {
+  height: 2.75rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 3fr 3fr;
+  align-items: center;
   padding: .5rem;
   margin-bottom: 1px;
   background: rgb(255, 255, 255);
   font-size: .8rem;
-  color: rgb(49, 49, 49)
+  font-weight: normal;
+  color: rgb(49, 49, 49);
+}
+
+.member-list-item a {
+  color: rgb(49, 49, 49);
+}
+
+/* Member List Item Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  grid-column: 5;
+  height: 100%;
+}
+
+.actions > button {
+  margin-left: .5rem;
+  height: 100%;
+  padding: .3rem .65rem;
+  transition: all 200ms ease;
+  background: white;
+  border: none;
+}
+
+.actions > button:hover {
+  background: rgb(240, 240, 240);
+  cursor: pointer;
 }
 
 /* Action Bar */
 .member-action-bar {
   display: flex;
-  border-radius: .5rem;
+  height: 52px;
   align-items: center;
-  padding: .75rem;
+  justify-content: space-between;
   margin-top: 2rem;
   background: rgb(255, 255, 255);
   box-shadow: 0 10px 20px 0 rgb(206, 206, 206);
+}
+
+.btn-action {
+  height: 100%;
+  width: 50px;
+  background: rgb(255, 255, 255);
+  color: rgb(53, 53, 53);
+  font-size: 1.25rem;
+  font-weight: normal;
+  transition: all 200ms ease;
+  margin-left: .75rem;
+  border: none;
+}
+
+.btn-action:hover {
+  background: rgb(245, 245, 245);
+  cursor: pointer;
+}
+
+/* Member Details Page */
+.member-details {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-gap: 1rem;
+  margin-top: 2rem;
+  background: white;
+  height: 60vh;
+  padding: 1rem;
+}
+
+.details-section {
+  display: flex;
+  flex-direction: column;
+  grid-row: 1;
+}
+
+.updatedDate {
+  color: rgb(49, 49, 49);
+}
+
+.detail span {
+  display: flex;
+  flex-direction: row; 
+  align-items: center;
+}
+
+.detailEmail > * {
+  color: rgb(49, 49, 49);
+  text-decoration: none;
+  transition: all 200ms ease;
+}
+
+.detailEmail:hover > * {
+  color: rgb(84, 84, 231);
+}
+
+.btn-copy {
+  margin-left: .25rem;
+  font-size: 1.15rem;
+  background: white;
+  border: none;
+  cursor: pointer;
+  transition: all 200ms ease
 }
