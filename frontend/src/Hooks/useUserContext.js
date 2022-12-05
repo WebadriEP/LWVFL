@@ -1,4 +1,4 @@
-import { userContext }  from "../context/userContext.js";
+import { UserContext }  from "../context/userContext.js";
 import { useContext } from "react";
 
 

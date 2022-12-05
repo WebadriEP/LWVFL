@@ -1,5 +1,5 @@
 // components
-import AddMemberForm from '../components/AddMemberForm'
+import AddMemberForm from '../components/member/AddMemberForm'
 
 const AddMember = () => {
 
