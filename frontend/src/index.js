@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
-import './index.css';import { UserContextProvider } from './context/userContext';
+import './index.css';
+import { UserContextProvider } from './context/userContext';
 import { MembersContextProvider } from './context/MembersContext'
 import { AuthProvider } from './context/AuthContext';
 import { MemberProvider } from './context/MembersContext';
