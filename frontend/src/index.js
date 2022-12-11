@@ -13,6 +13,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthProvider>
+      <UserContextProvider>
       <MembersContextProvider>
         <DonorProvider>
           <DonationProvider>
@@ -20,6 +21,7 @@ root.render(
           </DonationProvider>
         </DonorProvider>
       </MembersContextProvider>
+      </UserContextProvider>
     </AuthProvider>
   </React.StrictMode>
 );
