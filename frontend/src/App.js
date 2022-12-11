@@ -42,7 +42,7 @@ function App() {
           {/* <Route path = "/create" element={ <CreateAccount />} /> */}
           
           {/* Donor Routes */}
-            <Route path="/addmember" element ={ <AddMember /> } />
+          <Route path="/addmember" element ={ <AddMember /> } />
           <Route path="/donors" element ={ <Donors /> } />
           <Route path="/donors/add" element ={ <AddDonor/> } />
           
