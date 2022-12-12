@@ -30,6 +30,7 @@ jobs:
           
       - name: run frontend
         run: |
+          cd .. 
           cd frontend
           npm install
           npm run build --if-present
