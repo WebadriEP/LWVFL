@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import React from 'react';
+
 
 const NavLink = (props) => {
   const { page, text } = props;

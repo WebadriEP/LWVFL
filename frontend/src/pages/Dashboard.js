@@ -1,4 +1,6 @@
 // components
+import React from 'react';
+
 import QuickActions from "../components/dashboard/QuickActions";
 import MembersGraph from "../components/dashboard/MembersGraph";
 

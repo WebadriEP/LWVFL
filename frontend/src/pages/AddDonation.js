@@ -1,5 +1,6 @@
 // components
 import AddDonationForm from '../components/donations/AddDonationForm'
+import React from 'react';
 
 const AddDonation = () => {
 

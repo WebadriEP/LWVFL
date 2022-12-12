@@ -1,5 +1,6 @@
 // css
 import './searchStyles.css'
+import React from 'react';
 
 const Search = ({ members, setQueryResults }) => {
 
