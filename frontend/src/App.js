@@ -3,7 +3,6 @@ import React from 'react';
 
 import { useAuthContext } from './hooks/useAuthContext';
 // components
-import React from 'react';
 
 import Navbar from './components/navigation/Navbar';
 import Footer from './components/Footer';
