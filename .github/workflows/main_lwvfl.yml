@@ -54,7 +54,7 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v2
         with:
-          name: node-app
+          name: LWVFL
 
       - name: unzip artifact for deployment
         run: unzip release.zip
