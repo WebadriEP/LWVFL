@@ -5,10 +5,10 @@ name: Build and deploy Node.js app to Azure Web App - LWVFL-app
 
 on: [push]
 
-env:
-  AZURE_WEBAPP_NAME: LWVFL   # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
-  NODE_VERSION: '18.x'
+# env:
+#   AZURE_WEBAPP_NAME: LWVFL   # set this to your application's name
+#   AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+#   NODE_VERSION: '18.x'
 
 jobs:
   build:
