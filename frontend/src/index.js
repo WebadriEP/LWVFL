@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import './index.css';
 import { UserContextProvider } from './context/userContext';
-import { MembersContextProvider } from './context/MembersContext'
+import { MembersContextProvider } from './context/MembersContext';
 import { AuthProvider } from './context/AuthContext';
 import { MemberProvider } from './context/MembersContext';
 import { DonorProvider } from './context/DonorContext';
@@ -21,7 +21,7 @@ root.render(
           </DonationProvider>
         </DonorProvider>
       </MembersContextProvider>
-      </UserContextProvider>
+     </UserContextProvider>
     </AuthProvider>
   </React.StrictMode>
 );
