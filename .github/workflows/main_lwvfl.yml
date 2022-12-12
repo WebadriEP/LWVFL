@@ -30,7 +30,6 @@ jobs:
           
       - name: run frontend
         run: |
-          cd .. 
           cd frontend
           npm install
           npm run build --if-present
@@ -39,7 +38,7 @@ jobs:
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
         with:
-          name: node-app
+          name: LWVFL
           path: .
 
   deploy:
