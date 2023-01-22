@@ -27,7 +27,7 @@ const Navbar = () => {
 
             {/* Logo */}
             <Link to="/" className="logo-link">
-              <h1 className="nav-logo">LWVFL</h1>
+              <h1 className="nav-logo">Dontra CRM</h1>
             </Link>
 
             {/* Links */}
