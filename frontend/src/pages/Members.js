@@ -33,10 +33,6 @@ const Members = () => {
                 <h3>City</h3>
             </div>
             <MemberList queryResults={queryResults} />
-            <br></br>
-      <Link to='/AddMember'>Edit Member List</Link>
-            
-
         </>
     );
 }

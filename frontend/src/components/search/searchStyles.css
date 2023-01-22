@@ -1,16 +1,14 @@
 .search {
     display: flex;
     width: 50%;
+    align-items: center;
   }
   
   .search input {
     display: flex;
-    height: 100%;
     border: none;
-    padding: 1rem;
-    width: 100%;
     transition: all 200ms ease;
-    font-size: .9rem;
+    margin: 0;
   }
   
   .search input:focus {
