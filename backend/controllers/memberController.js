@@ -44,7 +44,6 @@ const createMember = async (req, res) => {
         isStudent,
         memberActiveStatus,
         memberStatus,
-        donations,
     } = req.body
 
     let emptyFields = []
@@ -116,32 +115,12 @@ const createMember = async (req, res) => {
             isStudent,
             memberActiveStatus,
             memberStatus,
-            donations,
         })
         res.status(201).json(member)
     } catch (error) {
         // If error, return error
         res.status(400).json({error: error.message })
     }
-
-    const { id } = req.params
-
-    // Check if id is valid
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(404).json({error: 'No such member'})
-    }
-
-    // Find member by id
-    const member = await Member.findById(id)
-
-    // If no member, return error
-    if (!member) {
-        return res.status(404).json({error: 'No such member'})
-    }
-
-    // Otherwise, return json of member
-    res.status(200).json(member)
-
 }
 
 const updateMember = async (req, res) => {

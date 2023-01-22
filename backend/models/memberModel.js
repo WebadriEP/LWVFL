@@ -83,7 +83,7 @@ const memberSchema = new Schema({
   donations: [
     {
       type: Schema.Types.ObjectId,
-      ref: 'donations',
+      ref: 'Donation',
     }
   ]
 }, {timestamps:true})

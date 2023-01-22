@@ -35,32 +35,46 @@ const Member = (props) => {
   const lastUpdated = new Date(member.updatedAt).toLocaleDateString();
 
   // Format memberType
-  let type;
+  let formattedMemberType;
   switch (member.memberType) {
     case 'member':
-      type = 'Member'
+      formattedMemberType = 'Member'
       break;
     case 'donor':
-      type = 'Donor';
+      formattedMemberType = 'Donor';
       break;
     case 'memberdonor':
-      type = 'Member & Donor';
+      formattedMemberType = 'Member & Donor';
       break;
     default:
-      type = 'Member';
+      formattedMemberType = 'Member';
   }
 
   // Format memberStatus
-  let status;
+  let formattedStatus;
   switch (member.memberStatus) {
     case 'active':
-      status = 'Active';
+      formattedStatus = 'Active';
       break;
     case 'inactive':
-      status = 'Inactive';
+      formattedStatus = 'Inactive';
       break;
     default:
-      status = 'Active';
+      formattedStatus = 'Active';
+  }
+
+  // Format gender
+  let formattedGender;
+  switch (member.gender) {
+    case 'male': 
+      formattedGender = 'Male';
+      break;
+    case 'female':
+      formattedGender = 'Female';
+      break;
+    case 'other':
+      formattedGender = 'Other';
+      break;
   }
 
   // Render donations
@@ -69,7 +83,7 @@ const Member = (props) => {
   // })
 
   // Handle no donations found
-  // const content = donations.length ? donations : <article><p>No donations found.</p></article>;
+  //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
 
   return (
     <main>
@@ -77,17 +91,25 @@ const Member = (props) => {
       <small className="updatedDate">Last Updated: {lastUpdated}</small>
 
       <div className="member-details shadow">
+
         {/* Personal details */}
         <div className="col-1">
           <MemberDetail label="Full Name" detail={`${member.firstName} ${member.lastName}`}/>
           <MemberDetail label="Email" detail={member.email} />
           <MemberDetail label="Phone" detail={member.phone} />
-          <MemberDetail label="Gender" detail={member.gender} />
+          <MemberDetail label="Gender" detail={formattedGender} />
           <MemberDetail label="Date of Birth" detail={`${member.birthMonth}/${member.birthDay}/${member.birthYear}`} />
         </div>
 
         {/* Location information */}
         <div className="col-1 row-2">
+
+          {/* Address format:
+
+            Street address
+            Address line 2 (if exists)
+            City, State Zip
+          */}
           <MemberDetail label="Address" detail={member.homeAddress} />
           { member.addressLine2 ? <p>{member.addressLine2}</p> : null}
           <p>{member.city}, {member.state} {member.zip}</p>
@@ -97,8 +119,8 @@ const Member = (props) => {
 
         {/* Membership information */}
         <div className="col-2">
-            <MemberDetail label="Member Type" detail={type} />
-            <MemberDetail label="Member Status" detail={status} />
+            <MemberDetail label="Member Type" detail={formattedMemberType} />
+            <MemberDetail label="Member Status" detail={formattedStatus} />
             <MemberDetail label="Member Since" detail={createdAt} />
         </div>
 
