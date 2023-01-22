@@ -1,5 +1,6 @@
 // components
 import MemberListItem from './MemberListItem';
+import React from 'react';
 
 // css
 //import './memberStyles.css'

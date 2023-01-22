@@ -1,4 +1,6 @@
 // components
+import React from 'react';
+
 import MemberSearch from "../search/MemberSearch";
 import PrimaryButton from "../buttons/PrimaryButton"
 

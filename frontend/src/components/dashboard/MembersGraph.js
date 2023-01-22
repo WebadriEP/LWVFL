@@ -1,5 +1,6 @@
 import Highcharts from 'highcharts'
 import HighchartsReact from 'highcharts-react-official'
+import React from 'react';
 
 const data = [
   {month: 'July', members: 128, amt: 1000},

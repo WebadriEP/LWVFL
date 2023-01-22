@@ -1,3 +1,4 @@
+import React from 'react';
 
 // components
 import EngagementList from '../components/engagement/EngagementList';
