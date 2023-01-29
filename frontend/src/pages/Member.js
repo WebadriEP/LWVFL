@@ -34,33 +34,102 @@ const Member = (props) => {
   const createdAt = new Date(member.createdAt).toLocaleDateString();
   const lastUpdated = new Date(member.updatedAt).toLocaleDateString();
 
+  // Format memberType
+  let formattedMemberType;
+  switch (member.memberType) {
+    case 'member':
+      formattedMemberType = 'Member'
+      break;
+    case 'donor':
+      formattedMemberType = 'Donor';
+      break;
+    case 'memberdonor':
+      formattedMemberType = 'Member & Donor';
+      break;
+    default:
+      formattedMemberType = 'Member';
+  }
+
+  // Format memberStatus
+  let formattedStatus;
+  switch (member.memberStatus) {
+    case 'active':
+      formattedStatus = 'Active';
+      break;
+    case 'inactive':
+      formattedStatus = 'Inactive';
+      break;
+    default:
+      formattedStatus = 'Active';
+  }
+
+  // Format gender
+  let formattedGender;
+  switch (member.gender) {
+    case 'male': 
+      formattedGender = 'Male';
+      break;
+    case 'female':
+      formattedGender = 'Female';
+      break;
+    case 'other':
+      formattedGender = 'Other';
+      break;
+  }
+
+  // Render donations
+  // const donations = member.donations.map(donation => {
+  //   <MemberDonation key={donation._id} donation={donation} />
+  // })
+
+  // Handle no donations found
+  //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
+
   return (
     <main>
-      <h1>Viewing Member: {member.firstName} {member.lastName}</h1>
+      <h1>Details: {member.firstName} {member.lastName}</h1>
       <small className="updatedDate">Last Updated: {lastUpdated}</small>
 
       <div className="member-details shadow">
-        <div className="details-section">
-          {/* Full Name -- Dynamic */}
+
+        {/* Personal details */}
+        <div className="col-1">
           <MemberDetail label="Full Name" detail={`${member.firstName} ${member.lastName}`}/>
+          <MemberDetail label="Email" detail={member.email} />
+          <MemberDetail label="Phone" detail={member.phone} />
+          <MemberDetail label="Gender" detail={formattedGender} />
+          <MemberDetail label="Date of Birth" detail={`${member.birthMonth}/${member.birthDay}/${member.birthYear}`} />
+        </div>
 
-          {/* Email -- Dynamic */}
-          <MemberDetailEmail label="Email" email={member.email} />
+        {/* Location information */}
+        <div className="col-1 row-2">
 
-          {/* Gender -- Hardcoded */}
-          <MemberDetail label="Gender" detail={`Not specified`}/>
+          {/* Address format:
 
-          {/* Household -- Hardcdded */}
-          <MemberDetail label="Household" detail={`None`}/>
+            Street address
+            Address line 2 (if exists)
+            City, State Zip
+          */}
+          <MemberDetail label="Address" detail={member.homeAddress} />
+          { member.addressLine2 ? <p>{member.addressLine2}</p> : null}
+          <p>{member.city}, {member.state} {member.zip}</p>
 
-          {/* Member Type -- Hardcoded */}
-          <MemberDetail label="Member Type" detail={`Student`}/>
+          <MemberDetail label="Notes" detail={member.memberNotes} />
+        </div>
 
-          {/* Member Status -- Hardcoded */}
-          <MemberDetail label="Member Status" detail={`Active`}/>
+        {/* Membership information */}
+        <div className="col-2">
+            <MemberDetail label="Member Type" detail={formattedMemberType} />
+            <MemberDetail label="Member Status" detail={formattedStatus} />
+            <MemberDetail label="Member Since" detail={createdAt} />
+        </div>
 
-          {/* Member Since -- Dynamic */}
-          <MemberDetail label="Member Since" detail={createdAt}/> 
+        {/* Donations */}
+        <div className="col-2 row-2">
+          <h3>Donations</h3>
+
+          {/* Lists donations using map on the member.donations object */}
+          <p>No donations found.</p>
         </div>
       </div>
     </main>

@@ -1,15 +1,12 @@
-import axios from 'axios'
 import React from 'react';
 
 import { useState, useEffect, useMemo } from 'react';
 import { getAllMembers } from '../api/axios';
-import { Link } from "react-router-dom";
-
 
 // components
 import MemberActionBar from "../components/members/MemberActionBar";
 import MemberList from "../components/members/MemberList";
-import AddMember from "./AddMember"
+
 // css
 import '../components/members/memberStyles.css'
 
