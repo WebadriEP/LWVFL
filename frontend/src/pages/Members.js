@@ -9,7 +9,6 @@ import MemberList from "../components/members/MemberList";
 
 // css
 import '../components/members/memberStyles.css'
-import MemberTable from '../components/members/MemberTable';
 
 const Members = () => {
     const [members, setMembers] = useState([]); // State for members
@@ -26,9 +25,6 @@ const Members = () => {
     return(
         <>
             <h1>Members List</h1>
-
-            <MemberTable />
-
             <MemberActionBar members={members} setQueryResults={setQueryResults} />
             <div className="member-list-labels">
                 <h3>Name</h3>
