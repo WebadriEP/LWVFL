@@ -29,12 +29,9 @@ const AddMember = () => {
     <div className="addmember">
       
       <div className="members">
-      <h1>Edit Member List</h1>
-        {members && members.map(member => (
-          <MemberDetails member={member} key={member._id} />
-        ))}
-      </div>
+      
       <AddMemberForm />
+      </div>
     </div>
   )
 }
