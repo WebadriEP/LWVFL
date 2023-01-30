@@ -9,7 +9,8 @@ import '../components/members/memberStyles.css'
 
 // components
 import MemberDetail from "../components/members/MemberDetail";
-import MemberDetailEmail from "../components/members/MemberDetailEmail";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem } from "@chakra-ui/react";
+import BadgeStack from "../components/ui/BadgeStack";
 
 const Member = (props) => {
   const { id } = useParams(); // Get the ID from the URL
@@ -34,35 +35,6 @@ const Member = (props) => {
   const createdAt = new Date(member.createdAt).toLocaleDateString();
   const lastUpdated = new Date(member.updatedAt).toLocaleDateString();
 
-  // Format memberType
-  let formattedMemberType;
-  switch (member.memberType) {
-    case 'member':
-      formattedMemberType = 'Member'
-      break;
-    case 'donor':
-      formattedMemberType = 'Donor';
-      break;
-    case 'memberdonor':
-      formattedMemberType = 'Member & Donor';
-      break;
-    default:
-      formattedMemberType = 'Member';
-  }
-
-  // Format memberStatus
-  let formattedStatus;
-  switch (member.memberStatus) {
-    case 'active':
-      formattedStatus = 'Active';
-      break;
-    case 'inactive':
-      formattedStatus = 'Inactive';
-      break;
-    default:
-      formattedStatus = 'Active';
-  }
-
   // Format gender
   let formattedGender;
   switch (member.gender) {
@@ -86,53 +58,80 @@ const Member = (props) => {
   //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
 
   return (
-    <main>
-      <h1>Details: {member.firstName} {member.lastName}</h1>
-      <small className="updatedDate">Last Updated: {lastUpdated}</small>
+    <Box>
+      {/* Heading & Last Updated */}
+      <Flex align='center' justify='space-between'>
+        <Box>
+          <Text fontSize='sm'>ENTRY DETAILS</Text>
+          <Heading mb={3}>
+            {member.firstName} {member.lastName}
+          </Heading>
 
-      <div className="member-details shadow">
+          <BadgeStack member={member} />
+          
+        </Box>
+        <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
+      </Flex>
 
-        {/* Personal details */}
-        <div className="col-1">
-          <MemberDetail label="Full Name" detail={`${member.firstName} ${member.lastName}`}/>
-          <MemberDetail label="Email" detail={member.email} />
-          <MemberDetail label="Phone" detail={member.phone} />
-          <MemberDetail label="Gender" detail={formattedGender} />
-          <MemberDetail label="Date of Birth" detail={`${member.birthMonth}/${member.birthDay}/${member.birthYear}`} />
-        </div>
+      {/* Page Body */}
 
-        {/* Location information */}
-        <div className="col-1 row-2">
-
-          {/* Address format:
-
-            Street address
-            Address line 2 (if exists)
-            City, State Zip
-          */}
-          <MemberDetail label="Address" detail={member.homeAddress} />
-          { member.addressLine2 ? <p>{member.addressLine2}</p> : null}
-          <p>{member.city}, {member.state} {member.zip}</p>
-
-          <MemberDetail label="Notes" detail={member.memberNotes} />
-        </div>
-
-        {/* Membership information */}
-        <div className="col-2">
-            <MemberDetail label="Member Type" detail={formattedMemberType} />
-            <MemberDetail label="Member Status" detail={formattedStatus} />
-            <MemberDetail label="Member Since" detail={createdAt} />
-        </div>
-
-        {/* Donations */}
-        <div className="col-2 row-2">
-          <h3>Donations</h3>
-
-          {/* Lists donations using map on the member.donations object */}
-          <p>No donations found.</p>
-        </div>
-      </div>
-    </main>
+      <Grid templateColumns='1fr 1fr' gap={3}>
+        {/* Personal Information Card */}
+        <GridItem>
+          <Card>
+            <CardHeader>
+              <Heading size='md'>Personal Information</Heading>
+            </CardHeader>
+            
+            <CardBody>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>Email: {member.email}</Text>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>Phone: {member.phone}</Text>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>{`Date of Birth: ${member.birthMonth}/${member.birthDay}/${member.birthYear}`}</Text>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>Gender: {formattedGender}</Text>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>Address: {member.homeAddress}, { member.addressLine2 ? (member.addressLine2 + ', ') : null } {member.city}, {member.state} {member.zip}</Text>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>Member Since: {createdAt}</Text>
+              <Divider color='gray.200' />
+            </CardBody>
+          </Card>
+        </GridItem>
+        
+        {/* Notes */}
+        <GridItem>
+          <Card>
+            <CardHeader>
+              <Heading size='md'>Notes</Heading>
+            </CardHeader>
+            
+            <CardBody>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>{member.memberNotes}</Text>
+              <Divider color='gray.200' />
+            </CardBody>
+          </Card>
+        </GridItem>
+        
+        {/* Donation list */}
+        <GridItem colSpan={2}>
+          <Card>
+            <CardHeader>
+              <Heading size='md'>Donations</Heading>
+            </CardHeader>
+            
+            <CardBody>
+              <Divider color='gray.200' />
+              <Text m='.5rem 0'>No donations found.</Text>
+              <Divider color='gray.200' />
+            </CardBody>
+          </Card>
+        </GridItem>
+      </Grid>
+    </Box>
   )
 }
 
