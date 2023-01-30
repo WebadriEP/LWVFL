@@ -2,19 +2,19 @@ import { useState, useEffect } from "react";
 import React from 'react';
 
 import { useParams } from "react-router-dom";
-import { getSingleMember } from "../api/axios";
+import { getSingleMember, updateMember } from "../api/axios";
 
 // css
 import '../components/members/memberStyles.css'
 
 // components
-import MemberDetail from "../components/members/MemberDetail";
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
 
 const Member = (props) => {
   const { id } = useParams(); // Get the ID from the URL
   const [member, setMember] = useState({});
+  const [status, setStatus] = useState('') // Member status
 
   // Acquire member details
   useEffect(() => {
@@ -57,6 +57,18 @@ const Member = (props) => {
   // Handle no donations found
   //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
 
+  const markForEngagement = (memberID) => {
+    // memberStatus to 'engage'
+    updateMember(memberID, { memberStatus: 'engage' })
+    setStatus('engage') // Status badge state
+  }
+
+  const resetMemberStatus = (memberID) => {
+    // memberStatus to 'none'
+    updateMember(memberID, { memberStatus: 'none' })
+    setStatus('none') // Status badge state
+  }
+
   return (
     <Box>
       {/* Heading & Last Updated */}
@@ -67,10 +79,22 @@ const Member = (props) => {
             {member.firstName} {member.lastName}
           </Heading>
 
-          <BadgeStack member={member} />
-          
+          {/* Badges */}
+          <BadgeStack member={member} status={status} />
         </Box>
-        <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
+        <Flex direction='column'>
+          <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
+          
+          {/* Mark for Engagement Button */}
+          {status === 'none' 
+          ? <Button colorScheme='blue' size='sm' variant='outline' mt={3} onClick={() => markForEngagement(member._id)}>Mark for Engagement</Button> 
+          : null}
+
+          {/* Reset Status Button */}
+          {status != 'none' 
+          ? <Button colorScheme='red' size='sm' variant='solid' mt={3} onClick={() => resetMemberStatus(member._id)}>Reset Status</Button> 
+          : null}
+        </Flex>
       </Flex>
 
       {/* Page Body */}
