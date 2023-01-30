@@ -22,3 +22,10 @@ export const createMember = async (member) => {
   const response = await api.post('/members', member);
   return response.data;
 }
+
+// Update a member
+export const updateMember = async (id, member) => {
+  // patch member
+  const response = await api.patch('/members/' + id, member);
+  return response.data;
+}
