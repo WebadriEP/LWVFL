@@ -8,20 +8,23 @@ import { AuthProvider } from './context/AuthContext';
 import { MemberProvider } from './context/MembersContext';
 import { DonorProvider } from './context/DonorContext';
 import { DonationProvider } from './context/DonationContext';
+import { ChakraProvider } from '@chakra-ui/react';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 root.render(
   <React.StrictMode>
-    <AuthProvider>
-      <UserContextProvider>
-      <MembersContextProvider>
-        <DonorProvider>
-          <DonationProvider>
-            <App />
-          </DonationProvider>
-        </DonorProvider>
-      </MembersContextProvider>
-     </UserContextProvider>
-    </AuthProvider>
+    <ChakraProvider>
+      <AuthProvider>
+        <UserContextProvider>
+        <MembersContextProvider>
+          <DonorProvider>
+            <DonationProvider>
+              <App />
+            </DonationProvider>
+          </DonorProvider>
+        </MembersContextProvider>
+        </UserContextProvider>
+      </AuthProvider>
+    </ChakraProvider>
   </React.StrictMode>
 );

@@ -5,13 +5,11 @@ import React from 'react';
 import './memberStyles.css'
 
 const MemberListItem = ({ member }) => {
-    let { firstName, lastName, email, city } = member;
+    let { _id, firstName, lastName, email, city } = member;
 
     return (
         <div className='member-list-item'>
-            <Link to={`/member/${member._id}`} state={member}>
-                <p>{firstName} {lastName}</p>
-            </Link>
+            <Link to={`/member/${_id}`} state={member}>{firstName} {lastName}</Link>
             <p>{email}</p>
             <p>{city}</p>
             <div className="actions">
