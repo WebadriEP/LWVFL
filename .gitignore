@@ -1831,3 +1831,8 @@ backend/package.json
 frontend/package-lock.json
 frontend/package-lock.json
 frontend/package.json
+backend/package-lock.json
+backend/package-lock.json
+backend/package.json
+frontend/package.json
+frontend/package-lock.json
