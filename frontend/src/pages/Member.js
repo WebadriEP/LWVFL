@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
 
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer, Tabs, TabList, Tab } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
 import Notes from "../components/members/Notes";
 
