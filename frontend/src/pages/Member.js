@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
 
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer, Tabs, TabList, Tab } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
 import Notes from "../components/members/Notes";
 
@@ -64,16 +64,9 @@ const Member = (props) => {
   // Handle no donations found
   //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
 
-  const markForEngagement = (memberID) => {
-    // memberStatus to 'engage'
-    updateMember(memberID, { memberStatus: 'engage' })
-    setStatus('engage') // Status badge state
-  }
-
-  const resetMemberStatus = (memberID) => {
-    // memberStatus to 'none'
-    updateMember(memberID, { memberStatus: 'none' })
-    setStatus('none') // Status badge state
+  const setMemberStatus = (memberID, status) => {
+    updateMember(memberID, { memberStatus: status })
+    setStatus(status) // Status badge state
   }
 
   return (
@@ -82,29 +75,29 @@ const Member = (props) => {
       <Flex align='center' justify='space-between'>
         <Box>
           <Text fontSize='sm'>ENTRY DETAILS</Text>
-          <Heading mb={3}>
+          <Heading size='2xl' mb={3} transform='translateX(-2px)'>
             {member.firstName} {member.lastName}
           </Heading>
 
           {/* Badges */}
           <BadgeStack member={member} status={status} />
         </Box>
+
+        {/* Member Status Tabs */}
+        <Box>
+          <Tabs variant='solid-rounded' colorScheme='blue'>
+            <TabList>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'none')}>Open</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'engage')}>Engage</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'contacted')}>Contacted</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Converted</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Not Converted</Tab>
+            </TabList>
+          </Tabs>
+        </Box>
+
         <Flex direction='column'>
           <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
-
-          {/* Mark for Engagement Button 
-              Hidden if status is 'engage'
-          */}
-          {status === 'none' 
-          ? <Button colorScheme='blue' size='sm' variant='outline' mt={3} onClick={() => markForEngagement(member._id)}>Mark for Engagement</Button> 
-          : null}
-
-          {/* Reset Status Button 
-              Hidden if status is 'none' DEVELOPMENT ONLY
-          */}
-          {status != 'none' 
-          ? <Button colorScheme='red' size='sm' variant='solid' mt={3} onClick={() => resetMemberStatus(member._id)}>[DEV] Reset Status</Button> 
-          : null}
         </Flex>
       </Flex>
 
@@ -115,7 +108,7 @@ const Member = (props) => {
         <GridItem>
           <Card>
             <CardHeader>
-              <Heading size='md'>Personal Information</Heading>
+              <Heading>Personal Information</Heading>
             </CardHeader>
             
             <CardBody>
@@ -138,6 +131,11 @@ const Member = (props) => {
         
         {/* Notes */}
         <GridItem>
+          {/* 
+            Notes component is a child of Member component.
+            Notes component passes notes to parent component (Member component) via notesToParent function.
+            Member component passes notes to Notes component via initialNotes prop.
+          */}
           <Notes notesToParent={notesToParent} initialNotes={notes} />
         </GridItem>
         
@@ -145,7 +143,7 @@ const Member = (props) => {
         <GridItem colSpan={2}>
           <Card>
             <CardHeader>
-              <Heading size='md'>Donations</Heading>
+              <Heading>Donations</Heading>
             </CardHeader>
             
             <CardBody>
