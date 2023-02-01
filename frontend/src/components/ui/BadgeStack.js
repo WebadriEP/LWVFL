@@ -46,7 +46,7 @@ const BadgeStack = ({ member, status }) => {
       formattedStatus = 'Engage'
       break
     case 'contacted':
-      colorBadgeStatus = 'yellow'
+      colorBadgeStatus = 'purple'
       formattedStatus = 'Contacted'
       break
     case 'other':
@@ -54,7 +54,7 @@ const BadgeStack = ({ member, status }) => {
       formattedStatus = 'Other'
       break;
     default:
-      formattedStatus = 'No status'
+      formattedStatus = 'Open'
   }
 
   return (

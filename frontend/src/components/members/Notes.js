@@ -26,7 +26,7 @@ const Notes = ({ notesToParent, initialNotes }) => {
     <Card>
       <CardHeader>
         <Flex direction='row' align='space-between'>
-          <Heading size='lg'>Notes</Heading>
+          <Heading>Notes</Heading>
           <Spacer />
           
           {/* Toggle view/edit mode */}
