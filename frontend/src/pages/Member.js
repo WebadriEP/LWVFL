@@ -4,25 +4,26 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
 
-// css
-import '../components/members/memberStyles.css'
-
 // components
 import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
+import Notes from "../components/members/Notes";
 
 const Member = (props) => {
   const { id } = useParams(); // Get the ID from the URL
   const [member, setMember] = useState({});
   const [status, setStatus] = useState('') // Member status
+  const [notes, setNotes] = useState('') // Member notes
 
   // Acquire member details
   useEffect(() => {
-    getSingleMember(id) // Axios call to get member by ID
+    getSingleMember(id)
 
     // Set member state
     .then(json => {
-      setMember(json)
+      setMember(json) // set member state
+      setNotes(json.memberNotes) // set notes state
+      setStatus(json.memberStatus) // set status state
     })
 
     // Error handling
@@ -47,6 +48,12 @@ const Member = (props) => {
     case 'other':
       formattedGender = 'Other';
       break;
+  }
+
+  // Retreive notes from child component and update member data
+  const notesToParent = (childData) => {
+    setNotes(childData)
+    updateMember(id, { memberNotes: childData })
   }
 
   // Render donations
@@ -84,15 +91,19 @@ const Member = (props) => {
         </Box>
         <Flex direction='column'>
           <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
-          
-          {/* Mark for Engagement Button */}
+
+          {/* Mark for Engagement Button 
+              Hidden if status is 'engage'
+          */}
           {status === 'none' 
           ? <Button colorScheme='blue' size='sm' variant='outline' mt={3} onClick={() => markForEngagement(member._id)}>Mark for Engagement</Button> 
           : null}
 
-          {/* Reset Status Button */}
+          {/* Reset Status Button 
+              Hidden if status is 'none' DEVELOPMENT ONLY
+          */}
           {status != 'none' 
-          ? <Button colorScheme='red' size='sm' variant='solid' mt={3} onClick={() => resetMemberStatus(member._id)}>Reset Status</Button> 
+          ? <Button colorScheme='red' size='sm' variant='solid' mt={3} onClick={() => resetMemberStatus(member._id)}>[DEV] Reset Status</Button> 
           : null}
         </Flex>
       </Flex>
@@ -127,17 +138,7 @@ const Member = (props) => {
         
         {/* Notes */}
         <GridItem>
-          <Card>
-            <CardHeader>
-              <Heading size='md'>Notes</Heading>
-            </CardHeader>
-            
-            <CardBody>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>{member.memberNotes}</Text>
-              <Divider color='gray.200' />
-            </CardBody>
-          </Card>
+          <Notes notesToParent={notesToParent} initialNotes={notes} />
         </GridItem>
         
         {/* Donation list */}
