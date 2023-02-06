@@ -1,17 +1,36 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import ReportList from '../components/reports/ReportList'
+import { Button, Heading, Flex, Spacer, Box } from '@chakra-ui/react'
+import Report from '../components/reports/Report'
+import { PDFViewer } from '@react-pdf/renderer'
 
 // css
 import '../components/reports/reportsStyles.css'
 
 const Reports = () => {
+  const generateReport = () => {
+    console.log('Generating report...')
+  }
+
   return (
     <>
       <div className="reports-heading">
-        <h1>Reports</h1>
-        <Link to='/reports/new'>New Report +</Link>
+        <Flex direction='row' w='100%' align='center'>
+          <Heading size='2xl'>Reports</Heading>
+          <Spacer />
+          <Button 
+            colorScheme='blue' 
+            onClick={() => generateReport()}
+            loadingText='Generating'
+          >
+            Generate Report
+          </Button>
+        </Flex>
       </div>
+
+      <Report />
+
+      <PDFViewer>
+        <Report />
+      </PDFViewer>
       
       {/* <ReportList /> */}
     </>
