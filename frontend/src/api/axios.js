@@ -29,3 +29,28 @@ export const updateMember = async (id, member) => {
   const response = await api.patch('/members/' + id, member);
   return response.data;
 }
+
+// Get all donors currently stored in the DB
+export const getAllDonors = async () => {
+  const response = await api.get(`/donors`);
+  return response.data;
+}
+
+// Get a single donor by ID
+export const getSingleDonor = async (id) => {
+  const response = await api.get('/donors/' + id);
+  return response.data;
+}
+
+// Create a donor
+export const createDonor = async (donor) => {
+  const response = await api.post('/donors', donor);
+  return response.data;
+}
+
+// Update a donor
+export const updateDonor = async (id, donor) => {
+  // patch donor
+  const response = await api.patch('/donors/' + id, donor);
+  return response.data;
+}

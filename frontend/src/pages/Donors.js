@@ -1,47 +1,39 @@
-import { useEffect } from 'react'
 import React from 'react';
 
-import { Link } from 'react-router-dom';
-import DonorDetails from '../components/donors/DonorDetails';
-import { useDonorContext } from '../hooks/useDonorContext';
+import { useState, useEffect, useMemo } from 'react';
+import { getAllDonors } from '../api/axios';
+
+// components
+import DonorActionBar from "../components/donors/DonorActionBar";
+import DonorList from "../components/donors/DonorList";
 
 // css
-import '../components/donors/donorStyles.css'
+import '../components/members/memberStyles.css'
 
 const Donors = () => {
-    const { donors, dispatch } = useDonorContext();
+    const [donors, setDonors] = useState([]); // State for members
+    const [queryResults, setQueryResults] = useState([]); // State for search results
 
+    // Fetch all members -- Used for search functionality
     useEffect(() => {
-        const fetchDonors = async () => {
-          const response = await fetch('http://localhost:3000/api/donors')
-          const json = await response.json(); 
-  
-          if (response.ok) {
-              dispatch({ type: 'SET_DONORS', payload: json })
-          }
-      };
-        fetchDonors();
-      }, [dispatch]);
+        getAllDonors().then(json => {
+            setDonors(json)
+            setQueryResults(json)
+        })
+    }, [])
 
-      return (
-        <div>
-          <div>
-            <h2>Manage Donors</h2>
-           
-          </div>
-          
-          <div className="member-list">
-            {donors && donors.map((donor) => (
-              <DonorDetails key={donor._id} donor={donor} />
-            ))}
-            
-            <Link to="/donors/add" float="right">
-              <button className="btnAdd" float="right">Add Donor</button>
-            </Link>
-          </div>
-
-        </div>
-      )
+    return(
+        <>
+            <h1>Donors List</h1>
+            <DonorActionBar donors={donors} setQueryResults={setQueryResults} />
+            <div className="member-list-labels">
+                <h3>Name</h3>
+                <h3>Email</h3>
+                <h3>City</h3>
+            </div>
+            <DonorList queryResults={queryResults} />
+        </>
+    );
 }
 
 export default Donors;
