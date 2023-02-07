@@ -1,5 +1,5 @@
 
-import '../members/memberStyles.css'
+import './engagementStyles.css'
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Flex, Text, Box, Tooltip, Stack, Button, ButtonGroup, Spacer, Grid, GridItem, Link as ReachLink } from '@chakra-ui/react'
