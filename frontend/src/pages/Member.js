@@ -4,25 +4,26 @@ import React from 'react';
 import { useParams } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
 
-// css
-import '../components/members/memberStyles.css'
-
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, Tag, TagLabel, GridItem, Button, Spacer } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
+import Notes from "../components/members/Notes";
 
 const Member = (props) => {
   const { id } = useParams(); // Get the ID from the URL
   const [member, setMember] = useState({});
   const [status, setStatus] = useState('') // Member status
+  const [notes, setNotes] = useState('') // Member notes
 
   // Acquire member details
   useEffect(() => {
-    getSingleMember(id) // Axios call to get member by ID
+    getSingleMember(id)
 
     // Set member state
     .then(json => {
-      setMember(json)
+      setMember(json) // set member state
+      setNotes(json.memberNotes) // set notes state
+      setStatus(json.memberStatus) // set status state
     })
 
     // Error handling
@@ -49,6 +50,39 @@ const Member = (props) => {
       break;
   }
 
+  let statusTabIndex;
+  switch (member.memberStatus) {
+    case 'none':
+      statusTabIndex = 0;
+      console.log(statusTabIndex)
+      break;
+    case 'engage':
+      statusTabIndex = 1;
+      console.log(statusTabIndex)
+      break;
+    case 'contacted':
+      statusTabIndex = 2;
+      console.log(statusTabIndex)
+      break;
+    case 'other':
+      statusTabIndex = 3;
+      console.log(statusTabIndex)
+      break;
+    case 'nonconverted':
+      statusTabIndex = 4;
+      console.log(statusTabIndex)
+      break;
+    default: 
+      statusTabIndex = 0;
+      console.log(statusTabIndex)
+  }
+
+  // Retreive notes from child component and update member data
+  const notesToParent = (childData) => {
+    setNotes(childData)
+    updateMember(id, { memberNotes: childData })
+  }
+
   // Render donations
   // const donations = member.donations.map(donation => {
   //   <MemberDonation key={donation._id} donation={donation} />
@@ -57,16 +91,9 @@ const Member = (props) => {
   // Handle no donations found
   //const content = donations.length ? donations : <article><p>No donations found.</p></article>;
 
-  const markForEngagement = (memberID) => {
-    // memberStatus to 'engage'
-    updateMember(memberID, { memberStatus: 'engage' })
-    setStatus('engage') // Status badge state
-  }
-
-  const resetMemberStatus = (memberID) => {
-    // memberStatus to 'none'
-    updateMember(memberID, { memberStatus: 'none' })
-    setStatus('none') // Status badge state
+  const setMemberStatus = (memberID, status) => {
+    updateMember(memberID, { memberStatus: status })
+    setStatus(status) // Status badge state
   }
 
   return (
@@ -75,25 +102,29 @@ const Member = (props) => {
       <Flex align='center' justify='space-between'>
         <Box>
           <Text fontSize='sm'>ENTRY DETAILS</Text>
-          <Heading mb={3}>
+          <Heading size='2xl' mb={3} transform='translateX(-2px)'>
             {member.firstName} {member.lastName}
           </Heading>
 
           {/* Badges */}
           <BadgeStack member={member} status={status} />
         </Box>
+
+        {/* Member Status Tabs */}
+        <Box>
+          <Tabs variant='solid-rounded' colorScheme='blue' defaultIndex={statusTabIndex}>
+            <TabList>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'none')}>Open</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'engage')}>Engage</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'contacted')}>Contacted</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Converted</Tab>
+              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Not Converted</Tab>
+            </TabList>
+          </Tabs>
+        </Box>
+
         <Flex direction='column'>
           <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
-          
-          {/* Mark for Engagement Button */}
-          {status === 'none' 
-          ? <Button colorScheme='blue' size='sm' variant='outline' mt={3} onClick={() => markForEngagement(member._id)}>Mark for Engagement</Button> 
-          : null}
-
-          {/* Reset Status Button */}
-          {status != 'none' 
-          ? <Button colorScheme='red' size='sm' variant='solid' mt={3} onClick={() => resetMemberStatus(member._id)}>Reset Status</Button> 
-          : null}
         </Flex>
       </Flex>
 
@@ -104,7 +135,7 @@ const Member = (props) => {
         <GridItem>
           <Card>
             <CardHeader>
-              <Heading size='md'>Personal Information</Heading>
+              <Heading>Personal Information</Heading>
             </CardHeader>
             
             <CardBody>
@@ -127,24 +158,19 @@ const Member = (props) => {
         
         {/* Notes */}
         <GridItem>
-          <Card>
-            <CardHeader>
-              <Heading size='md'>Notes</Heading>
-            </CardHeader>
-            
-            <CardBody>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>{member.memberNotes}</Text>
-              <Divider color='gray.200' />
-            </CardBody>
-          </Card>
+          {/* 
+            Notes component is a child of Member component.
+            Notes component passes notes to parent component (Member component) via notesToParent function.
+            Member component passes notes to Notes component via initialNotes prop.
+          */}
+          <Notes notesToParent={notesToParent} initialNotes={notes} />
         </GridItem>
         
         {/* Donation list */}
         <GridItem colSpan={2}>
           <Card>
             <CardHeader>
-              <Heading size='md'>Donations</Heading>
+              <Heading>Donations</Heading>
             </CardHeader>
             
             <CardBody>
