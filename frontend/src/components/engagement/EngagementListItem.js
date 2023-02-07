@@ -3,10 +3,19 @@ import '../members/memberStyles.css'
 import React from 'react';
 import { Link } from "react-router-dom";
 import { Flex, Text, Box, Tooltip, Stack, Button, ButtonGroup, Spacer, Grid, GridItem, Link as ReachLink } from '@chakra-ui/react'
+import { updateMember } from '../../api/axios';
 
 
 const EngagementListItem = ({ member }) => {
     let { _id, firstName, lastName, email, city, state } = member;
+
+    const handleSetStatusContacted = () => {
+        updateMember(_id, { memberStatus: 'contacted' })
+    }
+
+    const handleSetStatusOpen = () => {
+        updateMember(_id, { memberStatus: 'open' })
+    }
 
     return (
         <Box bg='white' w='100%' p={3} color='gray.700' justify='center' >
@@ -59,14 +68,14 @@ const EngagementListItem = ({ member }) => {
 
                         {/* Mark as contacted */}
                         <Tooltip hasArrow label="Mark as contacted">
-                            <Button colorScheme='blue'>
+                            <Button colorScheme='blue' onClick={handleSetStatusContacted}>
                                 <i className="fa fa-paper-plane"></i>
                             </Button>
                         </Tooltip>
 
                         {/* Remove from engagement list */}
                         <Tooltip hasArrow label="Remove from list">
-                            <Button colorScheme='red'>
+                            <Button colorScheme='red' onClick={handleSetStatusOpen}>
                                 <i className="fa fa-remove"></i>
                             </Button>
                         </Tooltip>

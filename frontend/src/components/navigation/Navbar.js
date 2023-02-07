@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from 'react';
+import { Box, Button, ButtonGroup, Flex, Heading, HStack, Spacer } from "@chakra-ui/react"
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton";
@@ -19,47 +20,62 @@ const Navbar = () => {
   }
 
     return (
-      <nav className="navbar">
-        <div className="nav-container">
-
-          {/* Nav Front */}
-          <div className="nav-front">
-
-            {/* Logo */}
-            <Link to="/" className="logo-link">
-              <h1 className="nav-logo">Dontra CRM</h1>
-            </Link>
+      <Flex 
+          as='nav' 
+          justify='space-between' 
+          align='center' 
+          px='10%' 
+          py={2}
+          bg='white'
+          shadow='md'
+        >
+          {/* Logo and Links */}
+          <HStack alignItems='center' justify='space-between'>
+            <Heading 
+              as={Link} 
+              to='/' 
+              size='md' 
+              color='gray.700'
+              marginRight={5}
+              _hover={{
+                color: 'blue.500',
+              }}
+              transition='all 200ms ease-in-out'
+            >
+              DontraCRM
+            </Heading>
 
             {/* Links */}
-            <div className="nav-links">
+            <HStack justifyContent='space-between'>
               <NavLink page='/' text='Dashboard' />
               <NavLink page='/members' text='Members' />
               <NavLink page='/donors' text='Donors' />
               <NavLink page='/engagement' text='Engagement' />
-              <NavLink page='/reports' text='Reports' />
-              
-            </div>
-            </div>
+              <NavLink page='/reports' text='Reports' /> 
+            </HStack>
+          </HStack>
 
-            {/* Nav Rear */}
-            {!user && (
-            <div className="nav-rear">
-            {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-              <SecondaryButton page='/create' text='Create Account' />
-              <PrimaryButton page='/login' text='Log In' />
-              </div>
+          <Spacer />
+
+          {/* Login / Signup Buttons */}
+          {!user && (
+          <Box>
+            <SecondaryButton page='/create' text='Create Account' />
+            <PrimaryButton page='/login' text='Log In' />
+            <ButtonGroup>
+              <Button colorScheme='blue' variant='outline'>[DEV] Sign Up</Button>
+              <Button colorScheme='blue'>Sign In</Button>
+            </ButtonGroup>
+          </Box>
         )}
+
+        {/* Handle show logout button when signed in */}
         {user && (
-            <div className="nav-rear">
-            {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-              <button className="btn btn-primary" onClick={handleClick}>Log Out</button>
-              </div>
+          <Box>             
+            <Button onClick={handleClick} colorScheme='red' variant='outline'>Log Out</Button>
+          </Box>
         )}
-        
-          </div>
-       
-
-      </nav>
+      </Flex>
   );
 }
 

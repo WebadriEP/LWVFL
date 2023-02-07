@@ -50,6 +50,33 @@ const Member = (props) => {
       break;
   }
 
+  let statusTabIndex;
+  switch (member.memberStatus) {
+    case 'none':
+      statusTabIndex = 0;
+      console.log(statusTabIndex)
+      break;
+    case 'engage':
+      statusTabIndex = 1;
+      console.log(statusTabIndex)
+      break;
+    case 'contacted':
+      statusTabIndex = 2;
+      console.log(statusTabIndex)
+      break;
+    case 'other':
+      statusTabIndex = 3;
+      console.log(statusTabIndex)
+      break;
+    case 'nonconverted':
+      statusTabIndex = 4;
+      console.log(statusTabIndex)
+      break;
+    default: 
+      statusTabIndex = 0;
+      console.log(statusTabIndex)
+  }
+
   // Retreive notes from child component and update member data
   const notesToParent = (childData) => {
     setNotes(childData)
@@ -85,7 +112,7 @@ const Member = (props) => {
 
         {/* Member Status Tabs */}
         <Box>
-          <Tabs variant='solid-rounded' colorScheme='blue'>
+          <Tabs variant='solid-rounded' colorScheme='blue' defaultIndex={statusTabIndex}>
             <TabList>
               <Tab m={2} onClick={() => setMemberStatus(member._id, 'none')}>Open</Tab>
               <Tab m={2} onClick={() => setMemberStatus(member._id, 'engage')}>Engage</Tab>
