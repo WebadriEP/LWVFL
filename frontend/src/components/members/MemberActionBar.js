@@ -1,21 +1,14 @@
 // components
 import React from 'react';
+import { Button, Flex } from '@chakra-ui/react';
 
-import MemberSearch from "../search/MemberSearch";
-import PrimaryButton from "../buttons/PrimaryButton"
-
-// css
-import './memberStyles.css'
-import '../buttons/buttonStyles.css'
-
-const MemberActionBar = ({ members, setQueryResults }) => {
+const MemberActionBar = () => {
   return (
-    <div className="member-action-bar shadow">
-      <MemberSearch members={members} setQueryResults={setQueryResults} />
-      
-      {/* NEW MEMBER BUTTON */}
-      <button className="btn-action">+</button>
-    </div>
+    <Flex direction='row' bg='white' shadow='lg' mb={5} borderRadius={10}>
+      <Button colorScheme='gray'>
+        <i className="fa fa-plus"></i>
+      </Button>
+    </Flex>
   )
 }
 

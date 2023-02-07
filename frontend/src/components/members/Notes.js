@@ -23,10 +23,10 @@ const Notes = ({ notesToParent, initialNotes }) => {
   }
 
   return (
-    <Card>
+    <Card border='1px solid' borderColor='gray.100' shadow='lg'>
       <CardHeader>
         <Flex direction='row' align='space-between'>
-          <Heading>Notes</Heading>
+          <Heading size='lg'>Notes</Heading>
           <Spacer />
           
           {/* Toggle view/edit mode */}

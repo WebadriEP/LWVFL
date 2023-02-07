@@ -1,10 +1,7 @@
 const mongoose = require("mongoose")
-
 const Schema = mongoose.Schema
 
 const memberSchema = new Schema({
-  // CHANGED TO FULL NAME INSTEAD OF SEPARATE FIRST AND LAST NAME FOR THE SCHEMA
-  // THIS ALLOWS THE SEARCH FUNCTION TO SEARCH FOR BOTH FIRST AND LAST NAME AT THE SAME TIME
   firstName: {
     type: String,
     required: true,
@@ -86,6 +83,30 @@ const memberSchema = new Schema({
       ref: 'Donation',
     }
   ]
+}, 
+{
+  virtuals: {
+    // Allows calling member.fullName instead of member.firstName + member.lastName
+    fullName: {
+      get() {
+        return `${this.firstName} ${this.lastName}`
+      },
+      set(v) { // Allows setting member.fullName to set both member.firstName and member.lastName
+        this.name.first = v.substr(0, v.indexOf(' '));
+        this.name.last = v.substr(v.indexOf(' ') + 1);
+      }
+    },
+    address: {
+      get() {
+        return `${this.homeAddress} ${this.addressLine2} ${this.city} ${this.state} ${this.zip}`
+      }
+    },
+    birthday: {
+      get() {
+        return `${this.birthMonth}-${this.birthDay}-${this.birthYear}`
+      },
+    }
+  }
 }, {timestamps:true})
   module.exports = mongoose.model('Member', memberSchema)
 

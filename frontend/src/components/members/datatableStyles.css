@@ -1,0 +1,15 @@
+/* Table header */
+.cellLink a:first-child {
+  color: var(--chakra-colors-blue-500);
+  text-transform: capitalize;
+}
+
+/* Table cells */
+.cellLink {
+  color: var(--chakra-colors-gray-600);
+}
+
+/* Table cell text on hover */
+.cellLink a:first-child:hover {
+  color: var(--chakra-colors-blue-900);
+}
