@@ -15,7 +15,6 @@
     "datatables.net-dt": "^1.13.1",
     "date-fns": "^2.29.3",
     "express": "^4.18.2",
-    "cors": "^2.8.5",
     "framer-motion": "^8.5.0",
     "highcharts": "^10.3.2",
     "highcharts-react-official": "^3.1.0",

@@ -1,47 +1,80 @@
-import { useEffect } from 'react'
-import React from 'react';
 
-import { Link } from 'react-router-dom';
-import DonationDetails from '../components/donations/DonationDetails';
-import { useDonationContext } from '../hooks/useDonationContext';
+import $ from "jquery";
+import React from 'react';
+import axios from "axios";
+import "datatables.net";
+import "datatables.net-dt";
+import { useState, useEffect } from 'react';
+import 'datatables.net-dt/css/jquery.dataTables.css';
 
 // css
-import '../components/donors/donorStyles.css'
+import '../components/members/memberStyles.css'
 
-const Donations = () => {
-    const { donations, dispatch } = useDonationContext();
+function Donations() {
+    const [donations, setDonations] = useState([]); // State for members
+    // Fetch all members -- Used for search functionality
+    const [dataTable, setDataTable] = useState(null);
+    useEffect(() => {
+        axios.get("http://localhost:3001/api/donations").then((res) => {
+            setDonations(res.data);
+        });
+    }, [])
 
     useEffect(() => {
-        const fetchDonations = async () => {
-          const response = await fetch('http://localhost:3000/api/donations')
-          const json = await response.json(); 
-  
-          if (response.ok) {
-              dispatch({ type: 'SET_DONATIONS', payload: json })
+        if (!dataTable) {
+            setDataTable(
+              $("#donations-table").DataTable({
+                data: donations,
+                retrieve: true,
+                paging: false,
+                columns: [
+                    
+                    { data: "date",
+                    "defaultContent": "" },
+                    { data: "amount",
+                    "defaultContent": ""},
+                    { data: "type",
+                    "defaultContent": "" },
+                    { data: "notes",
+                    "defaultContent": "" }
+                ],
+              })
+            );
+          } else {
+            dataTable.clear();
+            dataTable.rows.add(donations);
+            dataTable.draw();
           }
-      };
-        fetchDonations();
-      }, [dispatch]);
+      }, [donations, dataTable]);
 
-      return (
-        <div>
-          <div>
-            <h2>Donations</h2>
-           
-          </div>
-          
-          <div className="member-list">
-            {donations && donations.map((donation) => (
-              <DonationDetails key={donation._id} donation={donation} />
-            ))}
-            
-            <Link to="/donations/add" float="right">
-              <button className="btnAdd" float="right">New Donation</button>
-            </Link>
-          </div>
+    return(
+        <>            
+            <div>
 
-        </div>
-      )
+                <h1>Donations for ~name of member~</h1>
+                <table id="donations-table" className="display">
+                    <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th>Type</th>
+                        <th>Notes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {donations.map((donation) => (
+                        <tr key={donation._id}>
+                        <td>{donation.date}</td>
+                        <td>{donation.amount}</td>
+                        <td>{donation.type}</td>
+                        <td>{donation.notes}</td>
+                        </tr>
+                    ))}
+                    </tbody>
+                </table>
+            </div>
+        </>
+    );
 }
 
 export default Donations;
