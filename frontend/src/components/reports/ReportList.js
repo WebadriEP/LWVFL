@@ -2,7 +2,6 @@ import React from 'react'
 import ReportListItem from './ReportListItem'
 
 // css
-import '../members/memberStyles.css'
 
 const ReportList = () => {
   // Generate a list of MemberListItem components

@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
 
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab, SimpleGrid } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
 import Notes from "../components/members/Notes";
 
@@ -54,27 +54,21 @@ const Member = (props) => {
   switch (member.memberStatus) {
     case 'none':
       statusTabIndex = 0;
-      console.log(statusTabIndex)
       break;
     case 'engage':
       statusTabIndex = 1;
-      console.log(statusTabIndex)
       break;
     case 'contacted':
       statusTabIndex = 2;
-      console.log(statusTabIndex)
       break;
     case 'other':
       statusTabIndex = 3;
-      console.log(statusTabIndex)
       break;
     case 'nonconverted':
       statusTabIndex = 4;
-      console.log(statusTabIndex)
       break;
     default: 
       statusTabIndex = 0;
-      console.log(statusTabIndex)
   }
 
   // Retreive notes from child component and update member data
@@ -99,15 +93,15 @@ const Member = (props) => {
   return (
     <Box>
       {/* Heading & Last Updated */}
-      <Flex align='center' justify='space-between'>
+      <Flex align='center' justify='space-between' mb={5}>
         <Box>
           <Text fontSize='sm'>ENTRY DETAILS</Text>
-          <Heading size='2xl' mb={3} transform='translateX(-2px)'>
+          <Heading size='xl' textTransform='capitalize' mb={2} transform='translateX(-2px)'>
             {member.firstName} {member.lastName}
           </Heading>
 
           {/* Badges */}
-          <BadgeStack member={member} status={status} />
+          <BadgeStack member={member} status={status}  />
         </Box>
 
         {/* Member Status Tabs */}
@@ -130,28 +124,31 @@ const Member = (props) => {
 
       {/* Page Body */}
 
-      <Grid templateColumns='1fr 1fr' gap={3}>
+      <Grid templateColumns='1fr 1fr' gap={5}>
         {/* Personal Information Card */}
         <GridItem>
-          <Card>
+          <Card border='1px solid' borderColor='gray.100' shadow='lg'>
             <CardHeader>
-              <Heading>Personal Information</Heading>
+              <Heading size='lg'>Personal Information</Heading>
             </CardHeader>
             
             <CardBody>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>Email: {member.email}</Text>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>Phone: {member.phone}</Text>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>{`Date of Birth: ${member.birthMonth}/${member.birthDay}/${member.birthYear}`}</Text>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>Gender: {formattedGender}</Text>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>Address: {member.homeAddress}, { member.addressLine2 ? (member.addressLine2 + ', ') : null } {member.city}, {member.state} {member.zip}</Text>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>Member Since: {createdAt}</Text>
-              <Divider color='gray.200' />
+              <SimpleGrid columns={2} spacing={3}>
+                <GridItem><Text>Email</Text></GridItem>
+                <GridItem><Text>{member.email}</Text></GridItem>
+
+                <GridItem><Text>Phone</Text></GridItem>
+                <GridItem><Text>{member.phone}</Text></GridItem>
+
+                <GridItem><Text>Date of Birth</Text></GridItem>
+                <GridItem><Text>{`${member.birthMonth}/${member.birthDay}/${member.birthYear}`}</Text></GridItem>
+
+                <GridItem><Text>Address</Text></GridItem>
+                <GridItem><Text>{member.homeAddress}, { member.addressLine2 ? (member.addressLine2 + ', ') : null } {member.city}, {member.state} {member.zip}</Text></GridItem>
+
+                <GridItem><Text>Member Since</Text></GridItem>
+                <GridItem><Text>{createdAt}</Text></GridItem>
+              </SimpleGrid>
             </CardBody>
           </Card>
         </GridItem>
@@ -168,15 +165,13 @@ const Member = (props) => {
         
         {/* Donation list */}
         <GridItem colSpan={2}>
-          <Card>
+          <Card border='1px solid' borderColor='gray.100' shadow='lg'>
             <CardHeader>
-              <Heading>Donations</Heading>
+              <Heading size='lg'>Donations</Heading>
             </CardHeader>
             
             <CardBody>
-              <Divider color='gray.200' />
-              <Text m='.5rem 0'>No donations found.</Text>
-              <Divider color='gray.200' />
+              <Text>No donations found.</Text>
             </CardBody>
           </Card>
         </GridItem>

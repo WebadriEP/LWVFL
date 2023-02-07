@@ -1,5 +1,6 @@
 const Member = require('../models/memberModel')
 const mongoose = require('mongoose')
+mongoose.set('toJSON', { virtuals: true })
 
 //Find all Members
 const getMembers = async (req, res) => {
