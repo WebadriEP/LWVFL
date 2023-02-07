@@ -64,12 +64,7 @@ const MembersGraph = () => {
     ]
   }
 
-  return (
-    <div className="graph-container" id="membersGraph">
-      {/* Line chart showing data */}
-      <HighchartsReact highcharts={Highcharts} options={options} />
-    </div>
-  )
+  return <HighchartsReact highcharts={Highcharts} options={options} />
 }
 
 export default MembersGraph
