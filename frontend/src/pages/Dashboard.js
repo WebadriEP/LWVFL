@@ -1,37 +1,49 @@
 // components
 import React from 'react';
-
+import { Box, Container, Grid } from "@chakra-ui/react";
 import QuickActions from "../components/dashboard/QuickActions";
 import MembersGraph from "../components/dashboard/MembersGraph";
 
 
 // css
 import '../components/dashboard/dashboardStyles.css'
+import { Heading } from '@chakra-ui/react';
 
 const Dashboard = () => {
   return (
     <>
-      {/* Page heading */}
-      <h1>Dashboard</h1>
-
       {/* Quick Actions */}
       <QuickActions />
 
       {/* Graphs Section */}
-      <section className='graphs'>
+      <Grid templateColumns={'1fr 1fr'} gap={5}>
 
         {/* New Members */}
-        <div className='graph shadow'>
-          <h2>New Members by Month</h2>
+        <Box 
+          shadow='lg' 
+          bg='white' 
+          p={5}
+          borderRadius={10}
+          border='1px solid'
+          borderColor='gray.100'
+        >
+          <Heading size='md' mb={5}>New Members by Month</Heading>
           <MembersGraph />
-        </div>
+        </Box>
         
         {/* Another Statistic */}
-        <div className='graph shadow'>
-          <h2>Another Statistic</h2>
+        <Box 
+          shadow='lg' 
+          bg='white' 
+          p={5}
+          borderRadius={10}
+          border='1px solid'
+          borderColor='gray.100'
+        >
+          <Heading size='md' mb={5}>Another Graph</Heading>
           <MembersGraph />
-        </div>
-      </section>
+        </Box>
+      </Grid>
     </>
   )
 }
