@@ -54,27 +54,21 @@ const Member = (props) => {
   switch (member.memberStatus) {
     case 'none':
       statusTabIndex = 0;
-      console.log(statusTabIndex)
       break;
     case 'engage':
       statusTabIndex = 1;
-      console.log(statusTabIndex)
       break;
     case 'contacted':
       statusTabIndex = 2;
-      console.log(statusTabIndex)
       break;
     case 'other':
       statusTabIndex = 3;
-      console.log(statusTabIndex)
       break;
     case 'nonconverted':
       statusTabIndex = 4;
-      console.log(statusTabIndex)
       break;
     default: 
       statusTabIndex = 0;
-      console.log(statusTabIndex)
   }
 
   // Retreive notes from child component and update member data
