@@ -29,16 +29,15 @@ const MemberList = () => {
               $("#members-table").DataTable({
                 data: members,
                 retrieve: true,
-                paging: true,
+                paging: true, // Enable pagination for the table
                 searching: true,
                 columns: [
                     { 
                         data: "fullName",
-                        className: "cellLink",
+                        className: "cellLink", // Assigns className to every cell in this column. Controlled by ./datatableStyles.css
                         fnCreatedCell: (nTd, sData, oData, iRow, iCol) => {
-                            /* 
-                                Renders a link to the member's profile. Styles controlled by ./datatableStyles.css
-                            */
+                            // Renders a link to the member's profile. Controlled by ./datatableStyles.css
+                            // TODO: Figure out how to make this a Link component from react-router-dom
                             $(nTd).html(`<a href="/member/${oData._id}">${oData.fullName}</a>`);
                         }
                     },
@@ -55,7 +54,6 @@ const MemberList = () => {
       }, [members, dataTable]);
 
     return (
-        // USES CHAKRA UI COMPONENTS NOW
         <Table id="members-table" className="display">
             <Thead>
             <Tr>
