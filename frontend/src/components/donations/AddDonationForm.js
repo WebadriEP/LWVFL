@@ -1,62 +1,36 @@
 import { useState } from 'react';
 import { useDonationContext } from '../../hooks/useDonationContext';
 import React from 'react';
+import { useNavigate, useParams } from "react-router-dom";
+import { addDonationFuntion } from '../../api/DonationCRUD'
+import { createDonation } from '../../api/axios'
 
 const AddDonationForm = () => {
     
-    const { dispatch } = useDonationContext(); // Allow access to manage donors
-    const [donorID, setdonorID] = useState('');
+    
+    const donorID = useParams()
     const [amount, setAmount] = useState('');
     const [date, setDate] = useState('');
     const [type, setType] = useState('');
     const [notes, setNotes] = useState('');
     const [emptyFields, setEmptyFields] = useState([]);
 
-    // Logic for add button
+    const [error, setError] = useState(null);
+    //console.log(donorID);
+
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent page refresh on submit
-
-    const donation = {
-      
-      donorID,
-      amount,
-      date,
-      type,
-      notes
-
+    e.preventDefault()
+    setError(null);
+    try {
+      console.log(donorID);
+        await createDonation(donorID.id, {donorID: donorID.id, amount: amount, date: date, type: type, notes: notes})
+    } catch (err) {
+        setError(err.message);
     }
-
-    const response = await fetch('http://localhost:3000/api/donations/', {
-        method: 'POST',
-        body: JSON.stringify(donation),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-
-
-      const json = await response.json();
-
-    // Error handling
-    if (!response.ok) {
-      setError(json.error);
-      setEmptyFields(json.emptyFields);
-    }
-
-    // Reset form fields after submission and then add member to global state
-    if (response.ok) {
-      setEmptyFields([])
-      setError(null);
-      setdonorID('')
-      setAmount('')
-      setDate('')
-      setType('')
-      setNotes('')
-      
-      dispatch({ type: 'ADD_DONOR', payload: json });
-    }
-
-  }
+    const navigate = useNavigate();
+    const homelink = "/donations/list/" + donorID.id;
+    navigate(homelink);
+}
   
   return (
     <div>
@@ -66,13 +40,6 @@ const AddDonationForm = () => {
         
         <div>
           <div>
-            <label>ID of Donor*</label>
-            <input 
-              type="text"
-              value={donorID} 
-              onChange={(e) => setdonorID(e.target.value)} 
-              className={emptyFields.includes('donorID') ? 'error' : ''}
-            />
           </div>
           <div>
             <label>Amount*</label>
@@ -87,7 +54,7 @@ const AddDonationForm = () => {
 
         
         <div className="form-email">
-          <label>Email Address*</label>
+          <label>Date of Donation*</label>
           <input 
             type="date"
             value={date} 
@@ -95,8 +62,26 @@ const AddDonationForm = () => {
             className={emptyFields.includes('date') ? 'error' : ''} 
           />
         </div>
+
+        <div className="form-email">
+          <label>Type of Donation</label>
+          <input 
+            type="String"
+            value={type} 
+            onChange={(e) => setType(e.target.value)} 
+          />
+        </div>
+
+        <div className="form-email">
+          <label>Additional Notes</label>
+          <input 
+            type="String"
+            value={notes} 
+            onChange={(e) => setNotes(e.target.value)} 
+          />
+        </div>
         
-        <button>Add Donation</button>
+        <button onClick={handleSubmit}>Add Donation</button>
 
 
       

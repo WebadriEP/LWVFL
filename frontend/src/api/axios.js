@@ -35,3 +35,10 @@ export const getMemberDonations = async (id) => {
   const response = await api.get('http://localhost:3000/api/donations/list/' + id);
   return response.data;
 }
+
+
+// Create donation
+export const createDonation = async (id, donation) => {
+  const response = await api.post('/donations/' + id, donation);
+  return response.data;
+}

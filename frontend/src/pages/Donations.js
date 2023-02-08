@@ -8,6 +8,8 @@ import { useState, useEffect } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import { getMemberDonations, getSingleMember } from "../api/axios";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import NavLink from "../components/navigation/NavLink";
 
 function Donations() {
     const { id } = useParams(); // Get the ID from the URL
@@ -68,6 +70,8 @@ function Donations() {
           }
       }, [donations, dataTable]);
 
+      const link = '/donations/add/' + id;
+
     return(
         <>            
             <div>
@@ -85,7 +89,7 @@ function Donations() {
                     <tbody>
                     {donations.map((donation) => (
                         <tr key={donation._id}>
-                        <td>filler!!!</td>
+                        <td>{donation.date}</td>
                         <td>{donation.amount}</td>
                         <td>{donation.type}</td>
                         <td>{donation.notes}</td>
@@ -93,6 +97,8 @@ function Donations() {
                     ))}
                     </tbody>
                 </table>
+
+                <NavLink page={link} text='Add Donation' />
             </div>
         </>
     );

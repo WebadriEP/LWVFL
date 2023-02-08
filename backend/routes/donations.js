@@ -23,7 +23,7 @@ router.get('/:id', getDonation)
 router.get('/list/:id', getDonationsofDonor)
 
 //create a new Donation
-router.post('/', createDonation)
+router.post('/:id', createDonation)
 
 router.patch('/:id', updateDonation)
 

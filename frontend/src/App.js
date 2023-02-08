@@ -51,7 +51,7 @@ function App() {
           
           {/* Donation Routes */}
           <Route path="/donations/list/:id" element ={ <Donations /> } />
-          <Route path="/donations/add" element ={ <AddDonation/> } />
+          <Route path="/donations/add/:id" element ={ <AddDonation/> } />
           
           {/* Member Routes */}
           <Route path="/members" element ={user ?  <Members /> : <Navigate to="/"/>} />

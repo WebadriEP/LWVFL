@@ -16,7 +16,7 @@ function AddMemberPop() {
     const [state, setUsersState] = useState('')
     const [zip, setZip] = useState('')
   
-    const [error, setError] = useState(null);
+    const [error, setError] = useState(null);   
 
     const handleSubmit = async (e) => {
         e.preventDefault()
