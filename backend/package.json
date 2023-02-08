@@ -18,7 +18,7 @@
     "env": "^0.0.2",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^6.9.0",
+    "mongoose": "^6.9.1",
     "react-datatables": "^0.0.2",
     "validator": "^13.7.0"
   },

@@ -6,7 +6,7 @@ import React from 'react';
 
 // components
 import MemberDetails from "../components/members/MemberDetails"
-import AddMemberForm from '../components/members/AddMemberForm'
+
 
 const AddMember = () => {
   const { members, dispatch } = useMembersContext()
