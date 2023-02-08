@@ -7,10 +7,8 @@ import "datatables.net-dt";
 import { useState, useEffect } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 
-// css
-import '../components/members/memberStyles.css'
-
 function Donations() {
+    const { id } = useParams(); // Get the ID from the URL
     const [donations, setDonations] = useState([]); // State for members
     // Fetch all members -- Used for search functionality
     const [dataTable, setDataTable] = useState(null);
