@@ -1,7 +1,7 @@
 import $ from "jquery";
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Table, Tr, Th, Td, Thead, Tbody, Link as ReachLink, Input, Box } from '@chakra-ui/react';
+import { Table, Tr, Th, Td, Thead, Tbody, Link as ReachLink } from '@chakra-ui/react';
 
 import "datatables.net";
 import "datatables.net-dt";
@@ -12,7 +12,7 @@ import 'datatables.net-dt/css/jquery.dataTables.css';
 import "../ui/datatableStyles.css";
 import { getAllMembers } from "../../api/axios";
 
-const MemberList = () => {
+const EngagementDatatable = () => {
     const [members, setMembers] = useState([]);
     const [dataTable, setDataTable] = useState(null);
 
@@ -63,7 +63,6 @@ const MemberList = () => {
           </Tr>
           </Thead>
           <Tbody>
-            <React.Fragment>
             {members.map(member => (
               <Tr key={member._id}>
                   <Td>{member.fullName}</Td>
@@ -71,10 +70,9 @@ const MemberList = () => {
                   <Td>{member.phone}</Td>
               </Tr>
             ))}
-            </React.Fragment>
           </Tbody>
       </Table>
     )
 }
 
-export default MemberList
+export default EngagementDatatable
