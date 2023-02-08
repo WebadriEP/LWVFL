@@ -3,7 +3,6 @@ import React from 'react';
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton";
-import SecondaryButton from "../buttons/SecondaryButton";
 import NavLink from "./NavLink";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -37,6 +36,7 @@ const Navbar = () => {
               <NavLink page='/donors' text='Donors' />
               <NavLink page='/engagement' text='Engagement' />
               <NavLink page='/reports' text='Reports' />
+              <NavLink page='/users' text='Users' />
               
             </div>
             </div>
@@ -45,7 +45,6 @@ const Navbar = () => {
             {!user && (
             <div className="nav-rear">
             {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-              <SecondaryButton page='/create' text='Create Account' />
               <PrimaryButton page='/login' text='Log In' />
               </div>
         )}
