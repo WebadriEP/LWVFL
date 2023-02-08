@@ -26,6 +26,11 @@ export const createMember = async (member) => {
 // Update a member
 export const updateMember = async (id, member) => {
   // patch member
-  const response = await api.patch("/members/" + id, member)
-  return response.data
+  const response = await api.patch('/members/' + id, member);
+  return response.data;
+}
+
+export const getUsers = async () => {
+  const response = await api.get('/get/users')
+  return response.data;
 }

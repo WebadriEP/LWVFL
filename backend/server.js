@@ -23,21 +23,20 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use("/api/members", memberRoutes)
-app.use("/api/user", userRoutes)
-app.use("/api/users", userRoutes)
-app.use("/api/donors", donorRoutes)
-app.use("/api/donations", donationRoutes)
+app.use('/api/members', memberRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/donors', donorRoutes)
+app.use('/api/donations', donationRoutes)
 
-// // Serve static assets if in production
-// if (process.env.NODE_ENV === "production") {
-//   // Set static folder
-//   app.use(express.static("../frontend/build"))
+// Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+  // Set static folder
+  app.use(express.static('../frontend/build'));
 
-//   app.get("*", (req, res) => {
-//     res.sendFile(path.resolve(__dirname, "frontend", "build", "index.html"))
-//   })
-//}
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'));
+  });
+}
 
 // Connect to DB
 mongoose
