@@ -50,7 +50,7 @@ function App() {
           <Route path="/donors/add" element ={ <AddDonor/> } />
           
           {/* Donation Routes */}
-          <Route path="/donations" element ={ <Donations /> } />
+          <Route path="/donations/list/:id" element ={ <Donations /> } />
           <Route path="/donations/add" element ={ <AddDonation/> } />
           
           {/* Member Routes */}

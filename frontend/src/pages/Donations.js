@@ -6,17 +6,40 @@ import "datatables.net";
 import "datatables.net-dt";
 import { useState, useEffect } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
+import { getMemberDonations, getSingleMember } from "../api/axios";
+import { useParams } from "react-router-dom";
 
 function Donations() {
     const { id } = useParams(); // Get the ID from the URL
-    const [donations, setDonations] = useState([]); // State for members
+    const [donations, setDonations] = useState([]); // State for donations
+    const [member, setMember] = useState({}); //State for member
     // Fetch all members -- Used for search functionality
     const [dataTable, setDataTable] = useState(null);
     useEffect(() => {
-        axios.get("http://localhost:3001/api/donations").then((res) => {
-            setDonations(res.data);
+       getMemberDonations(id)
+       
+       .then(json => {
+        setDonations(json);
+
+
         });
     }, [])
+
+    // Acquire member details
+  useEffect(() => {
+    getSingleMember(id)
+
+    // Set member state
+    .then(json => {
+      setMember(json) // set member state
+ 
+    })
+
+    // Error handling
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
 
     useEffect(() => {
         if (!dataTable) {
@@ -49,7 +72,7 @@ function Donations() {
         <>            
             <div>
 
-                <h1>Donations for ~name of member~</h1>
+                <h1>Donations for {member.firstName} {member.lastName}</h1>
                 <table id="donations-table" className="display">
                     <thead>
                     <tr>
@@ -62,7 +85,7 @@ function Donations() {
                     <tbody>
                     {donations.map((donation) => (
                         <tr key={donation._id}>
-                        <td>{donation.date}</td>
+                        <td>filler!!!</td>
                         <td>{donation.amount}</td>
                         <td>{donation.type}</td>
                         <td>{donation.notes}</td>

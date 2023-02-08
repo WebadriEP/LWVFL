@@ -24,6 +24,15 @@ const getDonation = async (req, res) => {
     res.status(200).json(donation)
 }
 
+//Find all donations belonging to a particular donor
+const getDonationsofDonor = async (req, res) => {
+    const { id } = req.params
+    
+    const donations = await Donations.find({donorID: id}).sort({ createdAt: -1 })
+
+    res.status(200).json(donations)
+}
+
 const updateDonation = async (req, res) => {
     const { id } = req.params
 
@@ -71,6 +80,7 @@ const createDonation = async(req,res) => {
 module.exports = {
     getDonations,
     getDonation,
+    getDonationsofDonor,
     updateDonation,
     createDonation
 
