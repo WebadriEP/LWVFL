@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Table, Tr, Th, Td, Thead, Tbody, Link as ReachLink } from '@chakra-ui/react';
 import AddMemberPop from "./AddMemberPop";
+import { getAllMembers } from "../../api/axios";
 
 import "datatables.net";
 import "datatables.net-dt";
@@ -11,7 +12,7 @@ import DataTable from 'datatables.net-dt';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 
 // import datatables styles
-import "./datatableStyles.css";
+import "../ui/datatableStyles.css";
 
 const MemberList = () => {
     const [members, setMembers] = useState([]); // State for members
@@ -20,9 +21,10 @@ const MemberList = () => {
     const [dataTable, setDataTable] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost:3001/api/members").then((res) => {
-            setMembers(res.data);
-        });
+        getAllMembers().then(json => setMembers(json))
+    }, [])
+
+    useEffect(() => {
         if (!dataTable) {
             setDataTable(
               $("#members-table").DataTable({
