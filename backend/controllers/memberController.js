@@ -74,21 +74,21 @@ const createMember = async (req, res) => {
     if (!zip) {
         emptyFields.push('zip')
     }
-    if (!birthMonth) {
-        emptyFields.push('birthMonth')
-    }
-    if (!birthDay) {
-        emptyFields.push('birthDay')
-    }
-    if (!birthYear) {
-        emptyFields.push('birthYear')
-    }
-    if (!memberType) {
-        emptyFields.push('memberType')
-    }
-    if (!isStudent) {
-        emptyFields.push('isStudent')
-    }
+    // if (!birthMonth) {
+    //     emptyFields.push('birthMonth')
+    // }
+    // if (!birthDay) {
+    //     emptyFields.push('birthDay')
+    // }
+    // if (!birthYear) {
+    //     emptyFields.push('birthYear')
+    // }
+    // if (!memberType) {
+    //     emptyFields.push('memberType')
+    // }
+    // if (!isStudent) {
+    //     emptyFields.push('isStudent')
+    // }
 
     // If any are empty, return error
     if (emptyFields.length > 0) {

@@ -3,6 +3,7 @@ import axios from "axios";
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import { Table, Tr, Th, Td, Thead, Tbody, Link as ReachLink } from '@chakra-ui/react';
+import AddMemberPop from "./AddMemberPop";
 
 import "datatables.net";
 import "datatables.net-dt";
@@ -17,13 +18,11 @@ const MemberList = () => {
 
     // Fetch all members -- Used for search functionality
     const [dataTable, setDataTable] = useState(null);
+
     useEffect(() => {
         axios.get("http://localhost:3001/api/members").then((res) => {
             setMembers(res.data);
         });
-    }, [])
-
-    useEffect(() => {
         if (!dataTable) {
             setDataTable(
               $("#members-table").DataTable({
@@ -54,6 +53,8 @@ const MemberList = () => {
       }, [members, dataTable]);
 
     return (
+        <div>
+        
         <Table id="members-table" className="display">
             <Thead>
             <Tr>
@@ -72,6 +73,7 @@ const MemberList = () => {
             ))}
             </Tbody>
         </Table>
+        </div>
     )
 }
 
