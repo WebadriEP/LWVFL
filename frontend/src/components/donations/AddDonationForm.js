@@ -99,7 +99,7 @@ const AddDonationForm = () => {
         <button>Add Donation</button>
 
 
-        {error && <div>{error}</div>}
+      
       </form>
     </div>
   )
