@@ -9,7 +9,7 @@ const NavLink = (props) => {
   return (
     <Link to={page}>
       <Text 
-        color='gray.600' 
+        color='white' 
         p={3}
         _hover={{
           color: 'blue.500',

@@ -26,7 +26,7 @@ const Navbar = () => {
           align='center' 
           px='10%' 
           py={2}
-          bg='white'
+          bg='black'
           shadow='md'
         >
           {/* Logo and Links */}
@@ -35,7 +35,7 @@ const Navbar = () => {
               as={Link} 
               to='/' 
               size='md' 
-              color='gray.700'
+              color='white'
               marginRight={5}
               _hover={{
                 color: 'blue.500',
