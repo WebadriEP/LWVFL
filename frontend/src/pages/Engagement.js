@@ -8,8 +8,6 @@ import EngagementList from '../components/engagement/EngagementList';
 import EngagementDatatable from '../components/engagement/EngagementDatatable';
 
 const Engagement = () => {
-    const [members, setMembers] = useState([]); // State for members
-
     // Fetch all members -- Used for search functionality
     // useEffect(() => {
     //     getAllMembers().then(json => {
