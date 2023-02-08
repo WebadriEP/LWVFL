@@ -4,7 +4,6 @@ import { Box, Button, ButtonGroup, Flex, Heading, HStack, Spacer } from "@chakra
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton";
-import SecondaryButton from "../buttons/SecondaryButton";
 import NavLink from "./NavLink";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
@@ -51,6 +50,8 @@ const Navbar = () => {
               <NavLink page='/members' text='Members' />
               <NavLink page='/donors' text='Donors' />
               <NavLink page='/engagement' text='Engagement' />
+              <NavLink page='/users' text='Users' />
+
               <NavLink page='/reports' text='Reports' /> 
             </HStack>
           </HStack>
@@ -60,7 +61,6 @@ const Navbar = () => {
           {/* Login / Signup Buttons */}
           {!user && (
           <Box>
-            <SecondaryButton page='/create' text='Create Account' />
             <PrimaryButton page='/login' text='Log In' />
             <ButtonGroup>
               <Button colorScheme='blue' variant='outline'>[DEV] Sign Up</Button>
