@@ -6,6 +6,10 @@ import {
   HStack,
   Button,
   Tooltip,
+  Input,
+  Flex,
+  Checkbox,
+  Radio,
 } from "@chakra-ui/react"
 import React from "react"
 import { useState, useEffect, useMemo } from "react"
@@ -17,15 +21,22 @@ import EngagementTable from "../components/engagement/EngagementTable"
 
 const Engagement = () => {
   const [members, setMembers] = useState([])
+  const [search, setSearch] = useState("")
+  const [searchResults, setSearchResults] = useState([])
 
   // Fetch all members -- Used for search functionality
   useEffect(() => {
     getAllMembers().then((json) => {
       // Filter out members marked for engagement
-      setMembers(json.filter((member) => member.memberStatus === "engage"))
-      //setMembers(json)
+      // setMembers(json.filter((member) => member.memberStatus === "engage"))
+      setMembers(json)
     })
   }, [])
+
+  // Search functionality
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
+  }
 
   const handleMarkContacted = (id) => {
     updateMember(id, { memberStatus: "contacted" }).then(() => {
@@ -63,6 +74,11 @@ const Engagement = () => {
         accessor: "phone",
       },
       {
+        // Location (City, State)
+        Header: "Location",
+        accessor: "location",
+      },
+      {
         // Renders actions that user can perform, such as marking member as contacted
         Header: " ",
         Cell: ({ row }) => (
@@ -85,14 +101,55 @@ const Engagement = () => {
   )
 
   return (
-    <Stack>
-      <Heading mb={5}>Engagement List</Heading>
-      {/* Table background */}
-      <Box bg="white" borderRadius={8} border="1px" borderColor="gray.50">
-        {/* Table generated with React-Table */}
-        <EngagementTable columns={columns} data={members} />
-      </Box>
-    </Stack>
+    <>
+      <HStack justify="space-between" mb={5}>
+        <Heading>Engagement List</Heading>
+        <Box>
+          <Input
+            type="text"
+            placeholder="Search"
+            value={search}
+            onChange={handleSearch}
+          />
+        </Box>
+      </HStack>
+
+      <Flex direction="row">
+        {/* Filters */}
+        <Box bg="white" borderRadius={8} mr={5} minW="15%">
+          <Stack spacing={4}>
+            <Box borderRadius={8} border="1px" borderColor="gray.100" p="4">
+              <Heading size="sm">Status</Heading>
+              <Stack spacing={2} mt={2}>
+                <Checkbox>Engage</Checkbox>
+                <Checkbox>Contacted</Checkbox>
+                <Checkbox>Member</Checkbox>
+                <Checkbox>Donor</Checkbox>
+              </Stack>
+            </Box>
+            <Box borderRadius={8} border="1px" borderColor="gray.100" p="4">
+              <Heading size="sm">Students</Heading>
+              <HStack spacing={4} mt={2}>
+                <Radio>Yes</Radio>
+                <Radio>No</Radio>
+              </HStack>
+            </Box>
+          </Stack>
+        </Box>
+
+        {/* Table */}
+        <Box
+          bg="white"
+          borderRadius={8}
+          border="1px"
+          borderColor="gray.50"
+          w="100%"
+        >
+          {/* Table generated with React-Table */}
+          <EngagementTable columns={columns} data={members} />
+        </Box>
+      </Flex>
+    </>
   )
 }
 
