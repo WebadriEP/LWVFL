@@ -5,7 +5,6 @@ import {
   Link as ReachLink,
   HStack,
   Button,
-  Fade,
   Tooltip,
 } from "@chakra-ui/react"
 import React from "react"
@@ -89,13 +88,7 @@ const Engagement = () => {
     <Stack>
       <Heading mb={5}>Engagement List</Heading>
       {/* Table background */}
-      <Box
-        bg="white"
-        shadow="lg"
-        borderRadius={8}
-        border="1px"
-        borderColor="gray.50"
-      >
+      <Box bg="white" borderRadius={8} border="1px" borderColor="gray.50">
         {/* Table generated with React-Table */}
         <EngagementTable columns={columns} data={members} />
       </Box>
