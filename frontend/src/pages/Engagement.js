@@ -10,6 +10,7 @@ import {
   Flex,
   Checkbox,
   Radio,
+  Text,
 } from "@chakra-ui/react"
 import React from "react"
 import { useState, useEffect, useMemo } from "react"
@@ -28,7 +29,6 @@ const Engagement = () => {
   useEffect(() => {
     getAllMembers().then((json) => {
       // Filter out members marked for engagement
-      // setMembers(json.filter((member) => member.memberStatus === "engage"))
       setMembers(json)
     })
   }, [])
@@ -36,6 +36,17 @@ const Engagement = () => {
   // Search functionality
   const handleSearch = (e) => {
     setSearch(e.target.value)
+
+    if (e.target.value === "") {
+      setSearchResults(members)
+      return
+    }
+
+    setSearchResults(
+      members.filter((member) =>
+        member.fullName.toLowerCase().includes(search.toLowerCase())
+      )
+    )
   }
 
   const handleMarkContacted = (id) => {
