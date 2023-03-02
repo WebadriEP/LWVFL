@@ -12,6 +12,11 @@ const app = express()
 // Middleware
 app.use(express.json())
 
+// Default page
+app.get("/", (req, res) => {
+  res.send("Welcome to the DontraCRM API")
+})
+
 app.use((req, res, next) => {
   console.log(req.path, req.method)
   next() // Pass the request to the next middleware
