@@ -4,8 +4,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "build": "npm install"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Webadri Enterprises",
