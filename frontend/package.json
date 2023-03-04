@@ -1,5 +1,5 @@
 {
-  "proxy": "https://lwvfl-api.up.railway.app:3000",
+  "proxy": "https://dontra-api.up.railway.app:3000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
