@@ -43,6 +43,7 @@ const loginUser = async (req, res) => {
 }
 
 const registerUser = async (req, res) => {
+  console.log("test")
   const { firstName, lastName, email, password, address, city, phone } = req.body; // get email and password from request body
   try {
     console.log(firstName)
