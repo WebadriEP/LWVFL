@@ -56,7 +56,7 @@ const Navbar = () => {
           {/* Login / Signup Buttons */}
           {!user && (
           <Box>
-          
+            <SecondaryButton page='/create' text='Create Account' />
             <PrimaryButton page='/login' text='Log In' />
             <ButtonGroup>
               <Button colorScheme='blue' variant='outline'>[DEV] Sign Up</Button>
