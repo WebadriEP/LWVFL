@@ -51,12 +51,18 @@ const Navbar = () => {
             </div>
             </div>
 
-            {/* Nav Rear */}
-            {!user && (
-            <div className="nav-rear">
-            {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-              <PrimaryButton page='/login' text='Log In' />
-              </div>
+          <Spacer />
+
+          {/* Login / Signup Buttons */}
+          {!user && (
+          <Box>
+          
+            <PrimaryButton page='/login' text='Log In' />
+            <ButtonGroup>
+              <Button colorScheme='blue' variant='outline'>[DEV] Sign Up</Button>
+              <Button colorScheme='blue'>Sign In</Button>
+            </ButtonGroup>
+          </Box>
         )}
         {user && (
             <div className="nav-rear">
