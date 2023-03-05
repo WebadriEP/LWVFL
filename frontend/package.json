@@ -1,5 +1,6 @@
 {
   "homepage": "https://dontracrm-production.up.railway.app/",
+  "proxy": "https://dontra-production.up.railway.app:3000",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
