@@ -4,6 +4,7 @@ import { Box, Button, ButtonGroup, Flex, Heading, HStack, Spacer } from "@chakra
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton";
+import SecondaryButton from "../buttons/SecondaryButton";
 import NavLink from "./NavLink";
 import { useLogout } from "../../hooks/useLogout";
 import { useAuthContext } from "../../hooks/useAuthContext";
