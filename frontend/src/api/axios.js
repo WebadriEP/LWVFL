@@ -29,3 +29,8 @@ export const updateMember = async (id, member) => {
   const response = await api.patch("/members/" + id, member)
   return response.data
 }
+
+export const getUsers = async () => {
+  const response = await api.get('/get/users')
+  return response.data;
+}

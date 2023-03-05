@@ -23,11 +23,10 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use("/api/members", memberRoutes)
-app.use("/api/user", userRoutes)
-app.use("/api/users", userRoutes)
-app.use("/api/donors", donorRoutes)
-app.use("/api/donations", donationRoutes)
+app.use('/api/members', memberRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/donors', donorRoutes)
+app.use('/api/donations', donationRoutes)
 
 // // Serve static assets if in production
 // if (process.env.NODE_ENV === "production") {
