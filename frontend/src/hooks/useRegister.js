@@ -10,7 +10,7 @@ export const useRegister = () => {
       setLoading(true)
       setError(null)
   
-      const response = await fetch('https://dontra-production.up.railway.app/api/users/register', {
+      const response = await fetch('/api/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
