@@ -5,19 +5,23 @@ export const useLogin = () =>{
 
     const [error, setError] = useState(null)
     const [isLoading,setIsLoading] = useState(null)
-
+    const {dispatch} = useAuthContext()
+    
     const login = async(email, password) => {
         setIsLoading(true)
         setError(null)
 
        try{
-        response = loginUser({email,password})
+        response = await loginUser(email, password)
+        console.log(response.json)
         setIsLoading(false)
-        localStorage.setItem('user', JSON.stringify(response.JSON))
-        dispatch({type: 'LOGIN', payload: response.JSON})
+        localStorage.setItem('user', JSON.stringify(response.json()))
+        
+        dispatch({type: 'LOGIN', payload: response.json()})
 
        }
        catch(error){
+        console.log("Notworking")
         setIsLoading(false)
         setError(error)
        }
