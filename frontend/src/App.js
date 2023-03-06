@@ -8,24 +8,24 @@ import Navbar from "./components/navigation/Navbar"
 import Footer from "./components/Footer"
 
 // pages
-import Engagement from './pages/Engagement';
-import Members from './pages/Members';
+import Engagement from "./pages/Engagement"
+import Members from "./pages/Members"
 //import AddMember from './pages/AddMember';
-import Member from './pages/Member';
-import CreateAccount from './pages/createAccount';
-import Dashboard from './pages/Dashboard';
-import Reports from './pages/Reports';
-import Login from './pages/Login';
-import AddMember from './pages/AddMember';
-import Donors from './pages/Donors';
-import Donations from './pages/Donations';
-import AddDonor from './pages/AddDonor';
-import AddDonation from './pages/AddDonation';
+import Member from "./pages/Member"
+import CreateAccount from "./pages/createAccount"
+import Dashboard from "./pages/Dashboard"
+import Reports from "./pages/Reports"
+import Login from "./pages/Login"
+import AddMember from "./pages/AddMember"
+import Donors from "./pages/Donors"
+import Donations from "./pages/Donations"
+import AddDonor from "./pages/AddDonor"
+import AddDonation from "./pages/AddDonation"
 
-import NewReport from './components/reports/NewReport';
+import NewReport from "./components/reports/NewReport"
 
 // css
-import './App.css';
+import "./App.css"
 
 function App() {
   const { user } = useAuthContext()
@@ -45,14 +45,12 @@ function App() {
               path="/engagement"
               element={user ? <Engagement /> : <Navigate to="/" />}
             />
-
             {/* Auth Routes */}
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
             />
             {/* <Route path = "/create" element={ <CreateAccount />} /> */}
-
             {/* Donor Routes */}
             <Route
               path="/addmember"
@@ -66,7 +64,6 @@ function App() {
               path="/donors/add"
               element={user ? <AddDonor /> : <Navigate to="/" />}
             />
-
             {/* Donation Routes */}
             <Route
               path="/donations/list/:id"
@@ -76,7 +73,6 @@ function App() {
               path="/donations/add/:id"
               element={user ? <AddDonation /> : <Navigate to="/" />}
             />
-
             {/* Member Routes */}
             <Route
               path="/members"
@@ -86,17 +82,26 @@ function App() {
               path="/create"
               element={!user ? <CreateAccount /> : <Navigate to="/" />}
             />
-            <Route path = "/users" element={user ?  <UserDashboard /> : <Navigate to="/"/>} /> 
-          <Route
+            <Route
+              path="/users"
+              element={user ? <UserDashboard /> : <Navigate to="/" />}
+            />
+            <Route
               exact
               path="/member/:id"
-          <Route exact path="/update-user/:id" element={<UpdateUser />} />
-          <Route exact path="/update-password/:id" element={<UpdatePassword />} />
-
-
               element={user ? <Member /> : <Navigate to="/" />}
             />
-
+            <Route exact path="/update-user/:id" element={<UpdateUser />} />
+            <Route
+              exact
+              path="/update-password/:id"
+              element={user ? <UpdatePassword /> : <Navigate to="/" />}
+            />
+            <Route
+              exact
+              path="/member/:id"
+              element={user ? <Member /> : <Navigate to="/" />}
+            />
             {/* Reports Routes */}
             <Route
               path="/reports"

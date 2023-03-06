@@ -18,6 +18,7 @@ import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
 // css
 import "./navStyles.css"
+import "./navStyles.css"
 
 const Navbar = () => {
   const { user } = useAuthContext()
@@ -68,22 +69,16 @@ const Navbar = () => {
       {/* Login / Signup Buttons */}
       {!user && (
         <Box>
-          <SecondaryButton page="/create" text="Create Account" />
           <PrimaryButton page="/login" text="Log In" />
-          <ButtonGroup>
-            <Button colorScheme="blue" variant="outline">
-              [DEV] Sign Up
-            </Button>
-            <Button colorScheme="blue">Sign In</Button>
-          </ButtonGroup>
         </Box>
       )}
 
       {/* Handle show logout button when signed in */}
       {user && (
         <Box>
-          <Button onClick={handleClick} colorScheme="red" variant="outline">
-            Log Out
+          <Button onClick={handleClick} colorScheme="blue" variant="solid">
+            {/* font-awesome icon for exit */}
+            <i className="fa fa-sign-out"></i>
           </Button>
         </Box>
       )}
