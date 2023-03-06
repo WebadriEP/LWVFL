@@ -21,8 +21,10 @@ import Donors from "./pages/Donors"
 import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
-
+import Imports from "./pages/Imports"
 import NewReport from "./components/reports/NewReport"
+
+import UserDashboard from "./pages/UserDashboard"
 
 // css
 import "./App.css"
@@ -45,12 +47,13 @@ function App() {
               path="/engagement"
               element={user ? <Engagement /> : <Navigate to="/" />}
             />
+
             {/* Auth Routes */}
             <Route
               path="/login"
               element={!user ? <Login /> : <Navigate to="/" />}
             />
-            {/* <Route path = "/create" element={ <CreateAccount />} /> */}
+
             {/* Donor Routes */}
             <Route
               path="/addmember"
@@ -91,12 +94,13 @@ function App() {
               path="/member/:id"
               element={user ? <Member /> : <Navigate to="/" />}
             />
-            <Route exact path="/update-user/:id" element={<UpdateUser />} />
-            <Route
+
+            {/* <Route
               exact
               path="/update-password/:id"
               element={user ? <UpdatePassword /> : <Navigate to="/" />}
-            />
+            /> */}
+
             <Route
               exact
               path="/member/:id"

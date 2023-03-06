@@ -18,7 +18,6 @@ import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
 // css
 import "./navStyles.css"
-import "./navStyles.css"
 
 const Navbar = () => {
   const { user } = useAuthContext()
