@@ -11,7 +11,7 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-        loginUser({email,password})
+       json = loginUser({email,password})
     
 
     if(!response.ok){
