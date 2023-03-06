@@ -11,12 +11,12 @@ export const useRegister = () => {
       setLoading(true)
       setError(null)
       try{
-        json = registerUser({ firstName, lastName, email, password, address, city, phone })
+        registerUser({ firstName, lastName, email, password, address, city, phone })
         setLoading(false)
       }
-      catch{
+      catch(error){
         setLoading(false)
-        setError(json.error)
+        setError(error)
       }
       
     }
