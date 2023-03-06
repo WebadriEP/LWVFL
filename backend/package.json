@@ -13,12 +13,15 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.1",
+    "csvtojson": "^2.0.10",
     "dot": "^1.1.3",
     "dotenv": "^16.0.3",
     "env": "^0.0.2",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.9.1",
+    "multer": "^1.4.5-lts.1",
     "react-datatables": "^0.0.2",
     "validator": "^13.7.0"
   },

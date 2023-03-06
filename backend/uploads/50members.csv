@@ -1,0 +1,51 @@
+firstName,lastName,email,phone,homeAddress,city,state,zip,gender,birthMonth,birthDay,birthYear,memberType,isStudent,memberStatus
+Kore,Connelly,Kore.Connelly@lwvfl.com,7417944862,1232 Sesame St,Rome,SC,25446,other,9,21,1966,memberdonor,false,engage
+Roseline,Yorick,Roseline.Yorick@lwvfl.com,7577811487,420 Garrek St,Belfast,IA,80943,female,7,17,1971,donor,false,none
+Rhoda,Therine,Rhoda.Therine@lwvfl.com,8648019958,9632 Wright St,Vientiane,CO,5915,female,12,23,2004,memberdonor,false,none
+Zia,Zamora,Zia.Zamora@lwvfl.com,459682300,884 Watercrest Cir,Tagbilaran,KS,49762,female,12,8,1979,member,false,other
+Frieda,Bebe,Frieda.Bebe@lwvfl.com,7216163280,29 Margaret Rd,Manama,FL,43061,female,10,13,1988,memberdonor,false,none
+Lulita,Moina,Lulita.Moina@lwvfl.com,9153306477,29 Margaret Rd,Magadan,PA,95283,other,11,25,1963,member,false,other
+Kimberley,Emanuel,Kimberley.Emanuel@lwvfl.com,7091855480,1 UNF Dr,Greenwich,AR,12879,male,2,14,2005,donor,false,engage
+Jacquetta,Calhoun,Jacquetta.Calhoun@lwvfl.com,3413808111,884 Watercrest Cir,Santiago de Cuba,MD,93024,male,1,6,1930,memberdonor,false,none
+Elie,Forrer,Elie.Forrer@lwvfl.com,2492642349,420 Garrek St,Amritsar,AS,30063,female,8,18,1978,memberdonor,false,engage
+Susan,Joseph,Susan.Joseph@lwvfl.com,1672219540,420 Garrek St,Sacramento,NJ,60107,male,7,27,1999,memberdonor,false,none
+Melina,Ade,Melina.Ade@lwvfl.com,9380440215,420 Garrek St,Ludhiana,SC,92859,female,5,3,1968,memberdonor,true,other
+Fayre,Tristram,Fayre.Tristram@lwvfl.com,7335671220,884 Watercrest Cir,Kaohsiung,AL,94216,male,3,26,2003,memberdonor,true,none
+Elie,Daniele,Elie.Daniele@lwvfl.com,700647152,29 Margaret Rd,Gdańsk,MT,36348,female,11,2,1985,donor,false,engage
+Rosabelle,Pond,Rosabelle.Pond@lwvfl.com,3850254733,1 UNF Dr,Singapore,WY,828,male,10,15,1960,donor,false,none
+Andree,Denis,Andree.Denis@lwvfl.com,1511093686,884 Watercrest Cir,Tbilisi,AZ,81669,male,11,24,1934,memberdonor,false,other
+Joy,Phaidra,Joy.Phaidra@lwvfl.com,9151033373,1232 Sesame St,Durango,NC,17192,female,7,17,1972,memberdonor,false,none
+Grier,Goddard,Grier.Goddard@lwvfl.com,3443427666,1 UNF Dr,Bujumbura,CO,7003,male,12,28,2001,memberdonor,false,none
+Ekaterina,Podvin,Ekaterina.Podvin@lwvfl.com,7933586090,884 Watercrest Cir,Puebla,NC,74640,other,4,11,1994,member,false,engage
+Sherrie,Yate,Sherrie.Yate@lwvfl.com,8780871041,1232 Sesame St,Kharkiv,ND,35093,female,12,29,1980,donor,false,none
+Josephine,Ade,Josephine.Ade@lwvfl.com,9721801745,353 Riverside Ave,Virginia Beach,CA,10446,female,7,16,1957,memberdonor,false,none
+Ernesta,Thornburg,Ernesta.Thornburg@lwvfl.com,6131279420,1 UNF Dr,Bogor,KY,22968,female,11,2,1984,memberdonor,false,none
+Lonnie,Phaidra,Lonnie.Phaidra@lwvfl.com,2025249917,1232 Sesame St,Dallas,PR,28824,other,1,7,2003,member,true,other
+Leanna,Dominy,Leanna.Dominy@lwvfl.com,2214665413,353 Riverside Ave,Sri Jayawardenapura-Kotte,AS,61935,other,6,6,1938,donor,false,none
+Tiffie,Phaidra,Tiffie.Phaidra@lwvfl.com,4640072055,1232 Sesame St,Toronto,TX,63001,male,9,27,1992,memberdonor,false,other
+Madalyn,Olympium,Madalyn.Olympium@lwvfl.com,4269617638,29 Margaret Rd,Gothenburg,NH,53082,female,7,17,1952,member,false,none
+Ardenia,Vacuva,Ardenia.Vacuva@lwvfl.com,1845171732,1232 Sesame St,Bridgetown,AK,62295,other,8,23,1948,donor,false,other
+Henriette,Tengdin,Henriette.Tengdin@lwvfl.com,3839259470,9632 Wright St,Koror,OH,22977,female,7,28,1979,memberdonor,false,none
+Elbertina,Gibbeon,Elbertina.Gibbeon@lwvfl.com,8650106804,1232 Sesame St,Padang,KS,13890,male,10,1,1961,member,false,engage
+Leeanne,Cloris,Leeanne.Cloris@lwvfl.com,9715202588,353 Riverside Ave,Gaziantep,HI,37020,female,11,4,1945,member,true,none
+Clementine,Durante,Clementine.Durante@lwvfl.com,944706654,29 Margaret Rd,Charlotte,FL,3821,male,5,4,1985,donor,false,none
+Antonietta,Alice,Antonietta.Alice@lwvfl.com,5262478482,420 Garrek St,Calama,DC,59231,other,10,6,1957,donor,true,other
+Merry,Fry,Merry.Fry@lwvfl.com,8711241082,1 UNF Dr,Bangalore,AR,81939,male,1,3,1984,member,false,none
+Nataline,Berl,Nataline.Berl@lwvfl.com,9330746458,29 Margaret Rd,Turin,MN,86741,female,10,10,1952,member,false,other
+Celene,Weinreb,Celene.Weinreb@lwvfl.com,9513621320,1232 Sesame St,Veracruz,MD,10772,female,12,9,1967,donor,false,engage
+Harmonia,Stuart,Harmonia.Stuart@lwvfl.com,4879852551,1 UNF Dr,Cork (city),VA,90727,female,3,3,1953,donor,false,none
+Gavrielle,Etom,Gavrielle.Etom@lwvfl.com,3644720320,353 Riverside Ave,Makassar,SD,39937,female,8,12,1941,donor,false,engage
+Doro,Quent,Doro.Quent@lwvfl.com,9267098595,1 UNF Dr,Shillong,NH,44748,male,9,18,1950,donor,false,none
+Devina,Rese,Devina.Rese@lwvfl.com,6736489826,9632 Wright St,Nuuk,MN,59327,male,2,5,1979,member,false,none
+Bee,Maribeth,Bee.Maribeth@lwvfl.com,2483350430,353 Riverside Ave,Buenos Aires,TX,81604,other,7,25,1945,member,true,none
+Mureil,Croix,Mureil.Croix@lwvfl.com,9525549878,1 UNF Dr,Iloilo City,CA,62171,female,12,1,1977,memberdonor,false,none
+Desirae,O'Neill,Desirae.O'Neill@lwvfl.com,2290012609,29 Margaret Rd,Bangkok,SD,73842,female,9,27,1982,member,false,other
+Karina,Sheng,Karina.Sheng@lwvfl.com,3751030187,884 Watercrest Cir,Las Palmas de Gran Canaria,MO,19451,female,8,18,1956,donor,false,engage
+Frances,Vastah,Frances.Vastah@lwvfl.com,2726941797,29 Margaret Rd,Raleigh,GA,34209,male,6,24,2002,memberdonor,false,engage
+Morganica,Bohlin,Morganica.Bohlin@lwvfl.com,7473295351,29 Margaret Rd,Hargeisa,WI,2073,female,12,17,1970,member,false,other
+Merle,Cherianne,Merle.Cherianne@lwvfl.com,872482139,420 Garrek St,Zamboanga City,MT,59245,male,12,7,1972,member,false,none
+Mallory,Vittoria,Mallory.Vittoria@lwvfl.com,870983691,1 UNF Dr,Istanbul,MN,36333,male,8,2,1998,memberdonor,false,none
+Kellen,Shama,Kellen.Shama@lwvfl.com,8273661896,29 Margaret Rd,Daegu,DC,69117,other,7,20,1950,memberdonor,false,other
+Kara-Lynn,Xerxes,Kara-Lynn.Xerxes@lwvfl.com,4858706360,420 Garrek St,Arequipa,GA,9591,male,9,25,1965,memberdonor,false,engage
+Tomasina,Weitman,Tomasina.Weitman@lwvfl.com,5690731306,1232 Sesame St,Kingstown,MI,13766,male,1,8,1943,memberdonor,false,none
+Lilith,Mitzi,Lilith.Mitzi@lwvfl.com,8155693811,9632 Wright St,Hagåtña,OR,17544,female,8,22,1986,donor,false,none
