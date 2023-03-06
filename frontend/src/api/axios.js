@@ -2,7 +2,7 @@ import axios from "axios"
 
 // Make life easier by creating a base URL
 export const api = axios.create({
-  baseURL: "/api",
+  baseURL: process.env.BACKEND_URL+"/api",
 })
 
 // Get all members currently stored in the DB
