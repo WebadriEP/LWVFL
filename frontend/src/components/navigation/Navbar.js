@@ -18,6 +18,7 @@ import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
 // css
 import "./navStyles.css"
+import "./navStyles.css"
 
 const Navbar = () => {
   const { user } = useAuthContext()
@@ -59,9 +60,10 @@ const Navbar = () => {
           <NavLink page="/members" text="Members" />
           <NavLink page="/engagement" text="Engagement" />
           <NavLink page="/reports" text="Reports" />
-          <NavLink page="/users" text="Users" />
+          <NavLink page="/import" text="Import" />
         </HStack>
       </HStack>
+
       <Spacer />
 
       {/* Login / Signup Buttons */}
