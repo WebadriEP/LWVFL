@@ -42,13 +42,10 @@ export const registerUser = async (user) => {
   const response = await api.post('/users/register', user);
   return response.data;
 }
-export const loginUser = async (user) => {
-  const {dispatch} = useAuthContext()
+export const loginUser = async (email, password) => {
 
-  const response = await api.post('/users/login', user)
+  const response = await api.post('/users/login', ({email, password}))
   response.headers({Authorization: 'Bearer $(User.token)'})
-
-  
-
+  console.log(response.data)
   return response.data;
 }
