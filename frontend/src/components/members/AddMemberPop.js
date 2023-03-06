@@ -23,6 +23,7 @@ function AddMemberPop() {
         setError(null);
         try {
             await addMemberFuntion(firstName, lastName, email, phone, homeAddress, city, state, zip);
+            onClose();
         } catch (err) {
             setError(err.message);
         }
