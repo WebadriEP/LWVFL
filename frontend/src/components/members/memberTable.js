@@ -8,11 +8,13 @@ import {
   HStack,
   Button,
   Box,
+  Input,
   ButtonGroup,
   Tooltip,
 } from "@chakra-ui/react"
-import { useTable, useSortBy, usePagination,  } from "react-table"
+import { useTable, useSortBy, usePagination, useFilters, useGlobalFilter, setGlobalFilter, useAsyncDebounce  } from "react-table"
 import React from "react"
+
 
 const IndeterminateCheckbox = React.forwardRef(
   ({ indeterminate, ...rest }, ref) => {
@@ -26,6 +28,34 @@ const IndeterminateCheckbox = React.forwardRef(
     return <input type="checkbox" ref={resolvedRef} {...rest} />
   }
 )
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length
+  const [value, setValue] = React.useState(globalFilter)
+  const onChange = useAsyncDebounce(value => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <Box borderRadius={6} border="2px" borderColor="gray.100" p="1">
+      <Input
+        value={value || ""}
+        onChange={e => {
+          setValue(e.target.value);
+          onChange(e.target.value);
+        }}
+        placeholder={`Search ${count} records...`}
+        style={{
+          fontSize: '1.1rem',
+          border: '0',
+        }}
+      />
+    </Box>
+  )
+}
 
 // Table component
 function MemberTable({ columns, data }) {
@@ -44,6 +74,10 @@ function MemberTable({ columns, data }) {
     previousPage,
     getToggleHideAllColumnsProps,
     allColumns,
+    visibleColumns,
+    preGlobalFilteredRows,
+    setGlobalFilter,
+    state,
     state: { pageIndex },
   } = useTable(
     {
@@ -51,8 +85,10 @@ function MemberTable({ columns, data }) {
       data,
       initialState: { pageIndex: 0 },
     },
-    useSortBy,
     
+    useFilters, // useFilters!
+    useGlobalFilter, // useGlobalFilter!
+    useSortBy,
     usePagination
   )
 
@@ -91,6 +127,20 @@ function MemberTable({ columns, data }) {
               ))}
             </Tr>
           ))}
+          <tr>
+            <th
+              colSpan={visibleColumns.length}
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <GlobalFilter
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={state.globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </th>
+          </tr>
         </Thead>
         <Tbody {...getTableBodyProps()}>
           {page.map((row) => {

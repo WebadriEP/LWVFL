@@ -114,20 +114,7 @@ const Members = () => {
   return (
     <>
     <AddMemberPop />
-      <HStack justify="space-between" mb={5}>
-        <Heading>Members List</Heading>
-
-        <Box>
-          <Input
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={handleSearch}
-          />
-        </Box>
-        
-      </HStack>
-
+      
       <Flex direction="row">
         {/* Table */}
         <Box
