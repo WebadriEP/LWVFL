@@ -2,6 +2,7 @@ import { useState } from 'react';
 import React from 'react';
 import { useNavigate, useParams } from "react-router-dom";
 import { createDonation } from '../../api/axios'
+import { Button} from "@chakra-ui/react";
 
 const AddDonationForm = () => {
     
@@ -79,7 +80,7 @@ const AddDonationForm = () => {
           />
         </div>
         
-        <button onClick={handleSubmit}>Add Donation</button>
+      <Button onClick={handleSubmit} colorScheme='green '>Add Donation</Button>
 
 
       

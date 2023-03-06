@@ -4,12 +4,14 @@ import React from 'react';
 import axios from "axios";
 import "datatables.net";
 import "datatables.net-dt";
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import { getMemberDonations, getSingleMember } from "../api/axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavLink from "../components/navigation/NavLink";
+import { Box, Button } from "@chakra-ui/react";
+import DonationTable from "../components/donations/DonationTable"
 
 function Donations() {
     const { id } = useParams(); // Get the ID from the URL
@@ -43,64 +45,52 @@ function Donations() {
     })
   }, [])
 
-    useEffect(() => {
-        if (!dataTable) {
-            setDataTable(
-              $("#donations-table").DataTable({
-                data: donations,
-                retrieve: true,
-                paging: false,
-                columns: [
-                    
-                    { data: "date",
-                    "defaultContent": "" },
-                    { data: "amount",
-                    "defaultContent": ""},
-                    { data: "type",
-                    "defaultContent": "" },
-                    { data: "notes",
-                    "defaultContent": "" }
-                ],
-              })
-            );
-          } else {
-            dataTable.clear();
-            dataTable.rows.add(donations);
-            dataTable.draw();
-          }
-      }, [donations, dataTable]);
+    //   Determines the columns for the table and what is rendered inside each cell
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Date",
+        accessor: "date",
+      },
+      {
+        // Renders member's email
+        Header: "Amount",
+        accessor: "amount",
+      },
+      {
+        // Renders member's phone number
+        Header: "Type",
+        accessor: "type",
+      },
+      {
+        // Location (City, State)
+        Header: "Notes",
+        accessor: "notes",
+      },
+      
+    ],
+    []
+  )
 
       const link = '/donations/add/' + id;
 
-    return(
-        <>            
-            <div>
+    return(            
+           
 
-                <h1>Donations for {member.firstName} {member.lastName}</h1>
-                <table id="donations-table" className="display">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Amount</th>
-                        <th>Type</th>
-                        <th>Notes</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {donations.map((donation) => (
-                        <tr key={donation._id}>
-                        <td>{donation.date}</td>
-                        <td>{donation.amount}</td>
-                        <td>{donation.type}</td>
-                        <td>{donation.notes}</td>
-                        </tr>
-                    ))}
-                    </tbody>
-                </table>
+        <Box
+          bg="white"
+          borderRadius={8}
+          border="1px"
+          borderColor="gray.50"
+          w="100%"
+        >
+          <h1>Donations for {member.firstName} {member.lastName}</h1>
+          {/* Table generated with React-Table */}
+          <DonationTable columns={columns} data={donations} />
+          <Button><Link to = {link}>Add New Donation</Link></Button>
+        </Box>
 
-                <NavLink page={link} text='Add Donation' />
-            </div>
-        </>
+        
     );
 }
 

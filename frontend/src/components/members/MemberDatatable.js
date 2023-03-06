@@ -31,7 +31,7 @@ const MemberList = () => {
               $("#members-table").DataTable({
                 data: members,
                 retrieve: true,
-                paging: true, // Enable pagination for the table
+                paging: false, // Enable pagination for the table
                 searching: true,
                 columns: [
                     { 
