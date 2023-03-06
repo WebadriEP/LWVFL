@@ -24,6 +24,8 @@ import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
 import Imports from "./pages/Imports"
 import NewReport from "./components/reports/NewReport"
+import UpdateUser from "./components/users/UpdateUser"
+
 
 import UserDashboard from "./pages/UserDashboard"
 
@@ -96,11 +98,11 @@ function App() {
               element={user ? <Member /> : <Navigate to="/" />}
             />
 
-            {/* <Route
+            <Route
               exact
               path="/update-password/:id"
               element={user ? <UpdatePassword /> : <Navigate to="/" />}
-            /> */}
+            />
 
             <Route
               exact
