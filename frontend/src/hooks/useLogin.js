@@ -11,7 +11,7 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch(process.env.BACKEND_URL+'/api/users/login', {
+        const response = await fetch('https://dontra-production.up.railway.app/api/users/login', {
             method: 'POST',
             body: JSON.stringify({email, password}),
             headers: {'Content-Type': 'application/json',
