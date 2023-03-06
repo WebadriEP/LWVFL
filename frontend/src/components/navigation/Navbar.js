@@ -27,17 +27,31 @@ const Navbar = () => {
     logout()
   }
 
-    return (
-      <nav className="navbar">
-        <div className="nav-container">
-
-          {/* Nav Front */}
-          <div className="nav-front">
-
-            {/* Logo */}
-            <Link to="/" className="logo-link">
-              <h1 className="nav-logo">Dontra CRM</h1>
-            </Link>
+  return (
+    <Flex
+      as="nav"
+      justify="space-between"
+      align="center"
+      px="10%"
+      py={2}
+      bg="black"
+      shadow="md"
+    >
+      {/* Logo and Links */}
+      <HStack alignItems="center" justify="space-between">
+        <Heading
+          as={Link}
+          to="/"
+          size="md"
+          color="white"
+          marginRight={5}
+          _hover={{
+            color: "blue.500",
+          }}
+          transition="all 200ms ease-in-out"
+        >
+          DontraCRM
+        </Heading>
 
             {/* Links */}
             <div className="nav-links">
@@ -52,6 +66,16 @@ const Navbar = () => {
             </div>
 
           <Spacer />
+        {/* Links */}
+        <HStack justifyContent="space-between">
+          <NavLink page="/" text="Dashboard" />
+          <NavLink page="/members" text="Members" />
+          <NavLink page="/engagement" text="Engagement" />
+          <NavLink page="/reports" text="Reports" />
+          <NavLink page="/users" text="Users" />
+        </HStack>
+      </HStack>
+      <Spacer />
 
           {/* Login / Signup Buttons */}
           {!user && (
