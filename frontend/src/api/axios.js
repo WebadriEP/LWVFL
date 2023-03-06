@@ -45,11 +45,10 @@ export const registerUser = async (user) => {
 export const loginUser = async (user) => {
   const {dispatch} = useAuthContext()
 
-  const response = await  api.post('/users/login', user)
+  const response = await api.post('/users/login', user)
   response.headers({Authorization: 'Bearer $(User.token)'})
 
-  localStorage.setItem('user', JSON.stringify(json))
-  dispatch({type: 'LOGIN', payload:response.json})
   
+
   return response.data;
 }
