@@ -11,9 +11,17 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-       try{
-        response = await loginUser(email, password)
-        console.log(response.json)
+        const response = await fetch('https://dontra-production.up.railway.app/api/users/login', {
+            method: 'POST',
+            body: JSON.stringify({email, password}),
+            headers: {'Content-Type': 'application/json',
+            'Authorization': 'Bearer $(User.token)'}
+           
+        })
+        const json = await response.json()
+    
+
+    if(!response.ok){
         setIsLoading(false)
         localStorage.setItem('user', JSON.stringify(response.json()))
         

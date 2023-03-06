@@ -10,8 +10,18 @@ export const useRegister = () => {
     const register = async (firstName, lastName, email, password, address, city, phone) => {
       setLoading(true)
       setError(null)
-      try{
-        registerUser({ firstName, lastName, email, password, address, city, phone })
+  
+      const response = await fetch('https://dontra-production.up.railway.app/api/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ firstName, lastName, email, password, address, city, phone })
+      })
+  
+      const json = await response.json()
+  
+      if (!response.ok) {
         setLoading(false)
       }
       catch(error){
