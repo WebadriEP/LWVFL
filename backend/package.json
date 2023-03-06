@@ -20,6 +20,7 @@
     "init": "^0.1.2",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.10.0",
+    "multer": "^1.4.5-lts.1",
     "react-datatables": "^0.0.2",
     "validator": "^13.7.0"
   },
