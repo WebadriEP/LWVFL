@@ -53,15 +53,15 @@ const Navbar = () => {
           DontraCRM
         </Heading>
 
-      {/* Links */}
-      <HStack justifyContent='space-between'>
-          <NavLink page='/' text='Dashboard' />
-          <NavLink page='/members' text='Members' />
-          <NavLink page='/engagement' text='Engagement' />
-          <NavLink page='/reports' text='Reports' /> 
-          <NavLink page='/users' text='Users' />
+        {/* Links */}
+        <HStack justifyContent="space-between">
+          <NavLink page="/" text="Dashboard" />
+          <NavLink page="/members" text="Members" />
+          <NavLink page="/engagement" text="Engagement" />
+          <NavLink page="/reports" text="Reports" />
+          <NavLink page="/users" text="Users" />
+        </HStack>
       </HStack>
-
       <Spacer />
 
       {/* Login / Signup Buttons */}
