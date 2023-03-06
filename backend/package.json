@@ -1,6 +1,7 @@
 {
   "name": "backend",
-  "proxy": "https://dontra-production.up.railway.app:3000",
+  "proxy": "https://localhost:3000",
+
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
