@@ -11,8 +11,11 @@ export const useLogin = () =>{
         setError(null)
 
        try{
-        loginUser({email,password})
+        response = loginUser({email,password})
         setIsLoading(false)
+        localStorage.setItem('user', JSON.stringify(response.JSON))
+        dispatch({type: 'LOGIN', payload: response.JSON})
+
        }
        catch(error){
         setIsLoading(false)
