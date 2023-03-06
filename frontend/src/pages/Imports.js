@@ -12,67 +12,50 @@ import React, { useState } from "react"
 import { importMembers } from "../api/axios"
 
 const Imports = () => {
-  const [platform, setPlatform] = useState("")
+  const [selectedFile, setSelectedFile] = useState(null)
 
-  const updatePlatform = (platformFromChild) => {
-    setPlatform(platformFromChild)
+  const handleFileChange = (e) => {
+    setSelectedFile(e.target.files[0])
   }
 
   // send CSV to backend
-  const handleSubmit = async (e) => {
-    console.log("submitting")
-    console.log(e.target.file.files[0])
+  const handleFileUpload = (e) => {
     // use axios to send CSV to "/api/members/import"
-    await importMembers(e.target.file.files[0])
+    try {
+      importMembers(selectedFile)
+    } catch {
+      console.log("Error uploading file")
+    }
   }
 
   return (
     <>
       <Heading>Import Members</Heading>
-      <Text>The only supported format is CSV.</Text>
 
-      {!platform ? (
-        /* 
-        Pre-import View -- Completely useless as we don't have any data from either 
-        platform to show. Only there to make the platform feel more complete. 
-        */
-        <SimpleGrid templateColumns="1fr 1fr" gap={5} marginY={8}>
-          <Box
-            onClick={setPlatform("salesforce")}
-            bg="gray.100"
-            borderRadius={8}
-            p={8}
-            textAlign="center"
-            cursor="pointer"
-          >
-            <Text>Salesforce</Text>
-          </Box>
-          <Box
-            onClick={setPlatform("neon")}
-            bg="gray.100"
-            borderRadius={8}
-            p={8}
-            textAlign="center"
-            cursor="pointer"
-          >
-            <Text>Neon</Text>
-          </Box>
-        </SimpleGrid>
-      ) : (
-        <>
-          <Heading size="sm" marginY={8}>
-            SELECTED: {platform.toUpperCase()}
-          </Heading>
+      {/* File upload */}
+      <Box shadow="md" p={5}>
+        <input type="file" onChange={handleFileChange} name="csvFile" />
 
-          {/* File upload */}
-          <FormControl marginY={8} onSubmit={handleSubmit}>
-            <Input type="file" name="csvFile" isRequired />
-            <IconButton type="submit" colorScheme="blue">
-              <i className="fa fa-upload"></i>
-            </IconButton>
-          </FormControl>
-        </>
-      )}
+        {/* Only show details if a file is selected */}
+        {selectedFile ? (
+          <Text>
+            <strong>File:</strong> {selectedFile.name} (~
+            {Math.floor(selectedFile.size / 1024)}mb)
+          </Text>
+        ) : null}
+
+        <Button
+          type="submit"
+          colorScheme="blue"
+          onClick={handleFileUpload}
+          mt={3}
+        >
+          <Text mr={3} fontWeight="bold">
+            Upload
+          </Text>
+          <i className="fa fa-upload"></i>
+        </Button>
+      </Box>
     </>
   )
 }

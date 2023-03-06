@@ -37,18 +37,23 @@ router.post("/", createMember) // create a member
 router.patch("/:id", updateMember) // update a member
 router.delete("/:id", deleteMember) // delete a member
 
-// Endpoints for importing members from CSV (via /api/members/import)
+// Importing members from CSV (via /api/members/import)
 router.route("/import").post(upload.single("csvFile"), async (req, res) => {
-  // Convert CSV to JSON
-  const jsonArray = await csv().fromFile(req.file.path)
+  try {
+    // Convert CSV to JSON
+    const jsonArray = await csv().fromFile(req.file.path)
 
-  // Insert JSON array into MongoDB
-  memberModel.insertMany(jsonArray, (error, result) => {
-    if (error) {
-      return res.status(500).json(error)
-    }
-    return res.status(200).json({ message: "Members imported successfully!" })
-  })
+    // Insert JSON array into MongoDB
+    memberModel.insertMany(jsonArray, (error, result) => {
+      if (error) {
+        return res.status(500).json(error)
+      }
+      return res.status(200).json({ message: "Members imported successfully!" })
+    })
+    res.json(jsonArray)
+  } catch (error) {
+    console.error(error)
+  }
 })
 
 module.exports = router
