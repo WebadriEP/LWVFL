@@ -24,7 +24,7 @@ const Imports = () => {
     try {
       importMembers(selectedFile)
     } catch {
-      console.log("Error uploading file")
+      console.log("Error uploading file!")
     }
   }
 
