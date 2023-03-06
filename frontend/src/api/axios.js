@@ -30,8 +30,16 @@ export const updateMember = async (id, member) => {
   return response.data
 }
 
-// Import members from a CSV file
-export const importMembers = async (file) => {
-  const response = await api.post("/members/import", file)
+// Get all donations of a member by ID
+export const getMemberDonations = async (id) => {
+  const response = await api.get(
+    "http://localhost:3000/api/donations/list/" + id
+  )
+  return response.data
+}
+
+// Create donation
+export const createDonation = async (id, donation) => {
+  const response = await api.post("/donations/" + id, donation)
   return response.data
 }
