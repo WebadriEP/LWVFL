@@ -3,9 +3,9 @@ import { useAuthContext } from "../hooks/useAuthContext"
 // Make life easier by creating a base URL
 export const api = axios.create({
   baseURL: process.env.BACKEND_URL+"/api",
-  headers: {
-    Authorization: `Bearer $(localStorage.getItem("user"))`
-  }
+  // headers: {
+  //   Authorization: `Bearer $(localStorage.getItem("user"))`
+  // }
 })
 
 // Get all members currently stored in the DB
@@ -46,6 +46,6 @@ export const loginUser = async (email, password) => {
 
   const response = await api.post('/users/login', ({email, password}))
   response.headers({Authorization: 'Bearer $(User.token)'})
-  console.log(response.data)
+  console.log(response)
   return response.data;
 }
