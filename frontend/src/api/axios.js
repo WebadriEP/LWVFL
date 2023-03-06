@@ -3,7 +3,6 @@ import { useAuthContext } from "../hooks/useAuthContext"
 // Make life easier by creating a base URL
 export const api = axios.create({
   baseURL: process.env.BACKEND_URL+"/api",
-  
 })
 
 // Get all members currently stored in the DB
