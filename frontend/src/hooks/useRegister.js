@@ -11,10 +11,8 @@ export const useRegister = () => {
       setLoading(true)
       setError(null)
   
-      registerUser({ firstName, lastName, email, password, address, city, phone })
-      
-      const json = await response.json()
-  
+      json = registerUser({ firstName, lastName, email, password, address, city, phone })
+        
       if (!response.ok) {
         setLoading(false)
         setError(json.error)

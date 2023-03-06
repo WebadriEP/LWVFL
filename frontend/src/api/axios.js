@@ -3,6 +3,9 @@ import axios from "axios"
 // Make life easier by creating a base URL
 export const api = axios.create({
   baseURL: process.env.BACKEND_URL+"/api",
+  headers: {
+    Authorization: `Bearer $(localStorage.getItem("user"))`
+  }
 })
 
 // Get all members currently stored in the DB
@@ -40,7 +43,7 @@ export const registerUser = async (user) => {
   return response.data;
 }
 export const loginUser = async (user) => {
-  const response = await await api.post('/users/login', user)
-  .headers({'Authorization': 'Bearer $(User.token)'});
+  const response = await  api.post('/users/login', user)
+  .headers({Authorization: 'Bearer $(User.token)'})
   return response.data;
 }
