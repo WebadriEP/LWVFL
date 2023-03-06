@@ -40,7 +40,7 @@ function GlobalFilter({
   }, 200)
 
   return (
-    <Box borderRadius={6} border="2px" borderColor="gray.100" p="1">
+    <Box borderRadius={6} border="2px" borderColor="gray.100">
       <Input
         value={value || ""}
         onChange={e => {
@@ -111,6 +111,20 @@ function MemberTable({ columns, data }) {
       </div>
       <Table {...getTableProps()}>
         <Thead>
+        <tr>
+            <th
+              colSpan={visibleColumns.length}
+              style={{
+                textAlign: 'left',
+              }}
+            >
+              <GlobalFilter
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={state.globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </th>
+          </tr>
           {headerGroups.map((headerGroup) => (
             <Tr {...headerGroup.getHeaderGroupProps()}>
               {headerGroup.headers.map((column) => (
@@ -127,20 +141,7 @@ function MemberTable({ columns, data }) {
               ))}
             </Tr>
           ))}
-          <tr>
-            <th
-              colSpan={visibleColumns.length}
-              style={{
-                textAlign: 'left',
-              }}
-            >
-              <GlobalFilter
-                preGlobalFilteredRows={preGlobalFilteredRows}
-                globalFilter={state.globalFilter}
-                setGlobalFilter={setGlobalFilter}
-              />
-            </th>
-          </tr>
+          
         </Thead>
         <Tbody {...getTableBodyProps()}>
           {page.map((row) => {
