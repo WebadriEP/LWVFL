@@ -11,20 +11,19 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-       json = loginUser({email,password})
-    
-
-    if(!response.ok){
-        setIsLoading(false)
-        setError(json.error)
-    }
-    if(response.ok){
+       try{
+        json = loginUser({email,password})
         localStorage.setItem('user', JSON.stringify(json))
 
         dispatch({type: 'LOGIN', payload:json})
 
         setIsLoading(false)
-    }
+       }
+       catch{
+        setIsLoading(false)
+        setError(json.error)
+       }
+    
 }
     return {login, isLoading, error}
 }
