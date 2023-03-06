@@ -1,5 +1,4 @@
 require("dotenv").config()
-require("dotenv").config()
 
 const memberRoutes = require("./routes/members")
 const userRoutes = require("./routes/users")
