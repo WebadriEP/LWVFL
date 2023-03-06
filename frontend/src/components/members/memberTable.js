@@ -107,7 +107,7 @@ function MemberTable({ columns, data }) {
             </label>
           </div>
         ))}
-        <br />
+        
       </div>
       <Table {...getTableProps()}>
         <Thead>
