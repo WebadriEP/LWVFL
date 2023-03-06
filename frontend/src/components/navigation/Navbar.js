@@ -60,6 +60,8 @@ const Navbar = () => {
           <NavLink page="/engagement" text="Engagement" />
           <NavLink page="/reports" text="Reports" />
           <NavLink page="/import" text="Import" />
+          <NavLink page='/users' text='Users' />
+
         </HStack>
       </HStack>
 
