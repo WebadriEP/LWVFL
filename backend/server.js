@@ -6,16 +6,22 @@ const donorRoutes = require("./routes/donors")
 const donationRoutes = require("./routes/donations")
 const express = require("express")
 const mongoose = require("mongoose")
+const cors = require("cors")
+const path = require("path")
+
 // Initialize express
 const app = express()
 
 // Middleware
 app.use(express.json())
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, Authorization');
+
+app.use(function (req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization");
   next();
-});
+})
 // Default page
 app.get("/", (req, res) => {
   res.send("Welcome to the DontraCRM API")
@@ -27,10 +33,11 @@ app.use((req, res, next) => {
 })
 
 // Routes
-app.use('/api/members', memberRoutes)
-app.use('/api/users', userRoutes)
-app.use('/api/donors', donorRoutes)
-app.use('/api/donations', donationRoutes)
+app.use("/api/members", memberRoutes)
+app.use("/api/users", userRoutes)
+app.use("/api/donors", donorRoutes)
+app.use("/api/donations", donationRoutes)
+app.use("/api/user", userRoutes)
 
 // // Serve static assets if in production
 // if (process.env.NODE_ENV === "production") {

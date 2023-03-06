@@ -59,9 +59,12 @@ const Navbar = () => {
           <NavLink page="/members" text="Members" />
           <NavLink page="/engagement" text="Engagement" />
           <NavLink page="/reports" text="Reports" />
-          <NavLink page="/users" text="Users" />
+          <NavLink page="/import" text="Import" />
+          <NavLink page='/users' text='Users' />
+
         </HStack>
       </HStack>
+
       <Spacer />
 
       {/* Login / Signup Buttons */}

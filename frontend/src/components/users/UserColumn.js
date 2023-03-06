@@ -18,7 +18,7 @@ export default function UserColumn({user, updateUsers}) {
     const  userContext  = JSON.parse(localStorage.getItem('user'))
 
     const handleDelete = async (id) => {
-        await axios.delete('/api/users/delete/' + id)
+        await axios.delete('https://dontra-production.up.railway.app/api/users/delete/' + id)
           .then((response) => {
             console.log(response.data)
             updateUsers();

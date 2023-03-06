@@ -1,5 +1,5 @@
 {
-  "proxy": "http://localhost:3000",
+  "hostname":"https://dontracrm-production.up.railway.app/",
   "name": "frontend",
   "version": "0.1.0",
   "private": true,

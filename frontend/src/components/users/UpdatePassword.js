@@ -16,7 +16,7 @@ export default function UpdateUser() {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        axios.put('/api/users/update/password/' + id, {password})
+        axios.put('https://dontra-production.up.railway.app/api/users/update/password/' + id, {password})
         
         .then((response) => {
             navigate('/users'); // Navigate to the users page after successful update
