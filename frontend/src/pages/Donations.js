@@ -1,47 +1,97 @@
-import { useEffect } from 'react'
+
+import $ from "jquery";
 import React from 'react';
+import axios from "axios";
+import "datatables.net";
+import "datatables.net-dt";
+import { useState, useEffect, useMemo } from 'react';
+import 'datatables.net-dt/css/jquery.dataTables.css';
+import { getMemberDonations, getSingleMember } from "../api/axios";
+import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
+import NavLink from "../components/navigation/NavLink";
+import { Box, Button } from "@chakra-ui/react";
+import DonationTable from "../components/donations/DonationTable"
 
-import { Link } from 'react-router-dom';
-import DonationDetails from '../components/donations/DonationDetails';
-import { useDonationContext } from '../hooks/useDonationContext';
-
-// css
-import '../components/donors/donorStyles.css'
-
-const Donations = () => {
-    const { donations, dispatch } = useDonationContext();
-
+function Donations() {
+    const { id } = useParams(); // Get the ID from the URL
+    const [donations, setDonations] = useState([]); // State for donations
+    const [member, setMember] = useState({}); //State for member
+    // Fetch all members -- Used for search functionality
+    const [dataTable, setDataTable] = useState(null);
     useEffect(() => {
-        const fetchDonations = async () => {
-          const response = await fetch('http://localhost:3000/api/donations')
-          const json = await response.json(); 
-  
-          if (response.ok) {
-              dispatch({ type: 'SET_DONATIONS', payload: json })
-          }
-      };
-        fetchDonations();
-      }, [dispatch]);
+       getMemberDonations(id)
+       
+       .then(json => {
+        setDonations(json);
 
-      return (
-        <div>
-          <div>
-            <h2>Donations</h2>
+
+        });
+    }, [])
+
+    // Acquire member details
+  useEffect(() => {
+    getSingleMember(id)
+
+    // Set member state
+    .then(json => {
+      setMember(json) // set member state
+ 
+    })
+
+    // Error handling
+    .catch(err => {
+      console.log(err)
+    })
+  }, [])
+
+    //   Determines the columns for the table and what is rendered inside each cell
+  const columns = useMemo(
+    () => [
+      {
+        Header: "Date",
+        accessor: "date",
+      },
+      {
+        // Renders member's email
+        Header: "Amount",
+        accessor: "amount",
+      },
+      {
+        // Renders member's phone number
+        Header: "Type",
+        accessor: "type",
+      },
+      {
+        // Location (City, State)
+        Header: "Notes",
+        accessor: "notes",
+      },
+      
+    ],
+    []
+  )
+
+      const link = '/donations/add/' + id;
+
+    return(            
            
-          </div>
-          
-          <div className="member-list">
-            {donations && donations.map((donation) => (
-              <DonationDetails key={donation._id} donation={donation} />
-            ))}
-            
-            <Link to="/donations/add" float="right">
-              <button className="btnAdd" float="right">New Donation</button>
-            </Link>
-          </div>
 
-        </div>
-      )
+        <Box
+          bg="white"
+          borderRadius={8}
+          border="1px"
+          borderColor="gray.50"
+          w="100%"
+        >
+          <h1>Donations for {member.firstName} {member.lastName}</h1>
+          {/* Table generated with React-Table */}
+          <DonationTable columns={columns} data={donations} />
+          <Button><Link to = {link}>Add New Donation</Link></Button>
+        </Box>
+
+        
+    );
 }
 
 export default Donations;

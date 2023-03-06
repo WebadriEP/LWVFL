@@ -21,11 +21,14 @@ import Donors from './pages/Donors';
 import Donations from './pages/Donations';
 import AddDonor from './pages/AddDonor';
 import AddDonation from './pages/AddDonation';
-
+import UserDashboard from './pages/UserDashboard'
 import NewReport from './components/reports/NewReport';
+import UpdateUser from './components/users/UpdateUser'
+import UpdatePassword from './components/users/UpdatePassword'
 
 // css
 import './App.css';
+import UserTable from './components/users/UserTable';
 
 function App() {
   const { user } = useAuthContext()
@@ -50,13 +53,18 @@ function App() {
           <Route path="/donors/add" element ={ <AddDonor/> } />
           
           {/* Donation Routes */}
-          <Route path="/donations" element ={ <Donations /> } />
-          <Route path="/donations/add" element ={ <AddDonation/> } />
+          <Route path="/donations/list/:id" element ={ <Donations /> } />
+          <Route path="/donations/add/:id" element ={ <AddDonation/> } />
           
           {/* Member Routes */}
           <Route path="/members" element ={user ?  <Members /> : <Navigate to="/"/>} />
           <Route path = "/create" element={!user ?  <CreateAccount /> : <Navigate to="/"/>} /> 
+          <Route path = "/users" element={user ?  <UserDashboard /> : <Navigate to="/"/>} /> 
           <Route exact path="/member/:id" element={<Member />} />
+          <Route exact path="/update-user/:id" element={<UpdateUser />} />
+          <Route exact path="/update-password/:id" element={<UpdatePassword />} />
+
+
           {/* <Route path = "/member/add" element ={ <AddMemberForm /> } /> */}
           
           {/* Reports Routes */}

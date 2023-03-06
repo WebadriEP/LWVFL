@@ -1,12 +1,11 @@
 {
   "name": "backend",
+  "proxy": "https://dontra-production.up.railway.app:3000",
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.js",
-    "build": "npm install --prefix ../frontend && npm run build --prefix ../frontend",
-    "azure-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix ../frontend && npm run build --prefix ../frontend"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "Webadri Enterprises",

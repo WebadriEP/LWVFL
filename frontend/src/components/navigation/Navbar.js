@@ -59,22 +59,15 @@ const Navbar = () => {
           <NavLink page="/members" text="Members" />
           <NavLink page="/engagement" text="Engagement" />
           <NavLink page="/reports" text="Reports" />
+          <NavLink page="/users" text="Users" />
         </HStack>
       </HStack>
-
       <Spacer />
 
       {/* Login / Signup Buttons */}
       {!user && (
         <Box>
-          <SecondaryButton page="/create" text="Create Account" />
           <PrimaryButton page="/login" text="Log In" />
-          <ButtonGroup>
-            <Button colorScheme="blue" variant="outline">
-              [DEV] Sign Up
-            </Button>
-            <Button colorScheme="blue">Sign In</Button>
-          </ButtonGroup>
         </Box>
       )}
 
