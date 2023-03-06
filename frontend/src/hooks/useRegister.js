@@ -10,10 +10,8 @@ export const useRegister = () => {
     const register = async (firstName, lastName, email, password, address, city, phone) => {
       setLoading(true)
       setError(null)
-  
-      json = registerUser({ firstName, lastName, email, password, address, city, phone })
-        
-      if (!response.ok) {
+      try{
+        registerUser({ firstName, lastName, email, password, address, city, phone })
         setLoading(false)
       }
       catch(error){

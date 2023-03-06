@@ -11,11 +11,11 @@ import {
 } from "@chakra-ui/react"
 
 // Components
-import PrimaryButton from "../buttons/PrimaryButton";
-import SecondaryButton from "../buttons/SecondaryButton";
-import NavLink from "./NavLink";
-import { useLogout } from "../../hooks/useLogout";
-import { useAuthContext } from "../../hooks/useAuthContext";
+import PrimaryButton from "../buttons/PrimaryButton"
+import SecondaryButton from "../buttons/SecondaryButton"
+import NavLink from "./NavLink"
+import { useLogout } from "../../hooks/useLogout"
+import { useAuthContext } from "../../hooks/useAuthContext"
 // css
 import "./navStyles.css"
 
@@ -53,19 +53,6 @@ const Navbar = () => {
           DontraCRM
         </Heading>
 
-            {/* Links */}
-            <div className="nav-links">
-              <NavLink page='/' text='Dashboard' />
-              <NavLink page='/members' text='Members' />
-              <NavLink page='/donors' text='Donors' />
-              <NavLink page='/engagement' text='Engagement' />
-              <NavLink page='/reports' text='Reports' />
-              <NavLink page='/users' text='Users' />
-              
-            </div>
-            </div>
-
-          <Spacer />
         {/* Links */}
         <HStack justifyContent="space-between">
           <NavLink page="/" text="Dashboard" />
@@ -77,29 +64,24 @@ const Navbar = () => {
       </HStack>
       <Spacer />
 
-          {/* Login / Signup Buttons */}
-          {!user && (
-          <Box>
-            <SecondaryButton page='/create' text='Create Account' />
-            <PrimaryButton page='/login' text='Log In' />
-            <ButtonGroup>
-              <Button colorScheme='blue' variant='outline'>[DEV] Sign Up</Button>
-              <Button colorScheme='blue'>Sign In</Button>
-            </ButtonGroup>
-          </Box>
-        )}
-        {user && (
-            <div className="nav-rear">
-            {/* PrimaryButton contains the necessary <Link/> component, but accepts these properties to make it work */}
-              <button className="btn btn-primary" onClick={handleClick}>Log Out</button>
-              </div>
-        )}
-        
-          </div>
-       
+      {/* Login / Signup Buttons */}
+      {!user && (
+        <Box>
+          <PrimaryButton page="/login" text="Log In" />
+        </Box>
+      )}
 
-      </nav>
-  );
+      {/* Handle show logout button when signed in */}
+      {user && (
+        <Box>
+          <Button onClick={handleClick} colorScheme="blue" variant="solid">
+            {/* font-awesome icon for exit */}
+            <i className="fa fa-sign-out"></i>
+          </Button>
+        </Box>
+      )}
+    </Flex>
+  )
 }
 
 export default Navbar

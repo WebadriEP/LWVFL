@@ -11,10 +11,9 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-       json = loginUser({email,password})
-    
-
-    if(!response.ok){
+       try{
+        response = await loginUser(email, password)
+        console.log(response.json)
         setIsLoading(false)
         localStorage.setItem('user', JSON.stringify(response.json()))
         
