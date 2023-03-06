@@ -30,10 +30,10 @@ const getUser = async (req, res) => {
 
 // user login
 const loginUser = async (req, res) => {
-  const { email, password } = req.body; // get email and password from request body
+  const { reqUser } = req.body; // get email and password from request body
 
   try {
-    const user = await User.login(email, password) // User.login is a static method
+    const user = await User.login(reqUser.email, reqUser.password) // User.login is a static method
     const token = createToken(user._id) // create a token
     res.status(200).json({ email, token }) // send token back to client
   } 
@@ -44,10 +44,10 @@ const loginUser = async (req, res) => {
 
 const registerUser = async (req, res) => {
   console.log("test")
-  const { firstName, lastName, email, password, address, city, phone } = req.body; // get email and password from request body
+  const { reqUser } = req.body; // get email and password from request body
   try {
     console.log(firstName)
-    const user = await User.register(firstName, lastName, email, password, address, city, phone) // User.create is a static method
+    const user = await User.register(reqUser.firstName, reqUser.lastName, reqUser.email, reqUser.password, reqUser.address, reqUser.city, reqUser.phone) // User.create is a static method
     const token = createToken(user._id) // create a token
     res.status(200).json({ email, token }) // send token back to client
   }

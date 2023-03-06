@@ -48,20 +48,20 @@ function App() {
           {/* <Route path = "/create" element={ <CreateAccount />} /> */}
           
           {/* Donor Routes */}
-          <Route path="/addmember" element ={ <AddMember /> } />
-          <Route path="/donors" element ={ <Donors /> } />
-          <Route path="/donors/add" element ={ <AddDonor/> } />
+          <Route path="/addmember" element ={user ?  <AddMember /> : <Navigate to="/"/>} />
+          <Route path="/donors" element ={user ?  <Donors /> : <Navigate to="/"/>} />
+          <Route path="/donors/add" element ={user ?  <AddDonor /> : <Navigate to="/"/>} />
           
           {/* Donation Routes */}
-          <Route path="/donations" element ={ <Donations /> } />
-          <Route path="/donations/add" element ={ <AddDonation/> } />
+          <Route path="/donations" element ={user ?  <Donations /> : <Navigate to="/"/>} />
+          <Route path="/donations/add" element ={user ?  <AddDonation /> : <Navigate to="/"/>} />
           
           {/* Member Routes */}
           <Route path="/members" element ={user ?  <Members /> : <Navigate to="/"/>} />
-          <Route path = "/create" element={!user ?  <CreateAccount /> : <Navigate to="/"/>} /> 
+          <Route path = "/create" element={user ?  <CreateAccount /> : <Navigate to="/"/>} /> 
           <Route path = "/users" element={user ?  <UserDashboard /> : <Navigate to="/"/>} /> 
-          <Route exact path="/member/:id" element={<Member />} />
-          <Route exact path="/update-user/:id" element={<UpdateUser />} />
+          <Route exact path="/member/:id" element={user ?  <Member /> : <Navigate to="/"/>} />
+          <Route exact path="/update-user/:id" element={user ?  <UpdateUser /> : <Navigate to="/"/>} />
           <Route exact path="/update-password/:id" element={<UpdatePassword />} />
 
 
