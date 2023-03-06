@@ -1,5 +1,5 @@
 import axios from "axios"
-
+import { useAuthContext } from "../hooks/useAuthContext"
 // Make life easier by creating a base URL
 export const api = axios.create({
   baseURL: process.env.BACKEND_URL+"/api",
@@ -43,7 +43,13 @@ export const registerUser = async (user) => {
   return response.data;
 }
 export const loginUser = async (user) => {
+  const {dispatch} = useAuthContext()
+
   const response = await  api.post('/users/login', user)
-  .headers({Authorization: 'Bearer $(User.token)'})
+  response.headers({Authorization: 'Bearer $(User.token)'})
+
+  localStorage.setItem('user', JSON.stringify(json))
+  dispatch({type: 'LOGIN', payload:response.json})
+  
   return response.data;
 }
