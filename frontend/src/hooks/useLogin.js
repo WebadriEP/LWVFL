@@ -1,6 +1,6 @@
 import {useState} from 'react'
 import { useAuthContext } from './useAuthContext'
-
+import { loginUser } from '../api/axios'
 export const useLogin = () =>{
 
     const [error, setError] = useState(null)
@@ -11,14 +11,7 @@ export const useLogin = () =>{
         setIsLoading(true)
         setError(null)
 
-        const response = await fetch('https://dontra-production.up.railway.app/api/users/login', {
-            method: 'POST',
-            body: JSON.stringify({email, password}),
-            headers: {'Content-Type': 'application/json',
-            'Authorization': 'Bearer $(User.token)'}
-           
-        })
-        const json = await response.json()
+        loginUser({email,password})
     
 
     if(!response.ok){
