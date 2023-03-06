@@ -2,9 +2,9 @@ import axios from "axios"
 // Make life easier by creating a base URL
 export const api = axios.create({
   baseURL: process.env.BACKEND_URL+"/api",
-  headers: {
-    Authorization: `Bearer $(localStorage.getItem("user"))`
-  }
+  // headers: {
+  //   Authorization: `Bearer $(localStorage.getItem("user"))`
+  // }
 })
 
 // Get all members currently stored in the DB
