@@ -33,7 +33,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
        
     <div>
         <div style={{display:"flex", justifyContent:"right", paddingBottom:"2vh"}}><SecondaryButton page='/create' text='Create Account'/></div>
-         
+    
         {cols}
         </div>)
     

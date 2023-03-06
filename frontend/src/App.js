@@ -84,7 +84,7 @@ function App() {
             />
             <Route
               path="/create"
-              element={!user ? <CreateAccount /> : <Navigate to="/" />}
+              element={user ? <CreateAccount /> : <Navigate to="/" />}
             />
             <Route
               path="/users"
