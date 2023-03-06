@@ -2,7 +2,7 @@ import axios from "axios"
 
 // Make life easier by creating a base URL
 export const api = axios.create({
-  baseURL: "/api",
+  baseURL: "https://dontra-production.up.railway.app/api",
 })
 
 // Get all members currently stored in the DB
@@ -38,9 +38,7 @@ export const importMembers = async (file) => {
 
 // Get all donations of a member by ID
 export const getMemberDonations = async (id) => {
-  const response = await api.get(
-    "http://localhost:3000/api/donations/list/" + id
-  )
+  const response = await api.get("/donations/list/" + id)
   return response.data
 }
 

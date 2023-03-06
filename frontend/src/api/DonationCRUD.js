@@ -2,7 +2,7 @@ import axios from 'axios'
 
 const addDonationFuntion = async (donorID, amount, date, type, notes) => {
     try {
-      link = '/api/donations/' + donorID;
+      link = 'https://dontra-production.up.railway.app/api/donations/' + donorID;
     const res = await axios.post(link); {
       donorID,
       amount,
@@ -20,7 +20,7 @@ const addDonationFuntion = async (donorID, amount, date, type, notes) => {
 
   const deleteDonationFunction = async (id) => {
     try {
-      const res = await axios.delete(`/api/donations/${id}`);
+      const res = await axios.delete(`https://dontra-production.up.railway.app/api/donations/${id}`);
       return res.data;
     } catch (err) {
       console.error(err);

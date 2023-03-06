@@ -12,7 +12,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
     var cols = [];
     
     const updateUsers = () => {
-        axios.get("api/users/get")
+        axios.get("https://dontra-production.up.railway.app/api/users/get")
           .then((response) => {
             setUsers(response.data);
           })
@@ -20,7 +20,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
     
 
     useEffect(() => {
-        axios.get("api/users/get")
+        axios.get("https://dontra-production.up.railway.app/api/users/get")
         .then((response) => {
             setUsers(response.data);
         })
