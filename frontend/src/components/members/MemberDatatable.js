@@ -20,17 +20,18 @@ const MemberList = () => {
     // Fetch all members -- Used for search functionality
     const [dataTable, setDataTable] = useState(null);
 
-    useEffect(() => {
+    /*useEffect(() => {
         getAllMembers().then(json => setMembers(json))
-    }, [])
+    }, [])*/
 
     useEffect(() => {
+        getAllMembers().then(json => setMembers(json))
         if (!dataTable) {
             setDataTable(
               $("#members-table").DataTable({
                 data: members,
                 retrieve: true,
-                paging: true, // Enable pagination for the table
+                paging: false, // Enable pagination for the table
                 searching: true,
                 columns: [
                     { 

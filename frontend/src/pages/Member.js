@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import React from 'react';
 
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { getSingleMember, updateMember } from "../api/axios";
+import NavLink from "../components/navigation/NavLink";
 
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab, SimpleGrid } from "@chakra-ui/react";
+import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab, SimpleGrid, Button } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
 import Notes from "../components/members/Notes";
 
@@ -76,6 +77,8 @@ const Member = (props) => {
     setNotes(childData)
     updateMember(id, { memberNotes: childData })
   }
+
+  const link = "/donations/list/" + id;
 
   // Render donations
   // const donations = member.donations.map(donation => {
@@ -171,7 +174,8 @@ const Member = (props) => {
             </CardHeader>
             
             <CardBody>
-              <Text>No donations found.</Text>
+            {/* <Button as={NavLink} colorScheme='green' page={link} text='View Donation List' /> */}
+            <Button><Link to = {link}>View Donation List</Link></Button>
             </CardBody>
           </Card>
         </GridItem>

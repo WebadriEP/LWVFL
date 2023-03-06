@@ -53,8 +53,8 @@ function App() {
           <Route path="/donors/add" element ={ <AddDonor/> } />
           
           {/* Donation Routes */}
-          <Route path="/donations" element ={ <Donations /> } />
-          <Route path="/donations/add" element ={ <AddDonation/> } />
+          <Route path="/donations/list/:id" element ={ <Donations /> } />
+          <Route path="/donations/add/:id" element ={ <AddDonation/> } />
           
           {/* Member Routes */}
           <Route path="/members" element ={user ?  <Members /> : <Navigate to="/"/>} />
