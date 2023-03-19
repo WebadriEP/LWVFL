@@ -25,11 +25,13 @@ const Engagement = () => {
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
 
-  // Fetch all members -- Used for search functionality
   useEffect(() => {
+    console.log("Fetching members...")
     getAllMembers().then((json) => {
       // Filter out members marked for engagement
-      setMembers(json)
+      setMembers(
+        json ? json.filter((member) => member.memberStatus === "engage") : []
+      )
     })
   }, [])
 
@@ -50,9 +52,9 @@ const Engagement = () => {
   }
 
   const handleMarkContacted = (id) => {
-    updateMember(id, { memberStatus: "contacted" }).then(() => {
-      setMembers(members.filter((member) => member._id !== id))
-    }, [])
+    updateMember(id, { memberStatus: "contacted" })
+    // update members state to remove member from list
+    setMembers(members.filter((member) => member._id !== id))
   }
 
   //   Determines the columns for the table and what is rendered inside each cell
