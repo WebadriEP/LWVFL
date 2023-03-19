@@ -35,6 +35,9 @@ import "./App.css"
 function App() {
   const { user } = useAuthContext()
 
+  if(process.env.REACT_APP_BACKEND_URL==null){
+    process.env.REACT_APP_BACKEND_URL = "http://localhost:3000"
+  }
   return (
     <div className="App">
       <BrowserRouter>

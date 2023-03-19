@@ -20,7 +20,7 @@ import SecondaryButton from "../buttons/SecondaryButton";
     
 
     useEffect(() => {
-        axios.get("https://dontra-production.up.railway.app/api/users/get")
+        axios.get(process.env.REACT_APP_BACKEND_URL+"/api/users/get")
         .then((response) => {
             setUsers(response.data);
         })

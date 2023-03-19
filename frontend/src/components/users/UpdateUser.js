@@ -18,7 +18,7 @@ export default function UpdateUser() {
     const [phone, setPhone] = useState('');
 
     useEffect(() => {
-        axios.get("https://dontra-production.up.railway.app/api/users/get/" + id)
+        axios.get(process.env.REACT_APP_BACKEND_URL+"/api/users/get/" + id)
         .then((response) => {
         setFirstName(response.data.firstName);
         setLastName(response.data.lastName);
