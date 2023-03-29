@@ -15,7 +15,8 @@ const getStatTotalMembers = async (req, res) => {
     const members = await Member.find({}).sort({ createdAt: -1 })
     res.status(200).json(members.length)
   } catch (error) {
-  res.status(500).json(error)
+    res.status(500).json(error)
+  }
 }
 
 // Get total donations
