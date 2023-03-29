@@ -1,7 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom"
 import React from "react"
 
-
 import { useAuthContext } from "./hooks/useAuthContext"
 // components
 
@@ -15,7 +14,6 @@ import Members from "./pages/Members"
 import Member from "./pages/Member"
 import CreateAccount from "./pages/createAccount"
 import Dashboard from "./pages/Dashboard"
-import Reports from "./pages/Reports"
 import Login from "./pages/Login"
 import AddMember from "./pages/AddMember"
 import Donors from "./pages/Donors"
@@ -23,9 +21,7 @@ import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
 import Imports from "./pages/Imports"
-import NewReport from "./components/reports/NewReport"
 import UpdateUser from "./components/users/UpdateUser"
-
 
 import UserDashboard from "./pages/UserDashboard"
 
@@ -108,15 +104,6 @@ function App() {
               exact
               path="/member/:id"
               element={user ? <Member /> : <Navigate to="/" />}
-            />
-            {/* Reports Routes */}
-            <Route
-              path="/reports"
-              element={user ? <Reports /> : <Navigate to="/" />}
-            />
-            <Route
-              path="/reports/new"
-              element={user ? <NewReport /> : <Navigate to="/" />}
             />
             <Route
               path="/import"

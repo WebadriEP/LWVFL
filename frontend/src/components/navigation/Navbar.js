@@ -12,7 +12,6 @@ import {
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton"
-import SecondaryButton from "../buttons/SecondaryButton"
 import NavLink from "./NavLink"
 import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -38,7 +37,10 @@ const Navbar = () => {
       shadow="md"
     >
       {/* Logo and Links */}
-      <HStack alignItems="center" justify="space-between">
+      <HStack
+        alignItems="center"
+        justify="space-between"
+      >
         <Heading
           as={Link}
           to="/"
@@ -55,13 +57,26 @@ const Navbar = () => {
 
         {/* Links */}
         <HStack justifyContent="space-between">
-          <NavLink page="/" text="Dashboard" />
-          <NavLink page="/members" text="Members" />
-          <NavLink page="/engagement" text="Engagement" />
-          <NavLink page="/reports" text="Reports" />
-          <NavLink page="/import" text="Import" />
-          <NavLink page='/users' text='Users' />
-
+          <NavLink
+            page="/"
+            text="Dashboard"
+          />
+          <NavLink
+            page="/members"
+            text="Members"
+          />
+          <NavLink
+            page="/engagement"
+            text="Engagement"
+          />
+          <NavLink
+            page="/import"
+            text="Import"
+          />
+          <NavLink
+            page="/users"
+            text="Users"
+          />
         </HStack>
       </HStack>
 
@@ -70,14 +85,21 @@ const Navbar = () => {
       {/* Login / Signup Buttons */}
       {!user && (
         <Box>
-          <PrimaryButton page="/login" text="Log In" />
+          <PrimaryButton
+            page="/login"
+            text="Log In"
+          />
         </Box>
       )}
 
       {/* Handle show logout button when signed in */}
       {user && (
         <Box>
-          <Button onClick={handleClick} colorScheme="blue" variant="solid">
+          <Button
+            onClick={handleClick}
+            colorScheme="blue"
+            variant="solid"
+          >
             {/* font-awesome icon for exit */}
             <i className="fa fa-sign-out"></i>
           </Button>

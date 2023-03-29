@@ -1,26 +1,41 @@
-import { Link } from "react-router-dom";
-import React from 'react';
+import { Link } from "react-router-dom"
+import React from "react"
+import { GridItem, Heading, VStack, Icon } from "@chakra-ui/react"
 
 // css
-import './dashboardStyles.css'
-import { GridItem, Heading, Text, VStack } from "@chakra-ui/react";
+import "./dashboardStyles.css"
 
 const QuickActionItem = (props) => {
   return (
-    <GridItem 
-      as={Link} 
-      to={props.page} 
+    <GridItem
+      as={Link}
+      to={props.page}
       py={6}
-      px={8} 
-      transition='all 200ms ease-in-out'
+      px={8}
+      transition="all 200ms ease-in-out"
       borderRadius={10}
       _hover={{
-        backgroundColor: 'gray.50',
+        backgroundColor: "gray.50",
       }}
     >
-      <VStack alignItems='start' justifyContent='space-around'>
-        <Heading size='md' marginBottom={0} color='gray.700'>{props.name}</Heading>
-        <Text marginTop={0} color='gray.600'>{props.description}</Text>
+      <VStack
+        alignItems="center"
+        justifyContent="space-around"
+      >
+        {/* Icon */}
+        <Icon
+          as={props.icon}
+          boxSize={8}
+        />
+
+        {/* Header */}
+        <Heading
+          size="md"
+          marginBottom={0}
+          color="gray.700"
+        >
+          {props.name}
+        </Heading>
       </VStack>
     </GridItem>
   )

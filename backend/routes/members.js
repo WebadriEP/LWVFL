@@ -11,6 +11,10 @@ const {
   createMember,
   updateMember,
   deleteMember,
+  exportMembers,
+  getStatTotalMembers,
+  getStatTotalDonations,
+  getStatTotalDonationsAmount,
 } = require("../controllers/memberController")
 
 // File uploading
@@ -36,9 +40,13 @@ router.get("/:id", getMember) // get a single member
 router.post("/", createMember) // create a member
 router.patch("/:id", updateMember) // update a member
 router.delete("/:id", deleteMember) // delete a member
+router.get("/export", exportMembers) // export all members
+router.get("/stat/total", getStatTotalMembers) // get total members
+router.get("/stat/donations", getStatTotalDonations) // get total donations
+router.get("/stat/donationsamount", getStatTotalDonationsAmount) // get total donations amount
 
 // Importing members from CSV (via /api/members/import)
-router.route("/import").post(upload.single("csvFile"), async (req, res) => {
+router.post("/import", upload.single("csvFile"), async (req, res) => {
   try {
     // Convert CSV to JSON
     const jsonArray = await csv().fromFile(req.file.path)
