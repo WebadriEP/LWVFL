@@ -17,7 +17,7 @@ const Login = () => {
   return (
     <Container
       p={8}
-      maxW="30%"
+      maxW="40%"
       borderRadius={10}
       bg="white"
       border="1px solid"
