@@ -1,14 +1,6 @@
 import { Link } from "react-router-dom"
 import React from "react"
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  Heading,
-  HStack,
-  Spacer,
-} from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Spacer } from "@chakra-ui/react"
 
 // Components
 import PrimaryButton from "../buttons/PrimaryButton"
@@ -37,10 +29,7 @@ const Navbar = () => {
       shadow="md"
     >
       {/* Logo and Links */}
-      <HStack
-        alignItems="center"
-        justify="space-between"
-      >
+      <HStack alignItems="center" justify="space-between">
         <Heading
           as={Link}
           to="/"
@@ -57,26 +46,11 @@ const Navbar = () => {
 
         {/* Links */}
         <HStack justifyContent="space-between">
-          <NavLink
-            page="/"
-            text="Dashboard"
-          />
-          <NavLink
-            page="/members"
-            text="Members"
-          />
-          <NavLink
-            page="/engagement"
-            text="Engagement"
-          />
-          <NavLink
-            page="/import"
-            text="Import"
-          />
-          <NavLink
-            page="/users"
-            text="Users"
-          />
+          <NavLink page="/" text="Dashboard" />
+          <NavLink page="/members" text="Members" />
+          <NavLink page="/engagement" text="Engagement" />
+          <NavLink page="/import" text="Import" />
+          <NavLink page="/users" text="Users" />
         </HStack>
       </HStack>
 
@@ -85,21 +59,22 @@ const Navbar = () => {
       {/* Login / Signup Buttons */}
       {!user && (
         <Box>
-          <PrimaryButton
-            page="/login"
-            text="Log In"
-          />
+          <Button
+            as={Link}
+            to="/login"
+            colorScheme="blue"
+            variant="solid"
+            px={6}
+          >
+            Log In
+          </Button>
         </Box>
       )}
 
       {/* Handle show logout button when signed in */}
       {user && (
         <Box>
-          <Button
-            onClick={handleClick}
-            colorScheme="blue"
-            variant="solid"
-          >
+          <Button onClick={handleClick} colorScheme="blue" variant="solid">
             {/* font-awesome icon for exit */}
             <i className="fa fa-sign-out"></i>
           </Button>
