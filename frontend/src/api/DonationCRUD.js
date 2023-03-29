@@ -20,7 +20,7 @@ const addDonationFuntion = async (donorID, amount, date, type, notes) => {
 
   const deleteDonationFunction = async (id) => {
     try {
-      const res = await axios.delete(`https://dontra-production.up.railway.app/api/donations/${id}`);
+      const res = await axios.delete(process.env.REACT_APP_BACKEND_URL+`/api/donations/${id}`);
       return res.data;
     } catch (err) {
       console.error(err);

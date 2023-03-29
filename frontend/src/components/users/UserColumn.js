@@ -18,14 +18,12 @@ export default function UserColumn({user, updateUsers}) {
     const  userContext  = JSON.parse(localStorage.getItem('user'))
 
     const handleDelete = async (id) => {
-        await axios.delete('https://dontra-production.up.railway.app/api/users/delete/' + id)
+        await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/users/delete/' + id)
           .then((response) => {
             console.log(response.data)
             updateUsers();
           })
       }
-      console.log(userContext.email)
-      console.log(user.email)
       if(userContext.email != user.email){
         return (
         <div>

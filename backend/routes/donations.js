@@ -5,7 +5,8 @@ const{
     getDonation,
     getDonationsofDonor,
     updateDonation,
-    createDonation
+    createDonation,
+    deleteDonation
 } = require('../controllers/donationController')
 
 const requireAuth = require('../middleware/requireAuth')
@@ -26,6 +27,8 @@ router.get('/list/:id', getDonationsofDonor)
 router.post('/:id', createDonation)
 
 router.patch('/:id', updateDonation)
+
+router.delete("/:id", deleteDonation)
 
 
 module.exports = router

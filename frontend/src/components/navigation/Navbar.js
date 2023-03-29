@@ -1,18 +1,8 @@
 import { Link } from "react-router-dom"
 import React from "react"
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Flex,
-  Heading,
-  HStack,
-  Spacer,
-} from "@chakra-ui/react"
+import { Box, Button, Flex, Heading, HStack, Spacer } from "@chakra-ui/react"
 
 // Components
-import PrimaryButton from "../buttons/PrimaryButton"
-import SecondaryButton from "../buttons/SecondaryButton"
 import NavLink from "./NavLink"
 import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
@@ -58,10 +48,8 @@ const Navbar = () => {
           <NavLink page="/" text="Dashboard" />
           <NavLink page="/members" text="Members" />
           <NavLink page="/engagement" text="Engagement" />
-          <NavLink page="/reports" text="Reports" />
           <NavLink page="/import" text="Import" />
-          <NavLink page='/users' text='Users' />
-
+          <NavLink page="/users" text="Users" />
         </HStack>
       </HStack>
 
@@ -70,7 +58,15 @@ const Navbar = () => {
       {/* Login / Signup Buttons */}
       {!user && (
         <Box>
-          <PrimaryButton page="/login" text="Log In" />
+          <Button
+            as={Link}
+            to="/login"
+            colorScheme="blue"
+            variant="solid"
+            px={6}
+          >
+            Log In
+          </Button>
         </Box>
       )}
 

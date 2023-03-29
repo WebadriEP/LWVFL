@@ -1,62 +1,75 @@
-import Highcharts from 'highcharts'
-import HighchartsReact from 'highcharts-react-official'
-import React from 'react';
-
-// css
-import './dashboardStyles.css'
+import Highcharts from "highcharts"
+import HighchartsReact from "highcharts-react-official"
+import React, { useState } from "react"
 
 /* 
   The graph uses Highcharts
   It's in a responsive container provided by the library
 */
 
-const MembersGraph = () => {
+const MembersGraph = (props) => {
+  // deconstruct porops
+  const { type, title, yAxis, members } = props
+
   // options for the graph
   const options = {
     chart: {
-      type: 'spline'
+      type: type,
+    },
+    accessibility: {
+      enabled: false,
     },
     legend: {
-      enabled: false
+      enabled: false,
     },
     title: {
-      text: ''
+      text: title,
+    },
+    xAxis: {
+      categories: [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December",
+      ],
     },
     yAxis: {
       title: {
-        text: 'Members'
-      }
+        text: yAxis,
+      },
+    },
+    responsive: {
+      rules: [
+        {
+          condition: {
+            maxWidth: 500,
+          },
+          chartOptions: {},
+        },
+      ],
     },
     series: [
       {
-        name: 'Members',
-        data: [
-          {
-            name: 'July',
-            y: 128
-          },
-          {
-            name: 'August',
-            y: 96
-          },
-          {
-            name: 'September',
-            y: 387
-          },
-          {
-            name: 'October',
-            y: 253
-          },
-          {
-            name: 'November',
-            y: 623
-          },
-        ]
-      }
-    ]
+        name: "Members",
+        data: [1, 20, 2, 6, 8, 7, 17, 19, 5, 8, 12, 32],
+      },
+    ],
   }
 
-  return <HighchartsReact highcharts={Highcharts} options={options} />
+  return (
+    <HighchartsReact
+      highcharts={Highcharts}
+      options={options}
+    />
+  )
 }
 
 export default MembersGraph
