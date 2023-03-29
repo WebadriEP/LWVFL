@@ -6,7 +6,7 @@ import "datatables.net";
 import "datatables.net-dt";
 import { useState, useEffect, useMemo } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
-import { getMemberDonations, getSingleMember } from "../api/axios";
+import { getMemberDonations, getSingleMember, deleteDonation } from "../api/axios";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavLink from "../components/navigation/NavLink";
@@ -67,6 +67,23 @@ function Donations() {
         Header: "Notes",
         accessor: "notes",
       },
+
+      {
+        
+        Header: 'Delete Donation Record',
+        accessor: (str) => 'delete',
+        Cell: props => {
+        return <span>
+    
+            <Button onClick ={() => {
+
+              deleteDonation(props.cell.row.original['_id']).then(() => 
+              {props.cell.row = undefined;});
+              
+              }}> Delete </Button> </span>
+          }
+          
+      }
       
     ],
     []

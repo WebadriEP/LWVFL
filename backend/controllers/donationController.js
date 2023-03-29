@@ -1,4 +1,5 @@
 const Donations = require('../models/donationModel')
+const mongoose = require("mongoose")
 
 //Find all donations
 const getDonations = async (req, res) => {
@@ -7,7 +8,7 @@ const getDonations = async (req, res) => {
     res.status(200).json(donations)
 }
 
-//Find a single donation.
+//Find a single donationn
 const getDonation = async (req, res) => {
     const { id } = req.params
 
@@ -77,12 +78,29 @@ const createDonation = async(req,res) => {
     }
 }
 
+const deleteDonation = async (req, res) => {
+    const { id } = req.params
+  
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).json({error: 'No such donation'})
+    }
+  
+    const donation = await Donations.findOneAndDelete({_id: id})
+  
+    if(!donation) {
+      return res.status(400).json({error: 'No such donation'})
+    }
+  
+    res.status(200).json(donation)
+  }
+
 module.exports = {
     getDonations,
     getDonation,
     getDonationsofDonor,
     updateDonation,
-    createDonation
+    createDonation,
+    deleteDonation
 
 
 }
