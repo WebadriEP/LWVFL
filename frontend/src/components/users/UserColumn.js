@@ -24,8 +24,6 @@ export default function UserColumn({user, updateUsers}) {
             updateUsers();
           })
       }
-      console.log(userContext.email)
-      console.log(user.email)
       if(userContext.email != user.email){
         return (
         <div>

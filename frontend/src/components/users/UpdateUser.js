@@ -44,7 +44,7 @@ export default function UpdateUser() {
             phone
         };
 
-        axios.put('/api/users/update/'+ id, updatedUser)
+        axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/'+ id, updatedUser)
         .then((response) => {
             console.log(response.data);
             navigate('/users'); // Navigate to the users page after successful update
