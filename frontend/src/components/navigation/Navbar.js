@@ -3,7 +3,6 @@ import React from "react"
 import { Box, Button, Flex, Heading, HStack, Spacer } from "@chakra-ui/react"
 
 // Components
-import PrimaryButton from "../buttons/PrimaryButton"
 import NavLink from "./NavLink"
 import { useLogout } from "../../hooks/useLogout"
 import { useAuthContext } from "../../hooks/useAuthContext"
