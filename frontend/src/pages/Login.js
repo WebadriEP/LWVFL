@@ -38,7 +38,7 @@ const Login = () => {
 
         {/* Email field */}
         <Box mb={4}>
-          <Heading size="md" as="label" for="email" mb={2}>
+          <Heading size="md" as="label" htmlFor="email" mb={2}>
             Email
           </Heading>
           <Input
@@ -52,7 +52,7 @@ const Login = () => {
 
         {/* Password field */}
         <Box mb={4}>
-          <Heading size="md" as="label" for="password" mb={2}>
+          <Heading size="md" as="label" htmlFor="password" mb={2}>
             Password
           </Heading>
           <Input
@@ -65,7 +65,7 @@ const Login = () => {
         </Box>
 
         {/* Submit login */}
-        <Button disabled={loading} colorScheme="blue" mt={4}>
+        <Button type="submit" disabled={loading} colorScheme="blue" mt={4}>
           Log in
         </Button>
 
