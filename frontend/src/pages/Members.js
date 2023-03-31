@@ -5,6 +5,8 @@ import {
   Link as ReachLink,
   HStack,
   Button,
+  ButtonGroup,
+  IconButton,
   Tooltip,
   Input,
   Flex,
@@ -17,6 +19,7 @@ import React from "react"
 import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
 import { Link } from "react-router-dom"
+import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
 
 // components
 import MemberActionBar from "../components/members/MemberActionBar";
@@ -104,6 +107,28 @@ const columns = useMemo(
       // Location (City, State)
       Header: "Location",
       accessor: "location",
+    },
+    {
+      // Renders actions that user can perform, such as deleting or updating
+      Header: " ",
+      Cell: ({ row }) => (
+        <HStack spacing={4} justify="end">
+          <Tooltip label="EditIcon Member" hasArrow>
+            <IconButton
+              icon={<EditIcon />}
+              colorScheme="blue"
+              size="sm"
+            />
+          </Tooltip>
+          <Tooltip label="Delete Member" hasArrow>
+            <IconButton
+              icon={<DeleteIcon />}
+              colorScheme="red"
+              size="sm"
+            />
+          </Tooltip>
+        </HStack>
+      ),
     },
     
     
