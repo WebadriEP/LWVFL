@@ -98,11 +98,11 @@ function App() {
               element={user ? <Member /> : <Navigate to="/" />}
             />
 
-            {/* <Route
+            <Route
               exact
-              path="/update-password/:id"
-              element={user ? <UpdatePassword /> : <Navigate to="/" />}
-            /> */}
+              path="/update-user/:id"
+              element={user ? <UpdateUser /> : <Navigate to="/" />}
+            />
 
             <Route
               exact
