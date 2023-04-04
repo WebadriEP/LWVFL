@@ -20,6 +20,7 @@ import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
 import { Link } from "react-router-dom"
 import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
+import axios from 'axios'
 
 // components
 import MemberActionBar from "../components/members/MemberActionBar";
@@ -31,11 +32,23 @@ import { useTable, useColumns } from 'react-table';
 
 
 
-const Members = () => {
+function Members() {
 const [members, setMembers] = useState([])
 const [search, setSearch] = useState("")
 const [searchResults, setSearchResults] = useState([])
 const [showColumns, setShowColumns] = useState([]);
+
+const handleDelete = async (id) => {
+  try {
+    const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/delete/' + id);
+    console.log(response.data);
+    // Remove the deleted member from the local state
+    setMembers(members.filter(member => member._id !== id));
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 
 // Fetch all members -- Used for search functionality
 useEffect(() => {
@@ -125,6 +138,7 @@ const columns = useMemo(
               icon={<DeleteIcon />}
               colorScheme="red"
               size="sm"
+              onClick={() => handleDelete(row.original._id)}
             />
           </Tooltip>
         </HStack>
