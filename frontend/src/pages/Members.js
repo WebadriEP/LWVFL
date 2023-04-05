@@ -38,9 +38,10 @@ const [search, setSearch] = useState("")
 const [searchResults, setSearchResults] = useState([])
 const [showColumns, setShowColumns] = useState([]);
 
+
 const handleDelete = async (id) => {
   try {
-    const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/delete/' + id);
+    const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/' + id);
     console.log(response.data);
     // Remove the deleted member from the local state
     setMembers(members.filter(member => member._id !== id));
@@ -48,6 +49,8 @@ const handleDelete = async (id) => {
     console.log(error);
   }
 }
+
+
 
 
 // Fetch all members -- Used for search functionality
@@ -59,7 +62,7 @@ useEffect(() => {
       json.length > 0 ? Object.keys(json[0]).map((key) => key) : []
     );
   })
-}, [])
+}, [members])
 
 // Search functionality
 const handleSearch = (e) => {
