@@ -23,14 +23,11 @@ import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
 import axios from 'axios'
 
 // components
-import MemberActionBar from "../components/members/MemberActionBar";
-import MemberDatatable from "../components/members/MemberDatatable";
+import MemberActionBar from "../components/members/MemberActionBar"
+import MemberDatatable from "../components/members/MemberDatatable"
 
-import MemberTable from '../components/members/memberTable';
-import { useTable, useColumns } from 'react-table';
-
-
-
+import MemberTable from "../components/members/memberTable"
+import { useTable, useColumns } from "react-table"
 
 function Members() {
 const [members, setMembers] = useState([])
@@ -64,31 +61,29 @@ useEffect(() => {
   })
 }, [members])
 
-// Search functionality
-const handleSearch = (e) => {
-  setSearch(e.target.value)
+  // Search functionality
+  const handleSearch = (e) => {
+    setSearch(e.target.value)
 
-  if (e.target.value === "") {
-    setSearchResults(members)
-    return
-  }
+    if (e.target.value === "") {
+      setSearchResults(members)
+      return
+    }
 
-  setSearchResults(
-    members.filter((member) =>
-      member.fullName.toLowerCase().includes(search.toLowerCase())
+    setSearchResults(
+      members.filter((member) =>
+        member.fullName.toLowerCase().includes(search.toLowerCase())
+      )
     )
-  )
-}
-const handleColumnToggle = (e) => {
-  const { checked, name } = e.target;
-  if (checked) {
-    setShowColumns([...showColumns, name]);
-  } else {
-    setShowColumns(showColumns.filter((col) => col !== name));
   }
-};
-
-
+  const handleColumnToggle = (e) => {
+    const { checked, name } = e.target
+    if (checked) {
+      setShowColumns([...showColumns, name])
+    } else {
+      setShowColumns(showColumns.filter((col) => col !== name))
+    }
+  }
 
 //   Determines the columns for the table and what is rendered inside each cell
 const columns = useMemo(
@@ -129,7 +124,7 @@ const columns = useMemo(
       Header: " ",
       Cell: ({ row }) => (
         <HStack spacing={4} justify="end">
-          <Tooltip label="EditIcon Member" hasArrow>
+          <Tooltip label="Edit Member" hasArrow>
             <IconButton
               icon={<EditIcon />}
               colorScheme="blue"
@@ -141,7 +136,6 @@ const columns = useMemo(
               icon={<DeleteIcon />}
               colorScheme="red"
               size="sm"
-              onClick={() => handleDelete(row.original._id)}
             />
           </Tooltip>
         </HStack>
@@ -153,26 +147,18 @@ const columns = useMemo(
   []
 )
 
-return (
-  <>
-  <AddMemberPop />
-    
-    <Flex direction="row">
-      {/* Table */}
-      <Box
-        bg="white"
-        borderRadius={8}
-        border="1px"
-        borderColor="gray.50"
-        w="100%"
-      >
-        {/* Table generated with React-Table */}
-        <MemberTable columns={columns} data={members} />
-      </Box>
-    </Flex>
-  </>
-)
+  return (
+    <>
+      <Flex direction="row" justify="space-between">
+        <Heading as="h1" size="xl" mb={4}>
+          Members
+        </Heading>
+        <AddMemberPop />
+      </Flex>
+
+      <MemberTable columns={columns} data={members} />
+    </>
+  )
 }
 
-
-export default Members;
+export default Members
