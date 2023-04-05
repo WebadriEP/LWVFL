@@ -136,6 +136,7 @@ const columns = useMemo(
               icon={<DeleteIcon />}
               colorScheme="red"
               size="sm"
+              onClick={() => handleDelete(row.original._id)}
             />
           </Tooltip>
         </HStack>
