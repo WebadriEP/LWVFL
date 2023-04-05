@@ -54,7 +54,7 @@ const Engagement = () => {
   const handleMarkContacted = (id) => {
     updateMember(id, { memberStatus: "contacted" })
     // update members state to remove member from list
-    setMembers(members.filter((member) => member._id !== id))
+    //setMembers(members.filter((member) => member._id !== id))
   }
 
   //   Determines the columns for the table and what is rendered inside each cell

@@ -18,6 +18,9 @@ import {
   Checkbox,
   CheckboxGroup,
   Heading,
+  Stack,
+  RadioGroup,
+  Radio,
 } from "@chakra-ui/react"
 import {
   useTable,
@@ -133,23 +136,62 @@ function MemberTable({ columns, data }) {
             </Box>
 
             {/* COLUMN TOGGLES */}
-            <Box>
+            <Box mb={6}>
               <Heading size="sm" mb={2}>
                 Toggle Columns
               </Heading>
               <CheckboxGroup>
                 {/* "Toggle All" Checkbox */}
-                <IndeterminateCheckbox {...getToggleHideAllColumnsProps()} />
-
-                {/* Map of Remaining Column Checkboxes */}
-                {allColumns.slice(0, -1).map((column) => (
-                  <Box key={column.id}>
-                    <Checkbox {...column.getToggleHiddenProps()} defaultChecked>
-                      {column.Header}
-                    </Checkbox>
+                <Stack direction="column">
+                  <Box>
+                    <IndeterminateCheckbox
+                      {...getToggleHideAllColumnsProps()}
+                    />
                   </Box>
-                ))}
+
+                  {/* Map of Remaining Column Checkboxes */}
+                  {allColumns.slice(0, -1).map((column) => (
+                    <Box key={column.id}>
+                      <Checkbox
+                        {...column.getToggleHiddenProps()}
+                        defaultChecked
+                      >
+                        {column.Header}
+                      </Checkbox>
+                    </Box>
+                  ))}
+                </Stack>
               </CheckboxGroup>
+            </Box>
+
+            {/* Type Filters */}
+            <Box mb={6}>
+              <Heading size="sm" mb={2}>
+                Filter by Type
+              </Heading>
+              <CheckboxGroup>
+                <Stack direction="column">
+                  <Checkbox value="member">Member</Checkbox>
+                  <Checkbox value="donor">Donor</Checkbox>
+                  <Checkbox value="memberdonor">Member & Donor</Checkbox>
+                </Stack>
+              </CheckboxGroup>
+            </Box>
+
+            {/* Show students? */}
+            <Box>
+              <Heading size="sm" mb={2}>
+                Show Students?
+              </Heading>
+              {/* RadioGroup */}
+              <RadioGroup>
+                <Stack direction="row">
+                  <Radio value={true} mr={4}>
+                    Yes
+                  </Radio>
+                  <Radio value={false}>No</Radio>
+                </Stack>
+              </RadioGroup>
             </Box>
           </Flex>
         </Flex>

@@ -48,7 +48,6 @@ const Navbar = () => {
           <NavLink page="/" text="Dashboard" />
           <NavLink page="/members" text="Members" />
           <NavLink page="/engagement" text="Engagement" />
-          <NavLink page="/import" text="Import" />
           <NavLink page="/users" text="Users" />
         </HStack>
       </HStack>

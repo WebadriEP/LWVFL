@@ -15,18 +15,14 @@ import {
   Text,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
-import React from "react"
+import ImportMemberModal from "../components/members/ImportMemberModal"
+
 import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
 import { Link } from "react-router-dom"
-import { DeleteIcon, EditIcon } from "@chakra-ui/icons"
-
-// components
-import MemberActionBar from "../components/members/MemberActionBar"
-import MemberDatatable from "../components/members/MemberDatatable"
+import { FiArchive, FiEdit } from "react-icons/fi"
 
 import MemberTable from "../components/members/memberTable"
-import { useTable, useColumns } from "react-table"
 
 const Members = () => {
   const [members, setMembers] = useState([])
@@ -109,10 +105,10 @@ const Members = () => {
         Cell: ({ row }) => (
           <HStack spacing={4} justify="end">
             <Tooltip label="Edit Member" hasArrow>
-              <IconButton icon={<EditIcon />} colorScheme="blue" size="sm" />
+              <IconButton icon={<FiEdit />} colorScheme="gray" size="sm" />
             </Tooltip>
             <Tooltip label="Delete Member" hasArrow>
-              <IconButton icon={<DeleteIcon />} colorScheme="red" size="sm" />
+              <IconButton icon={<FiArchive />} colorScheme="red" size="sm" />
             </Tooltip>
           </HStack>
         ),
@@ -123,11 +119,14 @@ const Members = () => {
 
   return (
     <>
-      <Flex direction="row" justify="space-between">
+      <Flex direction="row" justify="space-between" align="center">
         <Heading as="h1" size="xl" mb={4}>
           Members
         </Heading>
-        <AddMemberPop />
+        <Flex maxW="30%" align="space-between" gap={4}>
+          <ImportMemberModal />
+          <AddMemberPop />
+        </Flex>
       </Flex>
 
       <MemberTable columns={columns} data={members} />

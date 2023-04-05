@@ -20,7 +20,6 @@ import Donors from "./pages/Donors"
 import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
-import Imports from "./pages/Imports"
 import UpdateUser from "./components/users/UpdateUser"
 
 import UserDashboard from "./pages/UserDashboard"
@@ -104,10 +103,6 @@ function App() {
               exact
               path="/member/:id"
               element={user ? <Member /> : <Navigate to="/" />}
-            />
-            <Route
-              path="/import"
-              element={user ? <Imports /> : <Navigate to="/" />}
             />
           </Routes>
         </div>

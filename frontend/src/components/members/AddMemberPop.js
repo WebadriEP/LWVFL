@@ -13,7 +13,12 @@ import {
   Box,
   FormLabel,
   Input,
+  Select,
   Flex,
+  Text,
+  Stack,
+  Radio,
+  RadioGroup,
 } from "@chakra-ui/react"
 import { FiPlus } from "react-icons/fi"
 import { useState } from "react"
@@ -76,7 +81,13 @@ function AddMemberPop() {
         <ModalContent>
           {/* Header */}
           <ModalHeader borderRadius={8}>
-            <Heading size="xl">New Member Form</Heading>
+            <Flex align="center">
+              <Heading size="xl">New Member Form</Heading>
+              <Text fontSize="sm" ml={10} color="gray.600">
+                Add a new member to the database. Required fields marked with an
+                asterisk(*).
+              </Text>
+            </Flex>
           </ModalHeader>
 
           {/* Close button */}
@@ -132,7 +143,7 @@ function AddMemberPop() {
                       required
                     />
                   </Box>
-                  <SimpleGrid columns={2} spacing={4}>
+                  <SimpleGrid columns={2} spacing={4} mb={4}>
                     <Box>
                       {/* Birthday */}
                       <FormLabel>Birth Date*</FormLabel>
@@ -152,8 +163,45 @@ function AddMemberPop() {
                       />
                     </Box>
                     {/* Gender */}
+                    <Box>
+                      <FormLabel>Gender</FormLabel>
+                      <Select
+                        placeholder="Select option"
+                        onChange={(e) => {
+                          setGender(e.target.value)
+                          console.log(gender)
+                        }}
+                      >
+                        <option value="female">Female</option>
+                        <option value="male">Male</option>
+                        <option value="other">Other</option>
+                      </Select>
+                    </Box>
                   </SimpleGrid>
-                  <Box>
+                  {/* Student boolean */}
+                  <Box mb={4}>
+                    <FormLabel>Is the member a student?*</FormLabel>
+                    {/* Radio buttons */}
+                    <SimpleGrid columns={2} spacing={4}>
+                      {/* Radio group */}
+                      <RadioGroup
+                        onChange={(e) => setIsStudent(e.target.value)}
+                        value={isStudent}
+                        colorScheme="blue"
+                        defaultValue={false}
+                      >
+                        <Stack direction="row">
+                          <Radio value={true}>Yes</Radio>
+                          <Radio value={false}>No</Radio>
+                        </Stack>
+                      </RadioGroup>
+                    </SimpleGrid>
+                  </Box>
+                </Flex>
+
+                {/* Right column */}
+                <Flex direction="column" align="space-between" px={4}>
+                  <Box mt={4}>
                     <Heading size="lg" my={4}>
                       Location Information
                     </Heading>
@@ -204,24 +252,6 @@ function AddMemberPop() {
                         />
                       </Box>
                     </SimpleGrid>
-                  </Box>
-                </Flex>
-
-                {/* Right column */}
-                <Flex direction="column" align="space-between" px={4}>
-                  <Box>
-                    <Heading size="lg" my={4}>
-                      Membership Information
-                    </Heading>
-                    <Box mb={4}>
-                      <FormLabel>Membership Type*</FormLabel>
-                      <Input
-                        type="text"
-                        onChange={(e) => setZip(e.target.value)}
-                        value={zip}
-                        placeholder="10001"
-                      />
-                    </Box>
                   </Box>
                 </Flex>
               </SimpleGrid>
