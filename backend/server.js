@@ -4,6 +4,7 @@ const memberRoutes = require("./routes/members")
 const userRoutes = require("./routes/users")
 const donorRoutes = require("./routes/donors")
 const donationRoutes = require("./routes/donations")
+const uploadRoute = require("./routes/upload")
 const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
@@ -16,12 +17,16 @@ const app = express()
 app.use(express.json())
 
 app.use(function (req, res, next) {
-  res.set({"Access-Control-Allow-Methods": "*", "Access-Control-Allow-Origin": "*"})
+  res.set({
+    "Access-Control-Allow-Methods": "*",
+    "Access-Control-Allow-Origin": "*",
+  })
 
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept, Authorization");
-  next();
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  )
+  next()
 })
 // Default page
 app.get("/", (req, res) => {
@@ -39,6 +44,7 @@ app.use("/api/users", userRoutes)
 app.use("/api/donors", donorRoutes)
 app.use("/api/donations", donationRoutes)
 app.use("/api/user", userRoutes)
+app.use("/api/upload", uploadRoute)
 
 // // Serve static assets if in production
 // if (process.env.NODE_ENV === "production") {

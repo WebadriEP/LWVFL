@@ -21,7 +21,7 @@ import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
 import UpdateUser from "./components/users/UpdateUser"
-
+import ImportMembers from "./pages/ImportMembers"
 import UserDashboard from "./pages/UserDashboard"
 
 // css
@@ -65,6 +65,7 @@ function App() {
               path="/donors/add"
               element={user ? <AddDonor /> : <Navigate to="/" />}
             />
+
             {/* Donation Routes */}
             <Route
               path="/donations/list/:id"
@@ -74,6 +75,7 @@ function App() {
               path="/donations/add/:id"
               element={user ? <AddDonation /> : <Navigate to="/" />}
             />
+
             {/* Member Routes */}
             <Route
               path="/members"
@@ -84,25 +86,24 @@ function App() {
               element={user ? <CreateAccount /> : <Navigate to="/" />}
             />
             <Route
+              exact
+              path="/member/:id"
+              element={user ? <Member /> : <Navigate to="/" />}
+            />
+            <Route
+              path="/members/import"
+              element={user ? <ImportMembers /> : <Navigate to="/" />}
+            />
+
+            {/* User Routes */}
+            <Route
               path="/users"
               element={user ? <UserDashboard /> : <Navigate to="/" />}
             />
             <Route
               exact
-              path="/member/:id"
-              element={user ? <Member /> : <Navigate to="/" />}
-            />
-
-            <Route
-              exact
               path="/update-user/:id"
               element={user ? <UpdateUser /> : <Navigate to="/" />}
-            />
-
-            <Route
-              exact
-              path="/member/:id"
-              element={user ? <Member /> : <Navigate to="/" />}
             />
           </Routes>
         </div>

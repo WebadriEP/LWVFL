@@ -1,26 +1,18 @@
 import {
   Heading,
-  Box,
-  Stack,
   Link as ReachLink,
   HStack,
   Button,
-  ButtonGroup,
   IconButton,
   Tooltip,
-  Input,
   Flex,
-  Checkbox,
-  Radio,
-  Text,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
-import ImportMemberModal from "../components/members/ImportMemberModal"
-
 import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { FiArchive, FiEdit } from "react-icons/fi"
+import { TbFileImport } from "react-icons/tb"
 
 import MemberTable from "../components/members/memberTable"
 
@@ -29,6 +21,12 @@ const Members = () => {
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
+
+  const navigate = useNavigate()
+  const routeChange = () => {
+    let path = `/members/import`
+    navigate(path)
+  }
 
   // Fetch all members -- Used for search functionality
   useEffect(() => {
@@ -103,12 +101,29 @@ const Members = () => {
         // Renders actions that user can perform, such as deleting or updating
         Header: " ",
         Cell: ({ row }) => (
-          <HStack spacing={4} justify="end">
-            <Tooltip label="Edit Member" hasArrow>
-              <IconButton icon={<FiEdit />} colorScheme="gray" size="sm" />
+          <HStack
+            spacing={4}
+            justify="end"
+          >
+            <Tooltip
+              label="Edit Member"
+              hasArrow
+            >
+              <IconButton
+                icon={<FiEdit />}
+                colorScheme="gray"
+                size="sm"
+              />
             </Tooltip>
-            <Tooltip label="Delete Member" hasArrow>
-              <IconButton icon={<FiArchive />} colorScheme="red" size="sm" />
+            <Tooltip
+              label="Delete Member"
+              hasArrow
+            >
+              <IconButton
+                icon={<FiArchive />}
+                colorScheme="red"
+                size="sm"
+              />
             </Tooltip>
           </HStack>
         ),
@@ -119,17 +134,41 @@ const Members = () => {
 
   return (
     <>
-      <Flex direction="row" justify="space-between" align="center">
-        <Heading as="h1" size="xl" mb={4}>
+      <Flex
+        direction="row"
+        justify="space-between"
+        align="center"
+      >
+        <Heading
+          as="h1"
+          size="xl"
+          mb={4}
+        >
           Members
         </Heading>
-        <Flex maxW="30%" align="space-between" gap={4}>
-          <ImportMemberModal />
+        <Flex
+          maxW="30%"
+          align="space-between"
+          gap={4}
+        >
+          <Button
+            colorScheme="gray"
+            rightIcon={<TbFileImport />}
+            onClick={routeChange}
+            _hover={{
+              textDecoration: "none",
+            }}
+          >
+            Import
+          </Button>
           <AddMemberPop />
         </Flex>
       </Flex>
 
-      <MemberTable columns={columns} data={members} />
+      <MemberTable
+        columns={columns}
+        data={members}
+      />
     </>
   )
 }
