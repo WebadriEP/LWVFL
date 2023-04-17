@@ -6,6 +6,7 @@ import {
   IconButton,
   Tooltip,
   Flex,
+  Skeleton,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
@@ -98,11 +99,24 @@ const Members = () => {
         // Renders actions that user can perform, such as deleting or updating
         Header: " ",
         Cell: ({ row }) => (
-          <HStack spacing={4} justify="end">
-            <Tooltip label="Edit Member" hasArrow>
-              <IconButton icon={<FiEdit />} colorScheme="gray" size="sm" />
+          <HStack
+            spacing={4}
+            justify="end"
+          >
+            <Tooltip
+              label="Edit Member"
+              hasArrow
+            >
+              <IconButton
+                icon={<FiEdit />}
+                colorScheme="gray"
+                size="sm"
+              />
             </Tooltip>
-            <Tooltip label="Delete Member" hasArrow>
+            <Tooltip
+              label="Delete Member"
+              hasArrow
+            >
               <IconButton
                 icon={<FiArchive />}
                 colorScheme="red"
@@ -119,11 +133,23 @@ const Members = () => {
 
   return (
     <>
-      <Flex direction="row" justify="space-between" align="center">
-        <Heading as="h1" size="xl" mb={4}>
+      <Flex
+        direction="row"
+        justify="space-between"
+        align="center"
+      >
+        <Heading
+          as="h1"
+          size="xl"
+          mb={4}
+        >
           Members
         </Heading>
-        <Flex maxW="30%" align="space-between" gap={4}>
+        <Flex
+          maxW="30%"
+          align="space-between"
+          gap={4}
+        >
           <Button
             as={Link}
             to="/members/import"
@@ -139,7 +165,10 @@ const Members = () => {
         </Flex>
       </Flex>
 
-      <MemberTable columns={columns} data={members} />
+      <MemberTable
+        columns={columns}
+        data={members}
+      />
     </>
   )
 }

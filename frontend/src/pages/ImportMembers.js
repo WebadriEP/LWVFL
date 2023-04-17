@@ -31,31 +31,30 @@ const ImportMembers = () => {
   const sendFile = () => {
     const data = new FormData()
     data.append("file", file) // File
+    data.append("name", file.originalname) // File name
 
     // Post request
-    axios({
-      method: "post",
-      url: process.env.REACT_APP_BACKEND_URL + "/api/upload",
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-      body: data[0],
-    })
+    axios
+      .post(process.env.REACT_APP_BACKEND_URL + "/api/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         console.log(res)
-
-        // Reset state
-        setFile([])
-        setFileSize(null)
-        setFileAccepted(false)
-
-        // Navigate to members page
-        redirect("/members")
       })
       .catch((err) => {
         console.log(err)
         setErrorMessage(err)
       })
+
+    // Navigate to members page
+    redirect("/members")
+
+    // Reset state
+    setFile([])
+    setFileSize(null)
+    setFileAccepted(false)
   }
 
   /* Dropzone - Handle file acceptance and transfer to backend */
@@ -82,7 +81,10 @@ const ImportMembers = () => {
         border="1px"
         borderColor="gray.100"
       >
-        <Heading size="md" mb={4}>
+        <Heading
+          size="md"
+          mb={4}
+        >
           File Upload
         </Heading>
 
@@ -112,10 +114,17 @@ const ImportMembers = () => {
 
               {/* Popup footer/actions */}
               <AlertDialogFooter>
-                <Button ref={cancelRef} onClick={onClose}>
+                <Button
+                  ref={cancelRef}
+                  onClick={onClose}
+                >
                   Cancel
                 </Button>
-                <Button colorScheme="blue" onClick={sendFile} ml={3}>
+                <Button
+                  colorScheme="blue"
+                  onClick={sendFile}
+                  ml={3}
+                >
                   Upload
                 </Button>
               </AlertDialogFooter>
@@ -144,13 +153,24 @@ const ImportMembers = () => {
             bg: "gray.50",
           }}
         >
-          <input {...getInputProps()} name="file" />
+          <form encType="multipart/form-data">
+            <input
+              {...getInputProps()}
+              name="file"
+            />
+          </form>
           {isDragActive ? (
-            <Text color="gray.600" textAlign="center">
+            <Text
+              color="gray.600"
+              textAlign="center"
+            >
               Drop the files...
             </Text>
           ) : (
-            <Text color="gray.600" textAlign="center">
+            <Text
+              color="gray.600"
+              textAlign="center"
+            >
               Drop your CSV file here, or click to browse your files. Only .csv
               files will be accepted.
             </Text>
@@ -158,7 +178,12 @@ const ImportMembers = () => {
         </Flex>
         {/* Error message display */}
         {errorMessage && (
-          <Alert status="error" variant="subtle" mt={4} borderRadius={8}>
+          <Alert
+            status="error"
+            variant="subtle"
+            mt={4}
+            borderRadius={8}
+          >
             <AlertIcon />
             {errorMessage}
           </Alert>
@@ -166,7 +191,12 @@ const ImportMembers = () => {
 
         {/* Success message display */}
         {fileAccepted && (
-          <Alert status="success" variant="subtle" mt={4} borderRadius={8}>
+          <Alert
+            status="success"
+            variant="subtle"
+            mt={4}
+            borderRadius={8}
+          >
             <AlertIcon />
             File added! Size: {Math.floor(fileSize / 1000)} kb. Press the button
             below to complete your upload.
@@ -174,7 +204,11 @@ const ImportMembers = () => {
         )}
 
         {/* Upload button */}
-        <Button colorScheme="blue" onClick={onOpen} mt={8}>
+        <Button
+          colorScheme="blue"
+          onClick={onOpen}
+          mt={8}
+        >
           Upload CSV
         </Button>
       </Box>

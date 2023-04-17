@@ -9,6 +9,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const path = require("path")
+const bodyParser = require("body-parser")
 
 // Initialize express
 const app = express()
@@ -58,7 +59,9 @@ app.use("/api/upload", uploadRoute)
 
 // Connect to DB
 mongoose
+  .set("strictQuery", true)
   .connect(process.env.MONGO_URI)
+
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`)
