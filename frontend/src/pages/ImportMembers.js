@@ -20,7 +20,7 @@ import axios from "axios"
 import { useNavigate } from "react-router-dom"
 
 // Navigate to members page
-const navigate = useNavigate()
+//const navigate = useNavigate()
 
 const ImportMembers = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -49,7 +49,7 @@ const ImportMembers = () => {
         setFileAccepted(false)
 
         // TODO: navigate to members page
-        navigate("/members")
+        //navigate("/members")
       })
       .catch((err) => {
         console.log(err)

@@ -26,7 +26,7 @@ import { useEffect } from "react"
 import { useMembersContext } from "../../hooks/useMembersContext"
 import { addMemberFuntion } from "../../api/MemberCRUD"
 
-function AddMemberPop() {
+function AddMemberPop({onAddMember}) {
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
   const [email, setEmail] = useState("")
@@ -48,7 +48,7 @@ function AddMemberPop() {
     e.preventDefault()
     setError(null)
     try {
-      await addMemberFuntion(
+      const newMember = await addMemberFuntion(
         firstName,
         lastName,
         email,
@@ -58,10 +58,15 @@ function AddMemberPop() {
         state,
         zip
       )
+      if (newMember !== undefined) {
+        onAddMember(newMember);
+      }
       onClose()
     } catch (err) {
       setError(err.message)
+      onClose()
     }
+    
   }
 
   const { isOpen, onOpen, onClose } = useDisclosure()

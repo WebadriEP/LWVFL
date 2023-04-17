@@ -45,6 +45,16 @@ const Members = () => {
     fetchMembers()
   }, [])
 
+  const handleAddMember = (newMember) => {
+    // Update the state with the new member data
+    try {
+      setMembers([...members, newMember]);
+    } catch (error) {
+      console.log("Error adding member:", error);
+    }
+    
+  };
+
   const handleDelete = async (id) => {
     try {
       const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/' + id);
@@ -156,7 +166,7 @@ const Members = () => {
           >
             Import
           </Button>
-          <AddMemberPop />
+          <AddMemberPop onAddMember={handleAddMember}/>
         </Flex>
       </Flex>
 
