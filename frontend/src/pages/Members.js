@@ -13,6 +13,7 @@ import { getAllMembers, updateMember } from "../api/axios"
 import { Link, useNavigate } from "react-router-dom"
 import { FiArchive, FiEdit } from "react-icons/fi"
 import { TbFileImport } from "react-icons/tb"
+import axios from "axios"
 
 import MemberTable from "../components/members/memberTable"
 
@@ -21,6 +22,7 @@ const Members = () => {
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
+  
 
   const navigate = useNavigate()
   const routeChange = () => {
@@ -29,39 +31,31 @@ const Members = () => {
   }
 
   // Fetch all members -- Used for search functionality
-  useEffect(() => {
+  const fetchMembers = () => {
     getAllMembers().then((json) => {
-      // Filter out members marked for engagement
       setMembers(json)
       setShowColumns(
         json.length > 0 ? Object.keys(json[0]).map((key) => key) : []
       )
+      console.log("running")
     })
+  }
+
+  useEffect(() => {
+    fetchMembers()
   }, [])
 
-  // Search functionality
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
-
-    if (e.target.value === "") {
-      setSearchResults(members)
-      return
-    }
-
-    setSearchResults(
-      members.filter((member) =>
-        member.fullName.toLowerCase().includes(search.toLowerCase())
-      )
-    )
-  }
-  const handleColumnToggle = (e) => {
-    const { checked, name } = e.target
-    if (checked) {
-      setShowColumns([...showColumns, name])
-    } else {
-      setShowColumns(showColumns.filter((col) => col !== name))
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/' + id);
+      console.log(response.data);
+      // Remove the deleted member from the local state
+      setMembers(members => members.filter(member => member._id !== id));
+    } catch (error) {
+      console.log(error);
     }
   }
+  
 
   //   Determines the columns for the table and what is rendered inside each cell
   const columns = useMemo(
@@ -123,6 +117,7 @@ const Members = () => {
                 icon={<FiArchive />}
                 colorScheme="red"
                 size="sm"
+                onClick={() => handleDelete(row.original._id)}
               />
             </Tooltip>
           </HStack>
