@@ -15,7 +15,6 @@ import Member from "./pages/Member"
 import CreateAccount from "./pages/createAccount"
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
-import AddMember from "./pages/AddMember"
 import Donors from "./pages/Donors"
 import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
@@ -53,10 +52,7 @@ function App() {
             />
 
             {/* Donor Routes */}
-            <Route
-              path="/addmember"
-              element={user ? <AddMember /> : <Navigate to="/" />}
-            />
+            
             <Route
               path="/donors"
               element={user ? <Donors /> : <Navigate to="/" />}
