@@ -110,16 +110,6 @@ const Members = () => {
             justify="end"
           >
             <Tooltip
-              label="Edit Member"
-              hasArrow
-            >
-              <IconButton
-                icon={<FiEdit />}
-                colorScheme="gray"
-                size="sm"
-              />
-            </Tooltip>
-            <Tooltip
               label="Delete Member"
               hasArrow
             >
