@@ -55,6 +55,28 @@ const MemberInfo = ({ memberToParent, initialMember }) => {
   
                   <GridItem><Text>Phone Number</Text></GridItem>
                   <GridItem><Text>{data.phone}</Text></GridItem>
+
+                  <GridItem><Text></Text>Home Address</GridItem>
+                  <GridItem><Text>{data.homeAddress}</Text></GridItem>
+
+                  <GridItem><Text></Text>Address Line 2</GridItem>
+                  <GridItem><Text>{data.addressLine2}</Text></GridItem>
+
+                  <GridItem><Text></Text>City</GridItem>
+                  <GridItem><Text>{data.city}</Text></GridItem>
+
+                  <GridItem><Text></Text>State</GridItem>
+                  <GridItem><Text>{data.state}</Text></GridItem>
+
+                  <GridItem><Text></Text>Zip</GridItem>
+                  <GridItem><Text>{data.zip}</Text></GridItem>
+
+                  <GridItem><Text></Text>Gender</GridItem>
+                  <GridItem><Text>{data.gender}</Text></GridItem>
+
+                  <GridItem><Text>Birth Date</Text></GridItem>
+                  <GridItem><Text>{data.birthMonth}/{data.birthDay}/{data.birthYear}</Text></GridItem>
+                  
                 </SimpleGrid>
               </>
             ) : (
@@ -105,6 +127,86 @@ const MemberInfo = ({ memberToParent, initialMember }) => {
                   onChange={(e) => setData({ ...data, phone: e.target.value })}
                 />
               </GridItem>
+
+              <GridItem>Home Address</GridItem>
+              <GridItem>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={data.homeAddress}
+                  onChange={(e) => setData({ ...data, homeAddress: e.target.value })}
+                />
+              </GridItem>
+
+              <GridItem>Address Line 2</GridItem>
+              <GridItem>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={data.addressLine2}
+                  onChange={(e) => setData({ ...data, addressLine2: e.target.value })}
+                />
+              </GridItem>
+
+              <GridItem>City</GridItem>
+              <GridItem>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={data.city}
+                  onChange={(e) => setData({ ...data, city: e.target.value })}
+                />
+              </GridItem>
+
+              <GridItem>State</GridItem>
+              <GridItem>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={data.state}
+                  onChange={(e) => setData({ ...data, state: e.target.value })}
+                />
+              </GridItem>
+
+              <GridItem>Zip</GridItem>
+              <GridItem>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={data.zip}
+                  onChange={(e) => setData({ ...data, zip: e.target.value })}
+                />
+              </GridItem>
+
+              <GridItem>Gender</GridItem>
+              <GridItem>
+                <select
+                  className="form-control"
+                  value={data.gender}
+                  onChange={(e) => setData({ ...data, gender: e.target.value })}
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <option value="other">Other</option>
+                </select>
+              </GridItem>
+              <GridItem>Birth Date</GridItem>
+              <GridItem>
+                <input
+                  type="date"
+                  className="form-control"
+                  
+                  onChange={(e) => {
+                    const birthdayString = e.target.value
+                    const birthMonth = parseInt(birthdayString.slice(5, 7))
+                    const birthDay = parseInt(birthdayString.slice(8, 10))
+                    const birthYear = parseInt(birthdayString.slice(0, 4))
+
+                    setData({ ...data, birthMonth, birthDay, birthYear })
+                  }}
+                />
+                </GridItem>
+              
             </SimpleGrid>
           </>
         )}

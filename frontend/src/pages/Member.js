@@ -142,9 +142,9 @@ const Member = (props) => {
 
       {/* Page Body */}
 
-      <Grid templateColumns='1fr 1fr' gap={5}>
+      <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(3, 1fr)" gap={5}>
         {/* Personal Information Card */}
-        <GridItem>
+        <GridItem colSpan={1} rowSpan={3}>
           <MemberInfo memberToParent={memberToParent} initialMember={member} />
         </GridItem>
         
@@ -159,7 +159,7 @@ const Member = (props) => {
         </GridItem>
         
         {/* Donation list */}
-        <GridItem colSpan={2}>
+        <GridItem>
           <Card border='1px solid' borderColor='gray.100' shadow='lg'>
             <CardHeader>
               <Heading size='lg'>Donations</Heading>
