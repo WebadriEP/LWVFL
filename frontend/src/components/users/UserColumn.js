@@ -12,7 +12,7 @@ import axios from 'axios'
 import { Link } from 'react-router-dom'
 
 export default function UserColumn({user, updateUsers, admin}) {
-    const userContext  = JSON.parse(localStorage.getItem('user'))
+    const userContext  = JSON.parse(sessionStorage.getItem('user'))
 
     const handleDelete = async (id) => {
         await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/users/delete/' + id)

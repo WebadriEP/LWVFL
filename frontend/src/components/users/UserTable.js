@@ -7,7 +7,7 @@ import { Link } from "react-router-dom"
 
 export default function UserTable() {
   const [users, setUsers] = useState([])
-  const userContext  = JSON.parse(localStorage.getItem('user'))
+  const userContext  = JSON.parse(sessionStorage.getItem('user'))
   
   var adminTest = false
   var cols = []
