@@ -34,7 +34,7 @@ const loginUser = async (req, res) => {
 
   try {
     const user = await User.login(email, password) // User.login is a static method
-    const token = createToken(user._id) // create a token
+    const token = createToken(user._id)
     res.status(200).json({ email, token }) // send token back to client
   } catch (error) {
     res.status(401).json({ error: error.message }) // send error message back to client
@@ -43,11 +43,9 @@ const loginUser = async (req, res) => {
 
 // User REGISTER
 const registerUser = async (req, res) => {
-  console.log("test")
-  const { firstName, lastName, email, password, address, city, phone } =
+  const { firstName, lastName, email, password, address, city, phone, admin } =
     req.body // get email and password from request body
   try {
-    console.log(firstName)
     const user = await User.register(
       firstName,
       lastName,
@@ -55,7 +53,8 @@ const registerUser = async (req, res) => {
       password,
       address,
       city,
-      phone
+      phone,
+      admin
     ) // User.create is a static method
     const token = createToken(user._id) // create a token
     res.status(200).json({ email, token }) // send token back to client
@@ -69,7 +68,7 @@ const updateUsers = async (req, res) => {
   const { id } = req.params
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(404).json({ error: "no such user" })
+    return res.status(404).json({ error: "No such user" })
   }
 
   // if (!validator.isEmail(email)) {
@@ -114,7 +113,8 @@ const deleteUsers = async (req, res) => {
 // Update user password by ID
 const updateUserPassword = async (req, res) => {
   const { id } = req.params
-
+  const { password } = req.body
+  
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(400).json({ error: "No such user" })
   }
@@ -123,7 +123,7 @@ const updateUserPassword = async (req, res) => {
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    const user = await User.findOneAndUpdate({ id }, { password: hash })
+    const user = await User.findOneAndUpdate({ _id: id }, { password: hash })
     res.status(200).json(user)
   } catch {
     res.status(400).json({ error: "Error" })
