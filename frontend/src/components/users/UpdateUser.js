@@ -68,38 +68,38 @@ return (
                         value= {firstName}
                         onChange={(e) => setFirstName(e.target.value)}   
                     />
-                     <label>Last Name</label>
+                     <label style={{paddingTop: "20px"}}>Last Name</label>
                     <input
                         type="text"
                         value={lastName}
                         onChange={(e) => setLastName(e.target.value)}   
                     />
-                     <label>E-Mail</label>
+                     <label style={{paddingTop: "20px"}}>E-Mail</label>
                     <input
                         type="text"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}   
                     />
-                    <label>Address</label>
+                    <label style={{paddingTop: "20px"}}>Address</label>
                     <input
                         type="text"
                         value={address}
                         onChange={(e) => setAddress(e.target.value)}   
                     />
-                    <label>City</label>
+                    <label style={{paddingTop: "20px"}} >City</label>
                     <input
                         type="text"
                         value={city}
                         onChange={(e) => setCity(e.target.value)}   
                     />
                     
-                    <label>Phone Number</label>
+                    <label style={{paddingTop: "20px"}}>Phone Number</label>
                     <input
                         type="text"
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}   
                     />
-                    <label>Admin?(Yes or No)</label>
+                    <label style={{paddingTop: "20px"}}>Admin?(Yes or No)</label>
                     <select 
                         value={admin}
                         onChange={(e) => setAdmin(e.target.value)} >

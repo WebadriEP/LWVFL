@@ -42,7 +42,7 @@ const userSchema = new Schema({
 
 
   userSchema.statics.register = async function (firstName, lastName, email, password, address, city, phone, admin) {
-    if (!email || !password || !firstName || !lastName || !address || !city || !phone || !admin) {
+    if (!email || !password || !firstName || !lastName || !address || !city || !phone) {
       throw Error('All fields are required')
     }
 

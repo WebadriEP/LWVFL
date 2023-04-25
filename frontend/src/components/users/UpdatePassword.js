@@ -16,14 +16,20 @@ export default function UpdateUser() {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/password/' + id, password)
+
+        const updatedUser = {
+            password
+        };
+
+        axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/password/' + id, updatedUser)
         
         .then((response) => {
+            console.log(response)
             navigate('/users'); // Navigate to the users page after successful update
         })
-        // .catch((error) => {
-        //     console.error(error);
-        // });
+        .catch((error) => {
+            console.error(error);
+        });
       }
 return (
         <div className="createAccount-fields-item">
