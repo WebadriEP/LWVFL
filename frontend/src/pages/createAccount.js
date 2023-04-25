@@ -14,12 +14,13 @@ const Register = () => {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
+    const [admin, setAdmin] = useState(false);
     const { register, error, loading } = useRegister();
 
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    await register(firstName, lastName, email, password, address, city, phone);
+    await register(firstName, lastName, email, password, address, city, phone, admin);
     navigate('/users'); // Navigate to the users page after successful update
 
   }
@@ -71,6 +72,13 @@ const Register = () => {
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}   
                     />
+                    <label>Admin?(Yes or No)</label>
+                    <select 
+                        value={admin}
+                        onChange={(e) => setAdmin(e.target.value)} >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                    </select>    
             </div>
             <button >Create User</button>
             </form>

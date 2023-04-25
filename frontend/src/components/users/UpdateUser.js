@@ -16,6 +16,8 @@ export default function UpdateUser() {
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
     const [phone, setPhone] = useState('');
+    const [admin, setAdmin] = useState();
+
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_BACKEND_URL+"/api/users/get/" + id)
@@ -26,6 +28,7 @@ export default function UpdateUser() {
         setAddress(response.data.address);
         setCity(response.data.city);
         setPhone(response.data.phone);
+        setAdmin(response.data.admin);
         })
     }, [])
         
@@ -41,14 +44,14 @@ export default function UpdateUser() {
             email,
             address,
             city,
-            phone
+            phone,
+            admin,
         };
 
         axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/'+ id, updatedUser)
         .then((response) => {
             console.log(response.data);
             navigate('/users'); // Navigate to the users page after successful update
-
         })
         .catch((error) => {
             console.error(error);
@@ -96,6 +99,13 @@ return (
                         value={phone}
                         onChange={(e) => setPhone(e.target.value)}   
                     />
+                    <label>Admin?(Yes or No)</label>
+                    <select 
+                        value={admin}
+                        onChange={(e) => setAdmin(e.target.value)} >
+                        <option value={true}>Yes</option>
+                        <option value={false}>No</option>
+                    </select>
                 </div>
                 <button>Update User</button>
                 </form>

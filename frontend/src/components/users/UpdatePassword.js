@@ -16,7 +16,7 @@ export default function UpdateUser() {
 
     const handleUpdate = async (e) => {
         e.preventDefault();
-        axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/password/' + id, {password})
+        axios.put(process.env.REACT_APP_BACKEND_URL+'/api/users/update/password/' + id, password)
         
         .then((response) => {
             navigate('/users'); // Navigate to the users page after successful update

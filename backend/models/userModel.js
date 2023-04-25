@@ -33,12 +33,16 @@ const userSchema = new Schema({
     phone: {
       type: String,
       required: true,
+    },
+    admin: {
+      type: Boolean,
+      required: true
     }
   });
 
 
-  userSchema.statics.register = async function (firstName, lastName, email, password, address, city, phone) {
-    if (!email || !password || !firstName || !lastName || !address || !city || !phone) {
+  userSchema.statics.register = async function (firstName, lastName, email, password, address, city, phone, admin) {
+    if (!email || !password || !firstName || !lastName || !address || !city || !phone || !admin) {
       throw Error('All fields are required')
     }
 
@@ -58,7 +62,7 @@ const userSchema = new Schema({
      const salt = await bcrypt.genSalt(10)
      const hash = await bcrypt.hash(password, salt)
     
-    const user = await this.create({ firstName, lastName, email, password: hash, address, city, phone})
+    const user = await this.create({ firstName, lastName, email, password: hash, address, city, phone, admin})
     console.log(user)
 
     return user
