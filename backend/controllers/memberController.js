@@ -1,6 +1,5 @@
 const Member = require("../models/memberModel")
 const mongoose = require("mongoose")
-const csv = require("csvtojson")
 mongoose.set("toJSON", { virtuals: true })
 
 // Find all Members

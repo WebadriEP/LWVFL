@@ -1,6 +1,7 @@
 import Highcharts from "highcharts"
 import HighchartsReact from "highcharts-react-official"
 import React, { useState } from "react"
+import { getStatTotalMembers } from "../../api/axios"
 
 /* 
   The graph uses Highcharts
@@ -9,7 +10,7 @@ import React, { useState } from "react"
 
 const MembersGraph = (props) => {
   // deconstruct porops
-  const { type, title, yAxis, members } = props
+  const { type, yAxis, members } = props
 
   // options for the graph
   const options = {
@@ -23,7 +24,7 @@ const MembersGraph = (props) => {
       enabled: false,
     },
     title: {
-      text: title,
+      text: "New Members by Month",
     },
     xAxis: {
       categories: [
@@ -64,12 +65,7 @@ const MembersGraph = (props) => {
     ],
   }
 
-  return (
-    <HighchartsReact
-      highcharts={Highcharts}
-      options={options}
-    />
-  )
+  return <HighchartsReact highcharts={Highcharts} options={options} />
 }
 
 export default MembersGraph

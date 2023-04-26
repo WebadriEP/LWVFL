@@ -40,22 +40,22 @@ export const updateMember = async (id, member) => {
     const response = await api.patch(
       process.env.REACT_APP_BACKEND_URL + "/api/members/" + id,
       member
-    );
+    )
     // Check if response has error status
     if (response.status !== 200 && response.status !== 201) {
-      throw new Error(`Failed to update member. Status: ${response.status}`);
+      throw new Error(`Failed to update member. Status: ${response.status}`)
     }
     // Log response data for troubleshooting
-    console.log("Update member response:", response.data);
-    return response.data;
+    console.log("Update member response:", response.data)
+    return response.data
   } catch (error) {
     // Log error for troubleshooting
-    console.error("Failed to update member:", error);
-    throw error;
+    console.error("Failed to update member:", error)
+    throw error
   }
-};
+}
 
-// import memebers
+// import members
 export const importMembers = async (file) => {
   const response = await api.post(
     process.env.REACT_APP_BACKEND_URL + "/api/members/import",
@@ -81,38 +81,14 @@ export const createDonation = async (id, donation) => {
   return response.data
 }
 
-// STATISTICS
-
-// Get total members
-export const getStatTotalMembers = async () => {
-  const response = await api.get(
-    process.env.REACT_APP_BACKEND_URL + "/api/members/stat/total"
-  )
-  return response.data
-}
-
-// Get total donations
-export const getStatTotalDonations = async () => {
-  const response = await api.get(
-    process.env.REACT_APP_BACKEND_URL + "/api/members/stat/donations"
-  )
-  return response.data
-}
-
-// Get total donations amount
-export const getStatTotalDonationsAmount = async () => {
-  const response = await api.get(
-    process.env.REACT_APP_BACKEND_URL + "/api/members/stat/donationsamount"
-  )
-  return response.data
-}
-
 // Delete donation
 export const deleteDonation = async (id) => {
   try {
-    const res = await axios.delete(process.env.REACT_APP_BACKEND_URL+`/api/donations/` + id);
-    return res.data;
+    const res = await axios.delete(
+      process.env.REACT_APP_BACKEND_URL + `/api/donations/` + id
+    )
+    return res.data
   } catch (err) {
-    console.error(err);
+    console.error(err)
   }
 }
