@@ -7,7 +7,9 @@ import { Link } from "react-router-dom"
 
 export default function UserTable() {
   const [users, setUsers] = useState([])
-
+  const userContext  = JSON.parse(sessionStorage.getItem('user'))
+  
+  var adminTest = false
   var cols = []
 
   const updateUsers = () => {
@@ -25,12 +27,17 @@ export default function UserTable() {
         setUsers(response.data)
       })
   }, [])
+  for(var i = 0; i < users.length; i++){
+    if(users[i].email==userContext.email && users[i].admin){
+      adminTest=true
+    }
+  }
   for (var i = 0; i < users.length; i++) {
     const test = cols.push(
-      <UserColumn key={i} user={users[i]} updateUsers={updateUsers} />
+      <UserColumn key={i} user={users[i]} updateUsers={updateUsers} admin={adminTest}/>
     )
   }
-  return (
+  if(adminTest){return (
     <div>
       <div
         style={{
@@ -46,5 +53,21 @@ export default function UserTable() {
 
       {cols}
     </div>
-  )
+  )}
+  else{
+    return (
+      <div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "right",
+            paddingBottom: "2vh",
+          }}
+        >
+        </div>
+  
+        {cols}
+      </div>
+    )
+  }
 }
