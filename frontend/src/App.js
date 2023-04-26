@@ -20,6 +20,7 @@ import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
 import UpdateUser from "./components/users/UpdateUser"
+import UpdatePassword from "./components/users/UpdatePassword"
 import ImportMembers from "./pages/ImportMembers"
 import UserDashboard from "./pages/UserDashboard"
 
@@ -100,6 +101,11 @@ function App() {
               exact
               path="/update-user/:id"
               element={user ? <UpdateUser /> : <Navigate to="/" />}
+            />
+            <Route
+              exact
+              path="/update-password/:id"
+              element={user ? <UpdatePassword /> : <Navigate to="/" />}
             />
           </Routes>
         </div>

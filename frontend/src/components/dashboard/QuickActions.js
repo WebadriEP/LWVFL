@@ -12,11 +12,7 @@ import "./dashboardStyles.css"
 const QuickActions = () => {
   return (
     <Box>
-      <Heading
-        size="lg"
-        mb={4}
-        color="gray.700"
-      >
+      <Heading size="lg" mb={4} color="gray.700">
         Quick Actions
       </Heading>
       <Grid
@@ -31,11 +27,7 @@ const QuickActions = () => {
         border="1px solid"
         borderColor="gray.100"
       >
-        <QuickActionItem
-          page="members"
-          name="Members List"
-          icon={FiUser}
-        />
+        <QuickActionItem page="members" name="Members List" icon={FiUser} />
         <QuickActionItem
           page="engagement"
           name="Engagement List"

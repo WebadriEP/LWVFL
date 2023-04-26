@@ -1,32 +1,30 @@
 // components
 import React, { useState } from "react"
-import { Box, Grid, Flex } from "@chakra-ui/react"
+import { Box, Grid, Flex, Heading } from "@chakra-ui/react"
 import QuickActions from "../components/dashboard/QuickActions"
 import MembersGraph from "../components/dashboard/MembersGraph"
+import QuickStats from "../components/dashboard/QuickStats"
 import { getAllMembers } from "../api/axios"
 
 // css
 import "../components/dashboard/dashboardStyles.css"
-import { Heading } from "@chakra-ui/react"
 
 const Dashboard = () => {
   const [members, setMembers] = React.useState([])
 
-  React.useEffect(() => {
-    getAllMembers()
-      .then((res) => {
-        setMembers(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
-  }, [])
-
   return (
     <>
+      <Heading size="xl" mb={8}>
+        Dashboard
+      </Heading>
+
+      {/* Quick Stats */}
+      <QuickStats />
+
       {/* Quick Actions */}
       <QuickActions />
 
+      {/* Members Graph */}
       <Box
         shadow="lg"
         bg="white"
@@ -37,8 +35,7 @@ const Dashboard = () => {
       >
         <MembersGraph
           type="column"
-          title="New members"
-          yAxis="No. of Members"
+          yAxis="No. of New Members"
           members={members}
         />
       </Box>
