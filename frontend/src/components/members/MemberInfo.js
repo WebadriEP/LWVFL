@@ -190,6 +190,19 @@ const MemberInfo = ({ memberToParent, initialMember }) => {
                   <option value="other">Other</option>
                 </select>
               </GridItem>
+
+              <GridItem>Activity Status</GridItem>
+              <GridItem>
+                <select
+                  className="form-control"
+                  value={data.memberActiveStatus}
+                  onChange={(e) => setData({ ...data, memberActiveStatus: e.target.value })}
+                >
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                </select>
+              </GridItem>
+
               <GridItem>Birth Date</GridItem>
               <GridItem>
                 <input

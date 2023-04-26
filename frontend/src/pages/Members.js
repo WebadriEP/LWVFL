@@ -6,6 +6,7 @@ import {
   IconButton,
   Tooltip,
   Flex,
+  useToast,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
@@ -22,6 +23,7 @@ const Members = () => {
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
+  const toast = useToast()
   
 
   const navigate = useNavigate()
@@ -49,10 +51,18 @@ const Members = () => {
     // Update the state with the new member data
     try {
       setMembers([...members, newMember]);
+      handleMemberAdded()
     } catch (error) {
       console.log("Error adding member:", error);
     }
-    
+  };
+  const handleMemberAdded = () => {
+    toast({
+      title: "Member added.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
   };
 
   const handleDelete = async (id) => {
@@ -61,10 +71,20 @@ const Members = () => {
       console.log(response.data);
       // Remove the deleted member from the local state
       setMembers(members => members.filter(member => member._id !== id));
+      handleMemberDeleted();
     } catch (error) {
       console.log(error);
     }
   }
+  const handleMemberDeleted = () => {
+    toast({
+      title: "Member deleted.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    });
+  };
+
   
 
   //   Determines the columns for the table and what is rendered inside each cell
@@ -156,7 +176,7 @@ const Members = () => {
           >
             Import
           </Button>
-          <AddMemberPop onAddMember={handleAddMember}/>
+          <AddMemberPop onAddMember={handleAddMember}  />
         </Flex>
       </Flex>
 

@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import {
   Table,
   Tr,
@@ -10,12 +11,60 @@ import {
   Box,
   ButtonGroup,
   Tooltip,
-} from "@chakra-ui/react"
-import { useTable, useSortBy, usePagination } from "react-table"
-import React from "react"
+  Checkbox,
+  Heading,
+  Input,
+} from "@chakra-ui/react";
+import { useTable, useSortBy, usePagination, useFilters, useGlobalFilter, setGlobalFilter, useAsyncDebounce, } from "react-table";
 
-// Table component
+
+function GlobalFilter({
+  preGlobalFilteredRows,
+  globalFilter,
+  setGlobalFilter,
+}) {
+  const count = preGlobalFilteredRows.length
+  const [value, setValue] = React.useState(globalFilter)
+  const onChange = useAsyncDebounce((value) => {
+    setGlobalFilter(value || undefined)
+  }, 200)
+
+  return (
+    <Box>
+      <Input
+        value={value || ""}
+        onChange={(e) => {
+          setValue(e.target.value)
+          onChange(e.target.value)
+        }}
+        placeholder={`Search ${count} records...`}
+        py={2}
+      />
+    </Box>
+  )
+}
+
 function EngagementTable({ columns, data }) {
+  const [filter, setFilter] = useState({ active: false, inactive: false });
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      const filteredData = data.filter((member) => {
+        if (filter.active && member.memberActiveStatus === "inactive") {
+          return false;
+        }
+        if (filter.inactive && member.memberActiveStatus === "active") {
+          return false;
+        }
+        return true;
+      });
+      setFilteredData(filteredData);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, [data, filter]);
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -29,19 +78,57 @@ function EngagementTable({ columns, data }) {
     gotoPage,
     nextPage,
     previousPage,
+    preGlobalFilteredRows,
+    setGlobalFilter,
+    state,
     state: { pageIndex },
   } = useTable(
     {
       columns,
-      data,
+      data: filteredData,
       initialState: { pageIndex: 0 },
     },
+    useFilters, // useFilters!
+    useGlobalFilter, // useGlobalFilter!
     useSortBy,
     usePagination
-  )
+  );
+
+  const handleFilterChange = (event) => {
+    setFilter({ ...filter, [event.target.name]: event.target.checked });
+  };
 
   return (
     <>
+      {/* Filter controls */}
+      <Box mb={4}>
+        <Checkbox
+          isChecked={filter.active}
+          name="active"
+          onChange={handleFilterChange}
+          mr={2}
+        >
+          Active Members
+        </Checkbox>
+        <Checkbox
+          isChecked={filter.inactive}
+          name="inactive"
+          onChange={handleFilterChange}
+        >
+          Inactive Members
+        </Checkbox>
+      </Box>
+      <Box mb={6}>
+        <Heading size="sm" mb={2}>
+          Search
+        </Heading>
+        <GlobalFilter
+          preGlobalFilteredRows={preGlobalFilteredRows}
+          globalFilter={state.globalFilter}
+          setGlobalFilter={setGlobalFilter}
+        />
+      </Box>
+
       <Table {...getTableProps()}>
         <Thead>
           {headerGroups.map((headerGroup) => (

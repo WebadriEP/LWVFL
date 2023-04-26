@@ -23,7 +23,7 @@ import EngagementTable from "../components/engagement/EngagementTable"
 const Engagement = () => {
   const [members, setMembers] = useState([])
   const [search, setSearch] = useState("")
-  const [searchResults, setSearchResults] = useState([])
+
 
   useEffect(() => {
     console.log("Fetching members...")
@@ -50,11 +50,14 @@ const Engagement = () => {
       )
     )
   }
+  const handleActiveFilter = (e) => {
+    setActiveFilter(e.target.checked)
+  }
 
   const handleMarkContacted = (id) => {
     updateMember(id, { memberStatus: "contacted" })
     // update members state to remove member from list
-    //setMembers(members.filter((member) => member._id !== id))
+    setMembers(members => members.filter((member) => member._id !== id))
   }
 
   //   Determines the columns for the table and what is rendered inside each cell

@@ -61,6 +61,7 @@ function AddMemberPop({onAddMember}) {
       if (newMember !== undefined) {
         onAddMember(newMember);
       }
+      //onMemberAdded()
       onClose()
     } catch (err) {
       setError(err.message)
