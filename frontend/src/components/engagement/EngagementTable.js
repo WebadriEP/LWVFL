@@ -14,6 +14,8 @@ import {
   Checkbox,
   Heading,
   Input,
+  SimpleGrid,
+  Flex,
 } from "@chakra-ui/react";
 import { useTable, useSortBy, usePagination, useFilters, useGlobalFilter, setGlobalFilter, useAsyncDebounce, } from "react-table";
 
@@ -100,112 +102,137 @@ function EngagementTable({ columns, data }) {
 
   return (
     <>
-      {/* Filter controls */}
-      <Box mb={4}>
-        <Checkbox
-          isChecked={filter.active}
-          name="active"
-          onChange={handleFilterChange}
-          mr={2}
-        >
-          Active Members
-        </Checkbox>
-        <Checkbox
-          isChecked={filter.inactive}
-          name="inactive"
-          onChange={handleFilterChange}
-        >
-          Inactive Members
-        </Checkbox>
-      </Box>
-      <Box mb={6}>
-        <Heading size="sm" mb={2}>
-          Search
-        </Heading>
-        <GlobalFilter
-          preGlobalFilteredRows={preGlobalFilteredRows}
-          globalFilter={state.globalFilter}
-          setGlobalFilter={setGlobalFilter}
-        />
-      </Box>
+      <SimpleGrid templateColumns="2.5fr 10fr" spacing={6}>
+        {/* Filters side */}
+        <Flex align="start">
+          <Flex
+            direction="column"
+            p={5}
+            borderRadius={8}
+            border="1px"
+            borderColor="gray.100"
+          >
+          {/* Filter controls */}
+          <Box mb={6}>
+              <Heading size="sm" mb={2}>
+                Search
+              </Heading>
+              <GlobalFilter
+                preGlobalFilteredRows={preGlobalFilteredRows}
+                globalFilter={state.globalFilter}
+                setGlobalFilter={setGlobalFilter}
+              />
+            </Box>
 
-      <Table {...getTableProps()}>
-        <Thead>
-          {headerGroups.map((headerGroup) => (
-            <Tr {...headerGroup.getHeaderGroupProps()}>
-              {headerGroup.headers.map((column) => (
-                <Th {...column.getHeaderProps(column.getSortByToggleProps())}>
-                  {column.render("Header")}
-                  <span>
-                    {column.isSorted
-                      ? column.isSortedDesc
-                        ? " 🔽"
-                        : " 🔼"
-                      : ""}
-                  </span>
-                </Th>
+            <Box mb={6}>
+              <Heading size="sm" mb={2}>
+                Active Status
+              </Heading>
+              <Checkbox
+                isChecked={filter.active}
+                name="active"
+                onChange={handleFilterChange}
+                mr={2}
+              >
+                Active Members
+              </Checkbox>
+              <Checkbox
+                isChecked={filter.inactive}
+                name="inactive"
+                onChange={handleFilterChange}
+              >
+                Inactive Members
+              </Checkbox>
+            </Box>
+          </Flex>
+        </Flex>
+
+        {/* Table side */}
+        <Flex
+          direction="column"
+          borderRadius={8}
+          border="1px"
+          borderColor="gray.100"
+        >
+          <Table {...getTableProps()}>
+            <Thead>
+              {headerGroups.map((headerGroup) => (
+                <Tr {...headerGroup.getHeaderGroupProps()}>
+                  {headerGroup.headers.map((column) => (
+                    <Th {...column.getHeaderProps(column.getSortByToggleProps())}>
+                      {column.render("Header")}
+                      <span>
+                        {column.isSorted
+                          ? column.isSortedDesc
+                            ? " 🔽"
+                            : " 🔼"
+                          : ""}
+                      </span>
+                    </Th>
+                  ))}
+                </Tr>
               ))}
-            </Tr>
-          ))}
-        </Thead>
-        <Tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row)
-            return (
-              <Tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  return <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
-                })}
-              </Tr>
-            )
-          })}
-        </Tbody>
-      </Table>
+            </Thead>
+            <Tbody {...getTableBodyProps()}>
+              {page.map((row) => {
+                prepareRow(row)
+                return (
+                  <Tr {...row.getRowProps()}>
+                    {row.cells.map((cell) => {
+                      return <Td {...cell.getCellProps()}>{cell.render("Cell")}</Td>
+                    })}
+                  </Tr>
+                )
+              })}
+            </Tbody>
+          </Table>
 
-      {/* Pagination controls */}
-      <HStack justify="space-between" m={4}>
-        {/* Page # of # */}
-        <Box>
-          Page{" "}
-          <strong>
-            {pageIndex + 1} of {pageOptions.length}
-          </strong>{" "}
-        </Box>
+          {/* Pagination controls */}
+          <HStack justify="space-between" m={4}>
+            {/* Page # of # */}
+            <Box>
+              Page{" "}
+              <strong>
+                {pageIndex + 1} of {pageOptions.length}
+              </strong>{" "}
+            </Box>
 
-        {/* Page nagivation buttons */}
-        <ButtonGroup isAttached variant="outline" colorScheme="blue">
-          {/* First page */}
-          <Tooltip hasArrow label="First page">
-            <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
-              {"<<"}
-            </Button>
-          </Tooltip>
+            {/* Page nagivation buttons */}
+            <ButtonGroup isAttached variant="outline" colorScheme="blue">
+              {/* First page */}
+              <Tooltip hasArrow label="First page">
+                <Button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+                  {"<<"}
+                </Button>
+              </Tooltip>
 
-          {/* Previous page */}
-          <Tooltip hasArrow label="Previous page">
-            <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
-              {"<"}
-            </Button>
-          </Tooltip>
+              {/* Previous page */}
+              <Tooltip hasArrow label="Previous page">
+                <Button onClick={() => previousPage()} disabled={!canPreviousPage}>
+                  {"<"}
+                </Button>
+              </Tooltip>
 
-          {/* Next page */}
-          <Tooltip hasArrow label="Next page">
-            <Button onClick={() => nextPage()} disabled={!canNextPage}>
-              {">"}
-            </Button>
-          </Tooltip>
+              {/* Next page */}
+              <Tooltip hasArrow label="Next page">
+                <Button onClick={() => nextPage()} disabled={!canNextPage}>
+                  {">"}
+                </Button>
+              </Tooltip>
 
-          {/* Last page */}
-          <Tooltip hasArrow label="Last page">
-            <Button
-              onClick={() => gotoPage(pageCount - 1)}
-              disabled={!canNextPage}
-            >
-              {">>"}
-            </Button>
-          </Tooltip>
-        </ButtonGroup>
-      </HStack>
+              {/* Last page */}
+              <Tooltip hasArrow label="Last page">
+                <Button
+                  onClick={() => gotoPage(pageCount - 1)}
+                  disabled={!canNextPage}
+                >
+                  {">>"}
+                </Button>
+              </Tooltip>
+            </ButtonGroup>
+          </HStack>
+        </Flex>
+      </SimpleGrid>
     </>
   )
 }

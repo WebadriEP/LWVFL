@@ -131,27 +131,7 @@ const Engagement = () => {
       </HStack>
 
       <Flex direction="row">
-        {/* Filters */}
-        <Box bg="white" borderRadius={8} mr={5} minW="15%">
-          <Stack spacing={4}>
-            <Box borderRadius={8} border="1px" borderColor="gray.100" p="4">
-              <Heading size="sm">Status</Heading>
-              <Stack spacing={2} mt={2}>
-                <Checkbox>Engage</Checkbox>
-                <Checkbox>Contacted</Checkbox>
-                <Checkbox>Member</Checkbox>
-                <Checkbox>Donor</Checkbox>
-              </Stack>
-            </Box>
-            <Box borderRadius={8} border="1px" borderColor="gray.100" p="4">
-              <Heading size="sm">Students</Heading>
-              <HStack spacing={4} mt={2}>
-                <Radio>Yes</Radio>
-                <Radio>No</Radio>
-              </HStack>
-            </Box>
-          </Stack>
-        </Box>
+
 
         {/* Table */}
         <Box
