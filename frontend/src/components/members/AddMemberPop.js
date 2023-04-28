@@ -60,12 +60,16 @@ function AddMemberPop({onAddMember}) {
       )
       if (newMember !== undefined) {
         onAddMember(newMember);
+        onClose()
+      } else {
+        setError("Make Sure to enter required fields and check for duplicate emails");
       }
       //onMemberAdded()
-      onClose()
+      // onClose()
     } catch (err) {
       setError(err.message)
-      onClose()
+      console.log("Locate")
+      //onClose()
     }
     
   }
@@ -264,14 +268,19 @@ function AddMemberPop({onAddMember}) {
             </form>
           </ModalBody>
           <ModalFooter>
+            <Box>
+            {error && (
+              <div style={{ color: "red", marginTop: "1rem" }}>
+                {error}
+              </div>
+            )}
+            </Box>
             <Button colorScheme="ghost" variant="ghost" onClick={onClose}>
               Cancel
             </Button>
             <Button colorScheme="blue" variant="solid" onClick={handleSubmit}>
               Add Member
             </Button>
-
-            {error && <div className="error">{error}</div>}
           </ModalFooter>
         </ModalContent>
       </Modal>
