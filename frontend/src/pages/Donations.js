@@ -51,6 +51,7 @@ function Donations() {
       {
         Header: "Date",
         accessor: "date",
+        Cell: ({ value }) => new Date(value).toLocaleDateString(),
       },
       {
         // Renders member's email
