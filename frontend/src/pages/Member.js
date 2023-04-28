@@ -4,6 +4,8 @@ import React from "react"
 import { useParams, Link } from "react-router-dom"
 import { getSingleMember, updateMember } from "../api/axios"
 import NavLink from "../components/navigation/NavLink"
+import { useToast } from "@chakra-ui/react"
+import { FiPlus } from "react-icons/fi"
 
 // components
 import {
@@ -39,6 +41,7 @@ const Member = (props) => {
   const [notes, setNotes] = useState("") // Member notes
   const [loading, setLoading] = useState(true) // Loading state
   const [success, setSuccess] = useState(false) // Success toast
+  const [error, setError] = useState(null) // Error toast
 
   /*
    * Fetch member details
@@ -195,12 +198,21 @@ const Member = (props) => {
         <GridItem colSpan={3}>
           <Card border="1px solid" borderColor="gray.100" shadow="md">
             <CardHeader>
-              <Heading size="lg">Donations</Heading>
+              <Flex align="center" justify="space-between">
+                <Heading size="lg">Donations</Heading>
+                <Button
+                  as={Link}
+                  to={"/donations/add/" + id}
+                  colorScheme="blue"
+                  rightIcon={<FiPlus />}
+                >
+                  Add
+                </Button>
+              </Flex>
             </CardHeader>
 
             <CardBody>
-              {/* <Button as={NavLink} colorScheme='green' page={link} text='View Donation List' /> */}
-              <Donations></Donations>
+              <Donations />
             </CardBody>
           </Card>
         </GridItem>
