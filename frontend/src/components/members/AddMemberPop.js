@@ -56,7 +56,10 @@ function AddMemberPop({onAddMember}) {
         homeAddress,
         city,
         state,
-        zip
+        zip,
+        birthDay,
+        birthMonth,
+        birthYear,
       )
       if (newMember !== undefined) {
         onAddMember(newMember);
@@ -161,13 +164,10 @@ function AddMemberPop({onAddMember}) {
                         type="date"
                         onChange={(e) => {
                           let birthdayString = e.target.value
-                          let birthMonth = birthdayString.slice(5, 7)
-                          let birthDay = birthdayString.slice(8, 10)
-                          let birthYear = birthdayString.slice(0, 4)
 
-                          setBirthMonth(birthMonth)
-                          setBirthDay(birthDay)
-                          setBirthYear(birthYear)
+                          setBirthDay(birthdayString.slice(5, 7))
+                          setBirthMonth(birthdayString.slice(8, 10))
+                          setBirthYear(birthdayString.slice(0, 4))
                         }}
                         required
                       />
