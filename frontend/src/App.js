@@ -23,6 +23,7 @@ import UpdateUser from "./components/users/UpdateUser"
 import UpdatePassword from "./components/users/UpdatePassword"
 import ImportMembers from "./pages/ImportMembers"
 import UserDashboard from "./pages/UserDashboard"
+import Redirected from "./pages/Redirected"
 
 // css
 import "./App.css"
@@ -86,6 +87,11 @@ function App() {
               exact
               path="/member/:id"
               element={user ? <Member /> : <Navigate to="/" />}
+            />
+            <Route
+              exact
+              path="/member/:id/:id"
+              element={user ? <Redirected /> : <Navigate to="/" />}
             />
             <Route
               path="/members/import"
