@@ -8,6 +8,16 @@ import {
   Flex,
   Skeleton,
   useToast,
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+  PopoverHeader,
+  PopoverBody,
+  PopoverFooter,
+  PopoverArrow,
+  PopoverCloseButton,
+  PopoverAnchor,
+  Portal,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
@@ -25,7 +35,7 @@ const Members = () => {
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
   const toast = useToast()
-  const navigate = useNavigate()
+  //const navigate = useNavigate()
   
   const routeChange = () => {
     let path = `/members/import`
@@ -79,6 +89,7 @@ const Members = () => {
     }
   }
   
+  
   const handleMemberDeleted = () => {
     toast({
       title: "Member deleted.",
@@ -127,14 +138,36 @@ const Members = () => {
         Header: " ",
         Cell: ({ row }) => (
           <HStack spacing={4} justify="end">
-            <Tooltip label="Delete Member" hasArrow>
-              <IconButton
-                icon={<FiArchive />}
-                colorScheme="red"
-                size="sm"
-                onClick={() => handleDelete(row.original._id)}
-              />
-            </Tooltip>
+            
+            <Popover placement='bottom-end'>
+              {({ isOpen, onClose }) => (
+                <>
+                  <PopoverTrigger>
+                    <IconButton
+                      icon={<FiArchive />}
+                      colorScheme="red"
+                      size="sm"
+                    />
+                  </PopoverTrigger>
+                  <Portal>
+                    <PopoverContent>
+                      <PopoverArrow />
+                      <PopoverHeader><b>Confirmation</b></PopoverHeader>
+                      <PopoverCloseButton />
+                      <PopoverBody>
+                        Are you sure you would like to delete this member?
+                      </PopoverBody>
+                      <PopoverFooter>
+                        <Button colorScheme='red' onClick={() => {
+                          handleDelete(row.original._id)
+                          onClose()
+                        }}>Yes</Button>
+                      </PopoverFooter>
+                    </PopoverContent>
+                  </Portal>
+                </>
+              )}
+            </Popover>            
           </HStack>
         ),
       },
