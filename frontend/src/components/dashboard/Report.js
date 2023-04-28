@@ -16,6 +16,7 @@ import {
   Center,
 } from "@chakra-ui/react"
 import MembersGraph from "./MembersGraph"
+import DonationsGraph from "./DonationsGraph"
 import QuickStats from "./QuickStats"
 
 export class Report extends Component {
@@ -47,6 +48,9 @@ export class Report extends Component {
           {/* New Member Graph */}
           <Box minW="725px">
             <MembersGraph type="column" yAxis="No. of Members" />
+            <Box mt={10}>
+              <DonationsGraph type="line" yAxis="Amount of Donations ($USD)" />
+            </Box>
           </Box>
         </Box>
       </>

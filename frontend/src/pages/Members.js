@@ -26,6 +26,7 @@ import { Link } from "react-router-dom"
 import { FiArchive, FiEdit } from "react-icons/fi"
 import { TbFileImport } from "react-icons/tb"
 import axios from "axios"
+import { useNavigate } from "react-router-dom"
 
 import MemberTable from "../components/members/memberTable"
 
@@ -35,6 +36,8 @@ const Members = () => {
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
   const toast = useToast()
+  const navigate = useNavigate()
+
   //const navigate = useNavigate()
   
   const routeChange = () => {
@@ -65,7 +68,7 @@ const Members = () => {
       console.log("Error adding member:", error)
     }
   }
-  
+
   const handleMemberAdded = () => {
     toast({
       title: "Member added.",

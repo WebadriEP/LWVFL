@@ -9,6 +9,7 @@ import {
   Spacer,
   Text,
 } from "@chakra-ui/react"
+import { FiLogOut } from "react-icons/fi"
 
 // Components
 import NavLink from "./NavLink"
@@ -32,6 +33,7 @@ const Navbar = () => {
       py={2}
       bg="black"
       shadow="md"
+      mb={8}
     >
       {/* Logo and Links */}
       <HStack alignItems="center" justify="space-between">
@@ -78,9 +80,14 @@ const Navbar = () => {
       {/* Handle show logout button when signed in */}
       {user && (
         <Box>
-          <Button onClick={handleClick} colorScheme="blue" variant="solid">
-            {/* font-awesome icon for exit */}
-            <i className="fa fa-sign-out"></i>
+          <Button
+            onClick={handleClick}
+            colorScheme="blue"
+            variant="solid"
+            rightIcon={<FiLogOut />}
+            fontWeight={400}
+          >
+            Log Out
           </Button>
         </Box>
       )}
