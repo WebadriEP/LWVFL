@@ -7,6 +7,7 @@ import {
   Tooltip,
   Flex,
   Skeleton,
+  useToast,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
@@ -23,6 +24,13 @@ const Members = () => {
   const [search, setSearch] = useState("")
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
+  const toast = useToast()
+  const navigate = useNavigate()
+  
+  const routeChange = () => {
+    let path = `/members/import`
+    navigate(path)
+  }
 
   // Fetch all members -- Used for search functionality
   const fetchMembers = () => {
@@ -31,7 +39,6 @@ const Members = () => {
       setShowColumns(
         json.length > 0 ? Object.keys(json[0]).map((key) => key) : []
       )
-      console.log("running")
     })
   }
 
@@ -43,9 +50,19 @@ const Members = () => {
     // Update the state with the new member data
     try {
       setMembers([...members, newMember])
+      handleMemberAdded()
     } catch (error) {
       console.log("Error adding member:", error)
     }
+  }
+  
+  const handleMemberAdded = () => {
+    toast({
+      title: "Member added.",
+      status: "success",
+      duration: 5000,
+      isClosable: true,
+    })
   }
 
   const handleDelete = async (id) => {
@@ -56,9 +73,19 @@ const Members = () => {
       console.log(response.data)
       // Remove the deleted member from the local state
       setMembers((members) => members.filter((member) => member._id !== id))
+      handleMemberDeleted()
     } catch (error) {
       console.log(error)
     }
+  }
+  
+  const handleMemberDeleted = () => {
+    toast({
+      title: "Member deleted.",
+      status: "error",
+      duration: 5000,
+      isClosable: true,
+    })
   }
 
   //   Determines the columns for the table and what is rendered inside each cell
@@ -99,24 +126,8 @@ const Members = () => {
         // Renders actions that user can perform, such as deleting or updating
         Header: " ",
         Cell: ({ row }) => (
-          <HStack
-            spacing={4}
-            justify="end"
-          >
-            <Tooltip
-              label="Edit Member"
-              hasArrow
-            >
-              <IconButton
-                icon={<FiEdit />}
-                colorScheme="gray"
-                size="sm"
-              />
-            </Tooltip>
-            <Tooltip
-              label="Delete Member"
-              hasArrow
-            >
+          <HStack spacing={4} justify="end">
+            <Tooltip label="Delete Member" hasArrow>
               <IconButton
                 icon={<FiArchive />}
                 colorScheme="red"
@@ -133,23 +144,11 @@ const Members = () => {
 
   return (
     <>
-      <Flex
-        direction="row"
-        justify="space-between"
-        align="center"
-      >
-        <Heading
-          as="h1"
-          size="xl"
-          mb={4}
-        >
+      <Flex direction="row" justify="space-between" align="center">
+        <Heading as="h1" size="xl" mb={4}>
           Members
         </Heading>
-        <Flex
-          maxW="30%"
-          align="space-between"
-          gap={4}
-        >
+        <Flex maxW="30%" align="space-between" gap={4}>
           <Button
             as={Link}
             to="/members/import"
@@ -165,10 +164,7 @@ const Members = () => {
         </Flex>
       </Flex>
 
-      <MemberTable
-        columns={columns}
-        data={members}
-      />
+      <MemberTable columns={columns} data={members} />
     </>
   )
 }

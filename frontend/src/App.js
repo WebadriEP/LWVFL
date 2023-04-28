@@ -15,12 +15,12 @@ import Member from "./pages/Member"
 import CreateAccount from "./pages/createAccount"
 import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login"
-import AddMember from "./pages/AddMember"
 import Donors from "./pages/Donors"
 import Donations from "./pages/Donations"
 import AddDonor from "./pages/AddDonor"
 import AddDonation from "./pages/AddDonation"
 import UpdateUser from "./components/users/UpdateUser"
+import UpdatePassword from "./components/users/UpdatePassword"
 import ImportMembers from "./pages/ImportMembers"
 import UserDashboard from "./pages/UserDashboard"
 
@@ -53,10 +53,7 @@ function App() {
             />
 
             {/* Donor Routes */}
-            <Route
-              path="/addmember"
-              element={user ? <AddMember /> : <Navigate to="/" />}
-            />
+            
             <Route
               path="/donors"
               element={user ? <Donors /> : <Navigate to="/" />}
@@ -104,6 +101,11 @@ function App() {
               exact
               path="/update-user/:id"
               element={user ? <UpdateUser /> : <Navigate to="/" />}
+            />
+            <Route
+              exact
+              path="/update-password/:id"
+              element={user ? <UpdatePassword /> : <Navigate to="/" />}
             />
           </Routes>
         </div>

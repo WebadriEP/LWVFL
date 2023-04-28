@@ -8,6 +8,7 @@ import NavLink from "../components/navigation/NavLink";
 // components
 import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab, SimpleGrid, Button } from "@chakra-ui/react";
 import BadgeStack from "../components/ui/BadgeStack";
+import MemberInfo from "../components/members/MemberInfo";
 import Notes from "../components/members/Notes";
 
 const Member = (props) => {
@@ -77,6 +78,20 @@ const Member = (props) => {
     setNotes(childData)
     updateMember(id, { memberNotes: childData })
   }
+  const memberToParent = async (childData) => {
+    try {
+      // Update member state with new data
+      setMember(childData);
+  
+      // Call updateMember function with member ID and updated member data
+      const updatedMember = { ...member, ...childData }; // Merge childData with existing member data
+      await updateMember(member.id, updatedMember);
+      console.log('Member updated successfully:', updatedMember);
+    } catch (error) {
+      console.error('Failed to update member:', error);
+      // Handle error as needed
+    }
+  };
 
   const link = "/donations/list/" + id;
 
@@ -127,33 +142,10 @@ const Member = (props) => {
 
       {/* Page Body */}
 
-      <Grid templateColumns='1fr 1fr' gap={5}>
+      <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(3, 1fr)" gap={5}>
         {/* Personal Information Card */}
-        <GridItem>
-          <Card border='1px solid' borderColor='gray.100' shadow='lg'>
-            <CardHeader>
-              <Heading size='lg'>Personal Information</Heading>
-            </CardHeader>
-            
-            <CardBody>
-              <SimpleGrid columns={2} spacing={3}>
-                <GridItem><Text>Email</Text></GridItem>
-                <GridItem><Text>{member.email}</Text></GridItem>
-
-                <GridItem><Text>Phone</Text></GridItem>
-                <GridItem><Text>{member.phone}</Text></GridItem>
-
-                <GridItem><Text>Date of Birth</Text></GridItem>
-                <GridItem><Text>{`${member.birthMonth}/${member.birthDay}/${member.birthYear}`}</Text></GridItem>
-
-                <GridItem><Text>Address</Text></GridItem>
-                <GridItem><Text>{member.homeAddress}, { member.addressLine2 ? (member.addressLine2 + ', ') : null } {member.city}, {member.state} {member.zip}</Text></GridItem>
-
-                <GridItem><Text>Member Since</Text></GridItem>
-                <GridItem><Text>{createdAt}</Text></GridItem>
-              </SimpleGrid>
-            </CardBody>
-          </Card>
+        <GridItem colSpan={1} rowSpan={3}>
+          <MemberInfo memberToParent={memberToParent} initialMember={member} />
         </GridItem>
         
         {/* Notes */}
@@ -167,7 +159,7 @@ const Member = (props) => {
         </GridItem>
         
         {/* Donation list */}
-        <GridItem colSpan={2}>
+        <GridItem>
           <Card border='1px solid' borderColor='gray.100' shadow='lg'>
             <CardHeader>
               <Heading size='lg'>Donations</Heading>

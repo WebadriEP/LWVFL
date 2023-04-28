@@ -165,7 +165,7 @@ function MemberTable({ columns, data }) {
             </Box>
 
             {/* Type Filters */}
-            <Box mb={6}>
+            {/* <Box mb={6}>
               <Heading size="sm" mb={2}>
                 Filter by Type
               </Heading>
@@ -176,15 +176,15 @@ function MemberTable({ columns, data }) {
                   <Checkbox value="memberdonor">Member & Donor</Checkbox>
                 </Stack>
               </CheckboxGroup>
-            </Box>
+            </Box> */}
 
             {/* Show students? */}
-            <Box>
+            {/* <Box>
               <Heading size="sm" mb={2}>
                 Show Students?
-              </Heading>
+              </Heading> */}
               {/* RadioGroup */}
-              <RadioGroup>
+              {/* <RadioGroup>
                 <Stack direction="row">
                   <Radio value={true} mr={4}>
                     Yes
@@ -192,7 +192,7 @@ function MemberTable({ columns, data }) {
                   <Radio value={false}>No</Radio>
                 </Stack>
               </RadioGroup>
-            </Box>
+            </Box> */}
           </Flex>
         </Flex>
 
