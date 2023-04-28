@@ -18,15 +18,17 @@ import {
   PopoverCloseButton,
   PopoverAnchor,
   Portal,
+  ButtonGroup,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
 import { Link } from "react-router-dom"
-import { FiArchive, FiEdit } from "react-icons/fi"
+import { FiArchive, FiEdit, FiShare } from "react-icons/fi"
 import { TbFileImport } from "react-icons/tb"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import CsvDownloadButton from "react-json-to-csv"
 
 import MemberTable from "../components/members/memberTable"
 
@@ -39,7 +41,7 @@ const Members = () => {
   const navigate = useNavigate()
 
   //const navigate = useNavigate()
-  
+
   const routeChange = () => {
     let path = `/members/import`
     navigate(path)
@@ -86,17 +88,16 @@ const Members = () => {
       console.log(response.data)
       // Remove the deleted member from the local state
       setMembers((members) => members.filter((member) => member._id !== id))
-      handleMemberDeleted()
+      displayToast("Member deleted!", "error")
     } catch (error) {
       console.log(error)
     }
   }
-  
-  
-  const handleMemberDeleted = () => {
+
+  const displayToast = (title, status) => {
     toast({
-      title: "Member deleted.",
-      status: "error",
+      title: title,
+      status: status,
       duration: 5000,
       isClosable: true,
     })
@@ -141,8 +142,7 @@ const Members = () => {
         Header: " ",
         Cell: ({ row }) => (
           <HStack spacing={4} justify="end">
-            
-            <Popover placement='bottom-end'>
+            <Popover placement="bottom-end">
               {({ isOpen, onClose }) => (
                 <>
                   <PopoverTrigger>
@@ -155,22 +155,29 @@ const Members = () => {
                   <Portal>
                     <PopoverContent>
                       <PopoverArrow />
-                      <PopoverHeader><b>Confirmation</b></PopoverHeader>
+                      <PopoverHeader>
+                        <b>Confirmation</b>
+                      </PopoverHeader>
                       <PopoverCloseButton />
                       <PopoverBody>
                         Are you sure you would like to delete this member?
                       </PopoverBody>
                       <PopoverFooter>
-                        <Button colorScheme='red' onClick={() => {
-                          handleDelete(row.original._id)
-                          onClose()
-                        }}>Yes</Button>
+                        <Button
+                          colorScheme="red"
+                          onClick={() => {
+                            handleDelete(row.original._id)
+                            onClose()
+                          }}
+                        >
+                          Yes
+                        </Button>
                       </PopoverFooter>
                     </PopoverContent>
                   </Portal>
                 </>
               )}
-            </Popover>            
+            </Popover>
           </HStack>
         ),
       },
@@ -185,18 +192,38 @@ const Members = () => {
           Members
         </Heading>
         <Flex maxW="30%" align="space-between" gap={4}>
-          <Button
-            as={Link}
-            to="/members/import"
-            colorScheme="gray"
-            rightIcon={<TbFileImport />}
-            _hover={{
-              textDecoration: "none",
-            }}
-          >
-            Import
-          </Button>
-          <AddMemberPop onAddMember={handleAddMember} />
+          <ButtonGroup isAttached>
+            {/* EXPORT */}
+            <Button
+              as={CsvDownloadButton}
+              data={members}
+              delimiter=","
+              filename={"members-export-" + Date.now() + ".csv"}
+              colorScheme="blue"
+              variant="outline"
+              rightIcon={<FiShare />}
+            >
+              Export
+            </Button>
+
+            {/* IMPORT */}
+            <Button
+              as={Link}
+              to="/members/import"
+              colorScheme="blue"
+              variant="outline"
+              borderRadius={0}
+              rightIcon={<TbFileImport />}
+              _hover={{
+                textDecoration: "none",
+              }}
+            >
+              Import
+            </Button>
+
+            {/* ADD MEMBER */}
+            <AddMemberPop onAddMember={handleAddMember} />
+          </ButtonGroup>
         </Flex>
       </Flex>
 
