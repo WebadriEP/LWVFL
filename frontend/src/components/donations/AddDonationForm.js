@@ -1,97 +1,93 @@
-import { useState } from 'react';
-import React from 'react';
-import { useNavigate, useParams } from "react-router-dom";
-import { createDonation } from '../../api/axios'
-import { Button} from "@chakra-ui/react";
+import { useState } from "react"
+import React from "react"
+import { useNavigate, useParams } from "react-router-dom"
+import { createDonation } from "../../api/axios"
+import { Button } from "@chakra-ui/react"
 
 const AddDonationForm = () => {
-    
-    
-    const donorID = useParams()
-    const [amount, setAmount] = useState('');
-    const [date, setDate] = useState('');
-    const [type, setType] = useState('');
-    const [notes, setNotes] = useState('');
-    const [emptyFields, setEmptyFields] = useState([]);
+  const donorID = useParams()
+  const [amount, setAmount] = useState("")
+  const [date, setDate] = useState("")
+  const [type, setType] = useState("")
+  const [notes, setNotes] = useState("")
+  const [emptyFields, setEmptyFields] = useState([])
 
-    const [error, setError] = useState(null);
-    //console.log(donorID);
+  const [error, setError] = useState(null)
+  //console.log(donorID);
+
+  const navigate = useNavigate()
+  const homelink = "/donations/list/" + donorID.id
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    setError(null);
+    setError(null)
     try {
-      console.log(donorID);
-        await createDonation(donorID.id, {donorID: donorID.id, amount: amount, date: date, type: type, notes: notes})
+      console.log(donorID)
+      await createDonation(donorID.id, {
+        donorID: donorID.id,
+        amount: amount,
+        date: date,
+        type: type,
+        notes: notes,
+      })
     } catch (err) {
-        setError(err.message);
+      setError(err.message)
     }
-    const navigate = useNavigate();
-    const homelink = "/donations/list/" + donorID.id;
-    navigate(homelink);
-}
-  
+    navigate(homelink)
+  }
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
         <h2>Add a New Donation</h2>
 
-        
         <div>
-          <div>
-          </div>
+          <div></div>
           <div>
             <label>Amount*</label>
-            <input 
+            <input
               type="number"
-              value={amount} 
-              onChange={(e) => setAmount(e.target.value)} 
-              className={emptyFields.includes('amount') ? 'error' : ''} 
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              className={emptyFields.includes("amount") ? "error" : ""}
             />
           </div>
         </div>
 
-        
         <div className="form-email">
           <label>Date of Donation*</label>
-          <input 
+          <input
             type="date"
-            value={date} 
-            onChange={(e) => setDate(e.target.value)} 
-            className={emptyFields.includes('date') ? 'error' : ''} 
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+            className={emptyFields.includes("date") ? "error" : ""}
           />
         </div>
 
         <div className="form-email">
           <label>Type of Donation</label>
-          <input 
+          <input
             type="String"
-            value={type} 
-            onChange={(e) => setType(e.target.value)} 
+            value={type}
+            onChange={(e) => setType(e.target.value)}
           />
         </div>
 
         <div className="form-email">
           <label>Additional Notes</label>
-          <input 
+          <input
             type="String"
-            value={notes} 
-            onChange={(e) => setNotes(e.target.value)} 
+            value={notes}
+            onChange={(e) => setNotes(e.target.value)}
           />
         </div>
-        
-      <Button onClick={handleSubmit} colorScheme='green '>Add Donation</Button>
 
-
-      
+        <Button onClick={handleSubmit} colorScheme="green ">
+          Add Donation
+        </Button>
       </form>
     </div>
   )
-
-
-
-
-    
 }
 
 export default AddDonationForm

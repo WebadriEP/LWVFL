@@ -87,6 +87,12 @@ const memberSchema = new Schema(
   },
   {
     virtuals: {
+      // Allows calling member.createdAt instead of member._id.getTimestamp()
+      createdAt: {
+        get() {
+          return this._id.getTimestamp()
+        },
+      },
       // Allows calling member.fullName instead of member.firstName + member.lastName
       fullName: {
         get() {
@@ -114,7 +120,9 @@ const memberSchema = new Schema(
         },
       },
     },
-  },
-  { timestamps: true }
+  }
 )
+
+memberSchema.set("timestamps", true)
+
 module.exports = mongoose.model("Member", memberSchema)

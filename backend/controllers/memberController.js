@@ -40,6 +40,28 @@ const getStatTotalDonationsAmount = async (req, res) => {
   res.status(200).json(totalDonationsAmount)
 }
 
+// Get all three stats at once
+const getStats = async (req, res) => {
+  try {
+    const members = await Member.find({}).sort({ createdAt: -1 })
+    let totalDonations = 0
+    let totalDonationsAmount = 0
+    members.forEach((member) => {
+      totalDonations += member.donations.length
+      member.donations.forEach((donation) => {
+        totalDonationsAmount += donation.donationAmount
+      })
+    })
+    res.status(200).json({
+      totalMembers: members.length,
+      totalDonations: totalDonations,
+      totalDonationsAmount: totalDonationsAmount,
+    })
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 // Find a single member
 const getMember = async (req, res) => {
   const { id } = req.params
@@ -229,6 +251,7 @@ module.exports = {
   updateMember,
   deleteMember,
   exportMembers,
+  getStats,
   getStatTotalMembers,
   getStatTotalDonations,
   getStatTotalDonationsAmount,
