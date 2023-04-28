@@ -19,10 +19,9 @@ const QuickActions = () => {
         templateColumns="1fr 1fr 1fr"
         gap={5}
         bg="white"
-        mt={2}
-        mb={10}
+        mb={8}
         p={2}
-        shadow="lg"
+        shadow="md"
         borderRadius={10}
         border="1px solid"
         borderColor="gray.100"

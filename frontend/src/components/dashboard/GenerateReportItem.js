@@ -26,23 +26,13 @@ export default function PrintItem() {
                 cursor: "pointer",
               }}
             >
-              <VStack
-                alignItems="center"
-                justifyContent="space-around"
-              >
+              <VStack alignItems="center" justifyContent="space-around">
                 {/* Icon */}
-                <Icon
-                  as={FiPrinter}
-                  boxSize={8}
-                />
+                <Icon as={FiPrinter} boxSize={8} />
 
                 {/* Header */}
-                <Heading
-                  size="md"
-                  marginBottom={0}
-                  color="gray.700"
-                >
-                  Generate Report
+                <Heading size="md" marginBottom={0} color="gray.700">
+                  Health Report
                 </Heading>
               </VStack>
             </GridItem>

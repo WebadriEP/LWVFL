@@ -1,76 +1,94 @@
-import { useState, useEffect } from "react";
-import React from 'react';
+import { useState, useEffect, useCallback } from "react"
+import React from "react"
 
-import { useParams, Link } from "react-router-dom";
-import { getSingleMember, updateMember } from "../api/axios";
-import NavLink from "../components/navigation/NavLink";
+import { useParams, Link } from "react-router-dom"
+import { getSingleMember, updateMember } from "../api/axios"
+import NavLink from "../components/navigation/NavLink"
 
 // components
-import { Box, Heading, Text, Flex, Card, CardHeader, CardBody, Grid, Divider, GridItem, Tabs, TabList, Tab, SimpleGrid, Button } from "@chakra-ui/react";
-import BadgeStack from "../components/ui/BadgeStack";
-import MemberInfo from "../components/members/MemberInfo";
-import Notes from "../components/members/Notes";
+import {
+  Box,
+  Heading,
+  Text,
+  Flex,
+  Card,
+  CardHeader,
+  CardBody,
+  Grid,
+  Divider,
+  GridItem,
+  Tabs,
+  TabList,
+  Tab,
+  SimpleGrid,
+  Button,
+  HStack,
+  Select,
+  Spinner,
+  ButtonGroup,
+} from "@chakra-ui/react"
+import BadgeStack from "../components/ui/BadgeStack"
+import MemberInfo from "../components/members/MemberInfo"
+import Notes from "../components/members/Notes"
 
 const Member = (props) => {
-  const { id } = useParams(); // Get the ID from the URL
-  const [member, setMember] = useState({});
-  const [status, setStatus] = useState('') // Member status
-  const [notes, setNotes] = useState('') // Member notes
+  const { id } = useParams() // Get the ID from the URL
+  const [member, setMember] = useState({})
+  const [status, setStatus] = useState(member.memberStatus) // Member status
+  const [notes, setNotes] = useState("") // Member notes
+  const [loading, setLoading] = useState(true) // Loading state
+  const [success, setSuccess] = useState(false) // Success toast
+
+  /*
+   * Fetch member details
+   */
+  const getMemberDetails = useCallback(() => {
+    getSingleMember(id)
+      .then((json) => {
+        setMember(json)
+        setNotes(json.memberNotes)
+        setStatus(json.memberStatus)
+      })
+
+      // Error handling
+      .catch((err) => {
+        setError(err.message)
+      })
+
+      .finally(() => {
+        setLoading(false)
+        setSuccess(true)
+      })
+  }, [id])
 
   // Acquire member details
   useEffect(() => {
-    getSingleMember(id)
+    /*
+     * JADIEL: MOVED THIS TO AN EXTERNAL FUNCTION /\ TO LOWER THE AMOUNT OF GET REQUESTS
+     * ALL INFO STILL THERE
+     */
+    setLoading(true)
+    getMemberDetails()
+  }, [getMemberDetails])
 
-    // Set member state
-    .then(json => {
-      setMember(json) // set member state
-      setNotes(json.memberNotes) // set notes state
-      setStatus(json.memberStatus) // set status state
-    })
-
-    // Error handling
-    .catch(err => {
-      console.log(err)
-    })
-  }, [])
+  // Trigger success toast when memberStatus is changed
 
   // Format dates
-  const createdAt = new Date(member.createdAt).toLocaleDateString();
-  const lastUpdated = new Date(member.updatedAt).toLocaleDateString();
+  const createdAt = new Date(member.createdAt).toLocaleDateString()
+  const lastUpdated = new Date(member.updatedAt).toLocaleDateString()
 
   // Format gender
-  let formattedGender;
+  let formattedGender
   switch (member.gender) {
-    case 'male': 
-      formattedGender = 'Male';
-      break;
-    case 'female':
-      formattedGender = 'Female';
-      break;
-    case 'other':
-      formattedGender = 'Other';
-      break;
-  }
-
-  let statusTabIndex;
-  switch (member.memberStatus) {
-    case 'none':
-      statusTabIndex = 0;
-      break;
-    case 'engage':
-      statusTabIndex = 1;
-      break;
-    case 'contacted':
-      statusTabIndex = 2;
-      break;
-    case 'other':
-      statusTabIndex = 3;
-      break;
-    case 'nonconverted':
-      statusTabIndex = 4;
-      break;
-    default: 
-      statusTabIndex = 0;
+    case "male":
+      formattedGender = "Male"
+      break
+    case "female":
+      formattedGender = "Female"
+      break
+    case "other":
+      formattedGender = "Other"
+      break
   }
 
   // Retreive notes from child component and update member data
@@ -81,19 +99,18 @@ const Member = (props) => {
   const memberToParent = async (childData) => {
     try {
       // Update member state with new data
-      setMember(childData);
-  
+      setMember(childData)
+
       // Call updateMember function with member ID and updated member data
-      const updatedMember = { ...member, ...childData }; // Merge childData with existing member data
-      await updateMember(member.id, updatedMember);
-      console.log('Member updated successfully:', updatedMember);
+      const updatedMember = { ...member, ...childData } // Merge childData with existing member data
+      await updateMember(member.id, updatedMember)
     } catch (error) {
-      console.error('Failed to update member:', error);
+      console.error("Failed to update member:", error)
       // Handle error as needed
     }
-  };
+  }
 
-  const link = "/donations/list/" + id;
+  const link = "/donations/list/" + id
 
   // Render donations
   // const donations = member.donations.map(donation => {
@@ -111,45 +128,60 @@ const Member = (props) => {
   return (
     <Box>
       {/* Heading & Last Updated */}
-      <Flex align='center' justify='space-between' mb={5}>
+      <Flex align="center" justify="space-between" mb={5}>
         <Box>
-          <Text fontSize='sm'>ENTRY DETAILS</Text>
-          <Heading size='xl' textTransform='capitalize' mb={2} transform='translateX(-2px)'>
+          <Text fontSize="sm">ENTRY DETAILS</Text>
+          <Heading
+            size="xl"
+            textTransform="capitalize"
+            mb={2}
+            transform="translateX(-2px)"
+          >
             {member.firstName} {member.lastName}
           </Heading>
 
           {/* Badges */}
-          <BadgeStack member={member} status={status}  />
+          <BadgeStack member={member} status={status} />
         </Box>
 
         {/* Member Status Tabs */}
-        <Box>
-          <Tabs variant='solid-rounded' colorScheme='blue' defaultIndex={statusTabIndex}>
-            <TabList>
-              <Tab m={2} onClick={() => setMemberStatus(member._id, 'none')}>Open</Tab>
-              <Tab m={2} onClick={() => setMemberStatus(member._id, 'engage')}>Engage</Tab>
-              <Tab m={2} onClick={() => setMemberStatus(member._id, 'contacted')}>Contacted</Tab>
-              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Converted</Tab>
-              <Tab m={2} onClick={() => setMemberStatus(member._id, 'other')}>Not Converted</Tab>
-            </TabList>
-          </Tabs>
-        </Box>
+        <ButtonGroup isAttached>
+          {STATUS_OPTIONS.map((option) => {
+            return (
+              <Button
+                key={option.key}
+                colorScheme="blue"
+                size="md"
+                variant={status === option.value ? "solid" : "outline"}
+                onClick={(e) => {
+                  setMemberStatus(member._id, option.value)
+                }}
+              >
+                {option.label}
+              </Button>
+            )
+          })}
+        </ButtonGroup>
 
-        <Flex direction='column'>
-          <Text fontSize='sm'>Last Updated: {lastUpdated}</Text>
+        <Flex direction="column">
+          <Text fontSize="sm">Last Updated: {lastUpdated}</Text>
         </Flex>
       </Flex>
 
       {/* Page Body */}
 
-      <Grid templateColumns="repeat(2, 1fr)" templateRows="repeat(3, 1fr)" gap={5}>
+      <Grid
+        templateColumns="repeat(2, 1fr)"
+        templateRows="repeat(3, 1fr)"
+        gap={5}
+      >
         {/* Personal Information Card */}
         <GridItem colSpan={1} rowSpan={3}>
           <MemberInfo memberToParent={memberToParent} initialMember={member} />
         </GridItem>
-        
+
         {/* Notes */}
-        <GridItem>
+        <GridItem rowSpan={3}>
           {/* 
             Notes component is a child of Member component.
             Notes component passes notes to parent component (Member component) via notesToParent function.
@@ -157,17 +189,19 @@ const Member = (props) => {
           */}
           <Notes notesToParent={notesToParent} initialNotes={notes} />
         </GridItem>
-        
+
         {/* Donation list */}
-        <GridItem>
-          <Card border='1px solid' borderColor='gray.100' shadow='lg'>
+        <GridItem colSpan={3}>
+          <Card border="1px solid" borderColor="gray.100" shadow="lg">
             <CardHeader>
-              <Heading size='lg'>Donations</Heading>
+              <Heading size="lg">Donations</Heading>
             </CardHeader>
-            
+
             <CardBody>
-            {/* <Button as={NavLink} colorScheme='green' page={link} text='View Donation List' /> */}
-            <Button><Link to = {link}>View Donation List</Link></Button>
+              {/* <Button as={NavLink} colorScheme='green' page={link} text='View Donation List' /> */}
+              <Button>
+                <Link to={link}>View Donation List</Link>
+              </Button>
             </CardBody>
           </Card>
         </GridItem>
@@ -175,5 +209,13 @@ const Member = (props) => {
     </Box>
   )
 }
+
+const STATUS_OPTIONS = [
+  { key: 1, value: "none", label: "Open" },
+  { key: 2, value: "engage", label: "Engage" },
+  { key: 3, value: "contacted", label: "Contacted" },
+  { key: 4, value: "converted", label: "Converted" },
+  { key: 5, value: "notConverted", label: "Not Converted" },
+]
 
 export default Member

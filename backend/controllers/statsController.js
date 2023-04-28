@@ -172,6 +172,54 @@ const getMembersPerMonth = async (req, res) => {
   }
 }
 
+/*
+ * Get number of donations per month by checking the donation.date field
+ */
+const getDonationsPerMonth = async (req, res) => {
+  try {
+    const donations = await DonationModel.find({})
+    const donationsPerMonth = new Array(12).fill(0)
+
+    // Loop through members and increment the month index in the array
+    donations.forEach((donation) => {
+      const month = new Date(donation.date).getMonth()
+      donationsPerMonth[month] += 1
+    })
+
+    console.log(donationsPerMonth)
+
+    res.status(200).json(donationsPerMonth)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
+/*
+ * Get amount of donations per month
+ */
+const getDonationsAmountPerMonth = async (req, res) => {
+  try {
+    const donations = await DonationModel.find({})
+    const donationsAmountPerMonth = new Array(12).fill(0)
+
+    // Loop through donations and increment the month index in the array
+    donations.forEach((donation) => {
+      const month = new Date(donation.date).getMonth()
+      const amount = parseFloat(donation.amount)
+
+      if (!isNaN(amount)) {
+        donationsAmountPerMonth[month] += amount
+      }
+
+      console.log(donationsAmountPerMonth)
+    })
+
+    res.status(200).json(donationsAmountPerMonth)
+  } catch (error) {
+    res.status(500).json(error)
+  }
+}
+
 module.exports = {
   getSummary,
   getSummaryByMonth,
@@ -180,4 +228,6 @@ module.exports = {
   getTotalDonations,
   getTotalDonationsAmount,
   getMembersPerMonth,
+  getDonationsPerMonth,
+  getDonationsAmountPerMonth,
 }
