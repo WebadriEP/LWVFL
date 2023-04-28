@@ -79,7 +79,7 @@ const Members = () => {
   const handleMemberDeleted = () => {
     toast({
       title: "Member deleted.",
-      status: "success",
+      status: "error",
       duration: 5000,
       isClosable: true,
     });
