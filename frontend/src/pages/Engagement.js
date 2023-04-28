@@ -22,7 +22,7 @@ import EngagementTable from "../components/engagement/EngagementTable"
 
 const Engagement = () => {
   const [members, setMembers] = useState([])
-  const [search, setSearch] = useState("")
+
 
 
   useEffect(() => {
@@ -35,21 +35,7 @@ const Engagement = () => {
     })
   }, [])
 
-  // Search functionality
-  const handleSearch = (e) => {
-    setSearch(e.target.value)
 
-    if (e.target.value === "") {
-      setSearchResults(members)
-      return
-    }
-
-    setSearchResults(
-      members.filter((member) =>
-        member.fullName.toLowerCase().includes(search.toLowerCase())
-      )
-    )
-  }
   const handleActiveFilter = (e) => {
     setActiveFilter(e.target.checked)
   }
@@ -120,14 +106,6 @@ const Engagement = () => {
     <>
       <HStack justify="space-between" mb={5}>
         <Heading>Engagement List</Heading>
-        <Box>
-          <Input
-            type="text"
-            placeholder="Search"
-            value={search}
-            onChange={handleSearch}
-          />
-        </Box>
       </HStack>
 
       <Flex direction="row">
