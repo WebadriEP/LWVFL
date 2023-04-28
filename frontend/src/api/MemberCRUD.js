@@ -8,7 +8,10 @@ const addMemberFuntion = async (
   homeAddress,
   city,
   state,
-  zip
+  zip,
+  birthMonth,
+  birthDay,
+  birthYear,
 ) => {
   try {
     //const res = await axios.post('https://dontra-production.up.railway.app/api/members', {
@@ -23,8 +26,12 @@ const addMemberFuntion = async (
         city,
         state,
         zip,
+        birthMonth,
+        birthDay,
+        birthYear,
       }
     )
+    console.log(res.data)
     return res.data
   } catch (err) {
     console.error(err)
