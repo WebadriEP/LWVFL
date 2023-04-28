@@ -16,7 +16,7 @@ const AddDonationForm = () => {
   //console.log(donorID);
 
   const navigate = useNavigate()
-  const homelink = "/donations/list/" + donorID.id
+  const homelink = "/member/" + donorID.id
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -29,11 +29,12 @@ const AddDonationForm = () => {
         date: date,
         type: type,
         notes: notes,
-      })
+      }) 
+      navigate(homelink)
     } catch (err) {
       setError(err.message)
     }
-    navigate(homelink)
+    
   }
 
   return (
