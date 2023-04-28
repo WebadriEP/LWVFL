@@ -156,7 +156,7 @@ const getTotalDonationsAmount = async (req, res) => {
  */
 const getMembersPerMonth = async (req, res) => {
   try {
-    const members = await MemberModel.find({}).sort({ createdAt: -1 })
+    const members = await MemberModel.find({})
     // Create array with the number of members per month, starting from 0
     const membersPerMonth = new Array(12).fill(0)
 
@@ -186,8 +186,6 @@ const getDonationsPerMonth = async (req, res) => {
       donationsPerMonth[month] += 1
     })
 
-    console.log(donationsPerMonth)
-
     res.status(200).json(donationsPerMonth)
   } catch (error) {
     res.status(500).json(error)
@@ -210,8 +208,6 @@ const getDonationsAmountPerMonth = async (req, res) => {
       if (!isNaN(amount)) {
         donationsAmountPerMonth[month] += amount
       }
-
-      console.log(donationsAmountPerMonth)
     })
 
     res.status(200).json(donationsAmountPerMonth)

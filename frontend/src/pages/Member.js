@@ -75,7 +75,7 @@ const Member = (props) => {
 
   // Format dates
   const createdAt = new Date(member.createdAt).toLocaleDateString()
-  const lastUpdated = new Date(member.updatedAt).toLocaleDateString()
+  const lastUpdated = new Date(member.updatedAt).toLocaleDateString("en-US")
 
   // Format gender
   let formattedGender
