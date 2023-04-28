@@ -30,6 +30,7 @@ import {
 import BadgeStack from "../components/ui/BadgeStack"
 import MemberInfo from "../components/members/MemberInfo"
 import Notes from "../components/members/Notes"
+import Donations from "./Donations"
 
 const Member = (props) => {
   const { id } = useParams() // Get the ID from the URL
@@ -199,9 +200,7 @@ const Member = (props) => {
 
             <CardBody>
               {/* <Button as={NavLink} colorScheme='green' page={link} text='View Donation List' /> */}
-              <Button>
-                <Link to={link}>View Donation List</Link>
-              </Button>
+              <Donations></Donations>
             </CardBody>
           </Card>
         </GridItem>
