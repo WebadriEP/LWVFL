@@ -41,7 +41,7 @@ const MemberInfo = ({ memberToParent, initialMember }) => {
   const memberSince = new Date(data.createdAt).toLocaleDateString()
 
   return (
-    <Card border="1px solid" borderColor="gray.100" shadow="lg">
+    <Card border="1px solid" borderColor="gray.100" shadow="md">
       <CardHeader>
         <Flex direction="row" align="space-between">
           <Heading size="lg">Member Info</Heading>

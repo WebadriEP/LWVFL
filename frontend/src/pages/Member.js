@@ -192,7 +192,7 @@ const Member = (props) => {
 
         {/* Donation list */}
         <GridItem colSpan={3}>
-          <Card border="1px solid" borderColor="gray.100" shadow="lg">
+          <Card border="1px solid" borderColor="gray.100" shadow="md">
             <CardHeader>
               <Heading size="lg">Donations</Heading>
             </CardHeader>
