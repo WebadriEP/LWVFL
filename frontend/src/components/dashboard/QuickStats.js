@@ -20,22 +20,22 @@ const QuickStats = () => {
         borderRadius={8}
         bg="white"
         shadow="md"
-        px={8}
-        py={6}
+        px={{ base: 4, lg: 8 }}
+        py={{ base: 2, lg: 6 }}
         mb={8}
       >
         {/* Horizontal stack to separate all-time from current month */}
-        <HStack spacing={16} align="center">
+        <HStack spacing={{ base: 8, lg: 16 }} align="center">
           {/* All-time stats */}
           <Box align="start">
             <Text color="gray.600" fontSize="sm">
-              All Time
+              Total (all time)
             </Text>
             <StatsAllTime />
           </Box>
 
           <Center height="80px">
-            <Divider orientation="vertical" />
+            <Divider orientation="vertical" color="gray.300" />
           </Center>
 
           {/* Current month stats */}

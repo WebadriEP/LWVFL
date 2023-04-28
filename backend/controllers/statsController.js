@@ -160,6 +160,7 @@ const getMembersPerMonth = async (req, res) => {
     // Create array with the number of members per month, starting from 0
     const membersPerMonth = new Array(12).fill(0)
 
+    // Loop through members and increment the month index in the array
     members.forEach((member) => {
       const month = new Date(member.createdAt).getMonth()
       membersPerMonth[month] += 1

@@ -5,9 +5,6 @@ import QuickActions from "../components/dashboard/QuickActions"
 import MembersGraph from "../components/dashboard/MembersGraph"
 import QuickStats from "../components/dashboard/QuickStats"
 
-// css
-import "../components/dashboard/dashboardStyles.css"
-
 const Dashboard = () => {
   return (
     <>

@@ -6,6 +6,11 @@ import {
   StatNumber,
   Flex,
   Skeleton,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
+  Spinner,
 } from "@chakra-ui/react"
 import useApi from "../../../hooks/useApi"
 
@@ -19,7 +24,15 @@ const StatsCurrentMonth = () => {
 
   if (loading)
     return <Skeleton height="50px" width="400px" speed={0.75} mb={4} /> // Loading spinner
-  if (error) console.log(error) // Log error
+  if (error)
+    return (
+      // Error alert
+      <Alert status="error" mt={1}>
+        <AlertIcon />
+        <AlertTitle>Error loading stats.</AlertTitle>
+        <AlertDescription>{error}</AlertDescription>
+      </Alert>
+    )
 
   return (
     <>
@@ -29,8 +42,8 @@ const StatsCurrentMonth = () => {
           {/* Total Members */}
           <Box>
             <Stat>
-              <StatNumber color="blue.500" fontSize="3xl">
-                {data ? data.totalMembers : <Skeleton />}
+              <StatNumber color="blue.500" fontSize={{ base: "md", lg: "3xl" }}>
+                {data ? data.totalMembers : <Spinner />}
               </StatNumber>
               <StatLabel fontSize="sm" color="gray.800">
                 Members
@@ -41,8 +54,8 @@ const StatsCurrentMonth = () => {
           {/* Total Donations */}
           <Box>
             <Stat>
-              <StatNumber color="blue.500" fontSize="3xl">
-                {data ? data.totalDonations : <Skeleton />}
+              <StatNumber color="blue.500" fontSize={{ base: "md", lg: "3xl" }}>
+                {data ? data.totalDonations : <Spinner />}
               </StatNumber>
               <StatLabel fontSize="sm" color="gray.800">
                 Donations
@@ -53,8 +66,8 @@ const StatsCurrentMonth = () => {
           {/* Total Donations Amount */}
           <Box>
             <Stat>
-              <StatNumber color="blue.500" fontSize="3xl">
-                {data ? "$" + data.totalDonationsAmount : <Skeleton />}
+              <StatNumber color="blue.500" fontSize={{ base: "md", lg: "3xl" }}>
+                {data ? "$" + data.totalDonationsAmount : <Spinner />}
               </StatNumber>
               <StatLabel fontSize="sm" color="gray.800">
                 Donated

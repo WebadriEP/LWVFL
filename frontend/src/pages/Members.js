@@ -24,7 +24,6 @@ const Members = () => {
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
   const toast = useToast()
-  
 
   const navigate = useNavigate()
   const routeChange = () => {
@@ -39,7 +38,6 @@ const Members = () => {
       setShowColumns(
         json.length > 0 ? Object.keys(json[0]).map((key) => key) : []
       )
-      console.log("running")
     })
   }
 
@@ -50,30 +48,32 @@ const Members = () => {
   const handleAddMember = (newMember) => {
     // Update the state with the new member data
     try {
-      setMembers([...members, newMember]);
+      setMembers([...members, newMember])
       handleMemberAdded()
     } catch (error) {
-      console.log("Error adding member:", error);
+      console.log("Error adding member:", error)
     }
-  };
+  }
   const handleMemberAdded = () => {
     toast({
       title: "Member added.",
       status: "success",
       duration: 5000,
       isClosable: true,
-    });
-  };
+    })
+  }
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(process.env.REACT_APP_BACKEND_URL+'/api/members/' + id);
-      console.log(response.data);
+      const response = await axios.delete(
+        process.env.REACT_APP_BACKEND_URL + "/api/members/" + id
+      )
+      console.log(response.data)
       // Remove the deleted member from the local state
-      setMembers(members => members.filter(member => member._id !== id));
-      handleMemberDeleted();
+      setMembers((members) => members.filter((member) => member._id !== id))
+      handleMemberDeleted()
     } catch (error) {
-      console.log(error);
+      console.log(error)
     }
   }
   const handleMemberDeleted = () => {
@@ -82,10 +82,8 @@ const Members = () => {
       status: "error",
       duration: 5000,
       isClosable: true,
-    });
-  };
-
-  
+    })
+  }
 
   //   Determines the columns for the table and what is rendered inside each cell
   const columns = useMemo(
@@ -125,14 +123,8 @@ const Members = () => {
         // Renders actions that user can perform, such as deleting or updating
         Header: " ",
         Cell: ({ row }) => (
-          <HStack
-            spacing={4}
-            justify="end"
-          >
-            <Tooltip
-              label="Delete Member"
-              hasArrow
-            >
+          <HStack spacing={4} justify="end">
+            <Tooltip label="Delete Member" hasArrow>
               <IconButton
                 icon={<FiArchive />}
                 colorScheme="red"
@@ -149,23 +141,11 @@ const Members = () => {
 
   return (
     <>
-      <Flex
-        direction="row"
-        justify="space-between"
-        align="center"
-      >
-        <Heading
-          as="h1"
-          size="xl"
-          mb={4}
-        >
+      <Flex direction="row" justify="space-between" align="center">
+        <Heading as="h1" size="xl" mb={4}>
           Members
         </Heading>
-        <Flex
-          maxW="30%"
-          align="space-between"
-          gap={4}
-        >
+        <Flex maxW="30%" align="space-between" gap={4}>
           <Button
             colorScheme="gray"
             rightIcon={<TbFileImport />}
@@ -176,14 +156,11 @@ const Members = () => {
           >
             Import
           </Button>
-          <AddMemberPop onAddMember={handleAddMember}  />
+          <AddMemberPop onAddMember={handleAddMember} />
         </Flex>
       </Flex>
 
-      <MemberTable
-        columns={columns}
-        data={members}
-      />
+      <MemberTable columns={columns} data={members} />
     </>
   )
 }
