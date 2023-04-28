@@ -6,12 +6,13 @@ import {
   IconButton,
   Tooltip,
   Flex,
+  Skeleton,
   useToast,
 } from "@chakra-ui/react"
 import AddMemberPop from "../components/members/AddMemberPop"
 import { useState, useEffect, useMemo } from "react"
 import { getAllMembers, updateMember } from "../api/axios"
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { FiArchive, FiEdit } from "react-icons/fi"
 import { TbFileImport } from "react-icons/tb"
 import axios from "axios"
@@ -24,8 +25,8 @@ const Members = () => {
   const [searchResults, setSearchResults] = useState([])
   const [showColumns, setShowColumns] = useState([])
   const toast = useToast()
-
   const navigate = useNavigate()
+  
   const routeChange = () => {
     let path = `/members/import`
     navigate(path)
@@ -54,6 +55,7 @@ const Members = () => {
       console.log("Error adding member:", error)
     }
   }
+  
   const handleMemberAdded = () => {
     toast({
       title: "Member added.",
@@ -76,6 +78,7 @@ const Members = () => {
       console.log(error)
     }
   }
+  
   const handleMemberDeleted = () => {
     toast({
       title: "Member deleted.",
@@ -147,9 +150,10 @@ const Members = () => {
         </Heading>
         <Flex maxW="30%" align="space-between" gap={4}>
           <Button
+            as={Link}
+            to="/members/import"
             colorScheme="gray"
             rightIcon={<TbFileImport />}
-            onClick={routeChange}
             _hover={{
               textDecoration: "none",
             }}

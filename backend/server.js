@@ -8,6 +8,7 @@ const uploadRoute = require("./routes/upload")
 const statsRoutes = require("./routes/stats")
 const express = require("express")
 const mongoose = require("mongoose")
+
 // Initialize express
 const app = express()
 
@@ -57,7 +58,9 @@ app.use("/api/stats", statsRoutes)
 
 // Connect to DB
 mongoose
+  .set("strictQuery", true)
   .connect(process.env.MONGO_URI)
+
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`)
