@@ -3,7 +3,7 @@ const multer = require("multer")
 const storage = multer.diskStorage({
   // Where the file will be saved
   destination: (req, file, callback) => {
-    callback(null, "uploads/")
+    callback(null, "/uploads")
   },
 
   // Rename the file

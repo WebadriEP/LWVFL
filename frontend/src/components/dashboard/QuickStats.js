@@ -1,84 +1,56 @@
-import {
-  Box,
-  Heading,
-  SimpleGrid,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  SkeletonText,
-  Skeleton,
-  Spinner,
-} from "@chakra-ui/react"
-import React, { useState, useEffect } from "react"
-import axios from "axios"
+import React, { useState } from "react"
+import StatsAllTime from "./stats/StatsAllTime"
+import { Box, Divider, HStack, Heading, Text, Center } from "@chakra-ui/react"
+import StatsCurrentMonth from "./stats/StatsCurrentMonth"
 
 const QuickStats = () => {
-  const [totalMembers, setTotalMembers] = useState(null)
-  const [totalDonations, setTotalDonations] = useState(null)
-  const [totalDonationsAmount, setTotalDonationsAmount] = useState(null)
-
-  axios
-    .all([
-      axios.get(process.env.REACT_APP_BACKEND_URL + "/api/members/stat/total"),
-      axios.get(
-        process.env.REACT_APP_BACKEND_URL + "/api/members/stat/donations"
-      ),
-      axios.get(
-        process.env.REACT_APP_BACKEND_URL + "/api/members/stat/donationsamount"
-      ),
-    ])
-    .then(
-      axios.spread((res1, res2, res3) => {
-        setTotalMembers(res1.data)
-        setTotalDonations(res2.data)
-        setTotalDonationsAmount(res3.data)
-      })
-    )
-    .catch((errors) => {
-      // react on errors.
-    })
+  const [memberStatsAllTime, setMemberStatsAllTime] = useState({})
 
   return (
     <>
-      {/* Box container */}
-      <Box bg="white" mb={8} align="center">
-        {/* Three column simple grid */}
-        <SimpleGrid columns={3} spacing={10}>
-          {/* Total Members */}
-          <Box>
-            <Stat>
-              <StatLabel>Total Members</StatLabel>
-              <StatNumber color="blue.500" fontSize={40}>
-                {!totalMembers ? <Spinner mt={4} size="xl" /> : totalMembers}
-              </StatNumber>
-            </Stat>
+      {/* Quick Stats heading */}
+      <Heading as="h2" size="lg" mb={4} color="gray.700">
+        Statistics
+      </Heading>
+
+      {/* Shadowed box container */}
+      <Box
+        border="1px solid"
+        borderColor="gray.100"
+        borderRadius={8}
+        bg="white"
+        shadow="md"
+        px={{ base: 4, lg: 8 }}
+        py={{ base: 2, lg: 6 }}
+        mb={8}
+      >
+        {/* Horizontal stack to separate all-time from current month */}
+        <HStack spacing={{ base: 8, lg: 16 }} align="center">
+          {/* All-time stats */}
+          <Box align="start">
+            <Text color="gray.600" fontSize="sm">
+              Total (all time)
+            </Text>
+            <StatsAllTime />
           </Box>
 
-          {/* Total Donations */}
-          <Box>
-            <Stat>
-              <StatLabel>Donations Received</StatLabel>
-              <StatNumber color="blue.500" fontSize={40}>
-                {!totalMembers ? <Spinner mt={4} size="xl" /> : totalDonations}
-              </StatNumber>
-            </Stat>
-          </Box>
+          <Center height="80px">
+            <Divider orientation="vertical" color="gray.300" />
+          </Center>
 
-          {/* Total Donations Amount */}
+          {/* Current month stats */}
           <Box>
-            <Stat>
-              <StatLabel>Total Donated</StatLabel>
-              <StatNumber color="blue.500" fontSize={40}>
-                {!totalMembers ? (
-                  <Spinner mt={4} size="xl" />
-                ) : (
-                  `$${totalDonationsAmount}`
-                )}
-              </StatNumber>
-            </Stat>
+            <Text color="gray.600" fontSize="sm">
+              Current Month (
+              {new Date().toLocaleString("default", {
+                month: "long",
+                year: "numeric",
+              })}
+              )
+            </Text>
+            <StatsCurrentMonth />
           </Box>
-        </SimpleGrid>
+        </HStack>
       </Box>
     </>
   )

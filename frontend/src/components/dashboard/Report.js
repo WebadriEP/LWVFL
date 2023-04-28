@@ -11,62 +11,43 @@ import {
   StatArrow,
   StatGroup,
   Text,
+  HStack,
+  Divider,
+  Center,
 } from "@chakra-ui/react"
 import MembersGraph from "./MembersGraph"
-import {
-  getStatTotalDonations,
-  getStatTotalDonationsAmount,
-  getStatTotalMembers,
-} from "../../api/axios"
+import QuickStats from "./QuickStats"
 
 export class Report extends Component {
   render() {
-    // Render
     return (
       <>
-        <Box
-          marginLeft={10}
-          marginTop={10}
-        >
-          <Heading>Members Report</Heading>
-          <Text
-            mb={4}
-            color="gray.600"
-          >
-            As of March 29, 2023
+        <Box p={10}>
+          <Heading>Dontra CRM - Health Report</Heading>
+
+          {/* Generation date and time */}
+          <Text mb={4} color="gray.600">
+            Generated{" "}
+            {new Date().toLocaleString("default", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+            })}{" "}
+            at{" "}
+            {new Date().toLocaleString("default", {
+              hour: "numeric",
+              minute: "numeric",
+              hour12: true,
+            })}
           </Text>
 
-          <Grid
-            templateColumns="repeat(3, 1fr)"
-            my={5}
-          >
-            <Stat>
-              <StatLabel>Members</StatLabel>
-              <StatNumber color="blue.500">527</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Donations</StatLabel>
-              <StatNumber color="blue.500">28</StatNumber>
-            </Stat>
-            <Stat>
-              <StatLabel>Amount Donated</StatLabel>
-              <StatNumber color="blue.500">$6,329</StatNumber>
-            </Stat>
-          </Grid>
+          {/* Quick Stats */}
+          <QuickStats />
 
-          <Heading
-            size="lg"
-            mb={4}
-          >
-            New Members by Month
-          </Heading>
-          <Flex align="center">
-            <MembersGraph
-              type="column"
-              title=""
-              yAxis="No. of Members"
-            />
-          </Flex>
+          {/* New Member Graph */}
+          <Box minW="725px">
+            <MembersGraph type="column" yAxis="No. of Members" />
+          </Box>
         </Box>
       </>
     )

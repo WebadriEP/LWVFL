@@ -5,10 +5,9 @@ const userRoutes = require("./routes/users")
 const donorRoutes = require("./routes/donors")
 const donationRoutes = require("./routes/donations")
 const uploadRoute = require("./routes/upload")
+const statsRoutes = require("./routes/stats")
 const express = require("express")
 const mongoose = require("mongoose")
-const cors = require("cors")
-const path = require("path")
 
 // Initialize express
 const app = express()
@@ -45,6 +44,7 @@ app.use("/api/donors", donorRoutes)
 app.use("/api/donations", donationRoutes)
 app.use("/api/user", userRoutes)
 app.use("/api/upload", uploadRoute)
+app.use("/api/stats", statsRoutes)
 
 // // Serve static assets if in production
 // if (process.env.NODE_ENV === "production") {
@@ -58,7 +58,9 @@ app.use("/api/upload", uploadRoute)
 
 // Connect to DB
 mongoose
+  .set("strictQuery", true)
   .connect(process.env.MONGO_URI)
+
   .then(() => {
     app.listen(process.env.PORT, () => {
       console.log(`Server is running on port ${process.env.PORT}`)

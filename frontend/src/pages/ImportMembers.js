@@ -17,15 +17,11 @@ import {
 import { useState, useCallback, useRef } from "react"
 import { useDropzone } from "react-dropzone"
 import axios from "axios"
-import { useNavigate } from "react-router-dom"
-
-// Navigate to members page
-//const navigate = useNavigate()
+import { redirect } from "react-router-dom"
 
 const ImportMembers = () => {
   const { isOpen, onOpen, onClose } = useDisclosure()
   const cancelRef = useRef()
-
   const [errorMessage, setErrorMessage] = useState("")
   const [fileAccepted, setFileAccepted] = useState(false)
   const [fileSize, setFileSize] = useState(null)
@@ -34,27 +30,31 @@ const ImportMembers = () => {
   /* Send file to backend */
   const sendFile = () => {
     const data = new FormData()
+    data.append("file", file) // File
     data.append("name", file.originalname) // File name
-    data.append("file", file[0]) // File
 
     // Post request
     axios
-      .post(process.env.REACT_APP_BACKEND_URL + "/api/upload", data)
+      .post(process.env.REACT_APP_BACKEND_URL + "/api/upload", data, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      })
       .then((res) => {
         console.log(res)
-
-        // Reset state
-        setFile([])
-        setFileSize(null)
-        setFileAccepted(false)
-
-        // TODO: navigate to members page
-        //navigate("/members")
       })
       .catch((err) => {
         console.log(err)
         setErrorMessage(err)
       })
+
+    // Navigate to members page
+    redirect("/members")
+
+    // Reset state
+    setFile([])
+    setFileSize(null)
+    setFileAccepted(false)
   }
 
   /* Dropzone - Handle file acceptance and transfer to backend */
@@ -153,10 +153,12 @@ const ImportMembers = () => {
             bg: "gray.50",
           }}
         >
-          <input
-            {...getInputProps()}
-            name="file"
-          />
+          <form encType="multipart/form-data">
+            <input
+              {...getInputProps()}
+              name="file"
+            />
+          </form>
           {isDragActive ? (
             <Text
               color="gray.600"
