@@ -7,14 +7,18 @@ import "datatables.net-dt";
 import { useState, useEffect, useMemo } from 'react';
 import 'datatables.net-dt/css/jquery.dataTables.css';
 import { getMemberDonations, getSingleMember, deleteDonation } from "../api/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import NavLink from "../components/navigation/NavLink";
 import { Box, Button } from "@chakra-ui/react";
 import DonationTable from "../components/donations/DonationTable"
 
+
+
 function Donations() {
-    const { id } = useParams(); // Get the ID from the URL
+  const navigate = useNavigate()
+  const { id } = useParams(); // Get the ID from the URL
+  const homelink = "/member/" + id + "/"
     const [donations, setDonations] = useState([]); // State for donations
     const [member, setMember] = useState({}); //State for member
     // Fetch all members -- Used for search functionality
@@ -79,7 +83,7 @@ function Donations() {
             <Button onClick ={() => {
 
               deleteDonation(props.cell.row.original['_id']).then(() => 
-              {props.cell.row = undefined;});
+              {props.cell.row = undefined; navigate(homelink + id)});
               
               }}> Delete </Button> </span>
           }
