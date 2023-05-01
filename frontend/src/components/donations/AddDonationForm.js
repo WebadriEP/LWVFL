@@ -2,9 +2,38 @@ import { useState } from "react"
 import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { createDonation } from "../../api/axios"
-import { Button } from "@chakra-ui/react"
 import { getSingleMember } from "../../api/axios"
 import { useEffect } from "react"
+import {
+  Box,
+  Heading,
+  Center,
+  VStack,
+  Radio,
+  RadioGroup,
+  Stack,
+  Text,
+  Flex,
+  Tag,
+  Input,
+  Card,
+  CardHeader,
+  CardBody,
+  Grid,
+  Divider,
+  GridItem,
+  Tabs,
+  TabList,
+  Tab,
+  SimpleGrid,
+  Button,
+  HStack,
+  Select,
+  Spinner,
+  ButtonGroup,
+  Form,
+  FormLabel
+} from "@chakra-ui/react"
 
 const AddDonationForm = () => {
   const donorID = useParams()
@@ -35,7 +64,6 @@ const AddDonationForm = () => {
   }, [])
 
   const name = member.firstName + " " + member.lastName
-  console.log(name)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -57,67 +85,48 @@ const AddDonationForm = () => {
     
   }
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <h2>Add a New Donation</h2>
+  return(
 
-        <div>
-          <div></div>
-          <div>
-            <label>Amount*</label>
-            <input
-              type="number"
-              value={amount}
-              onChange={(e) => setAmount(e.target.value)}
-              className={emptyFields.includes("amount") ? "error" : ""}
-            />
-          </div>
-        </div>
+    <><VStack as="header" spacing="6" mt="8"><Heading>Specify Donation Information</Heading></VStack>
+    
+    <Center><Card bg='#f6f8fa' variant='outline' borderColor='#d8dee4' w='400px' spacing="4">
+      
+      <CardBody>
+      <form>
+      <FormLabel>Date</FormLabel>
+      <Input type="date" onChange={(e) => setDate(e.target.value)}/>
 
-        <div className="form-email">
-          <label>Date of Donation*</label>
-          <input
-            type="date"
-            value={date}
-            onChange={(e) => setDate(e.target.value)}
-            className={emptyFields.includes("date") ? "error" : ""}
-          />
-        </div>
+      <FormLabel>Donation Amount</FormLabel>
+      <HStack><Input type="text" onChange={(e) => setAmount(e.target.value)} /><Tag size="lg">$</Tag></HStack>
 
-        <div className="form-email">
-          <label>Type of Donation</label>
-          Education Fund <input
-            type="radio"
-            value="Education Fund"
-            onChange={(e) => setType(e.target.value)}
-          /> 
-          Advocacy Fund <input
-            type="radio"
-            value="Advocacy Fund"
-            onChange={(e) => setType(e.target.value)}
-          /> 
-          Other <input
-            type="radio"
-            value="Other"
-            onChange={(e) => setType(e.target.value)}
-          /> 
-        </div>
+      <FormLabel>Donation Type</FormLabel>
 
-        <div className="form-email">
-          <label>Additional Notes</label>
-          <input
-            type="String"
-            value={notes}
-            onChange={(e) => setNotes(e.target.value)}
-          />
-        </div>
+      <RadioGroup defaultValue='Other'>
+  <     Stack spacing={5} direction='row'>
+          <Radio value='Literacy Fund' onChange={(e) => setType(e.target.value)}>
+            Literacy Fund
+          </Radio>
+          <Radio value='Advocacy Fund' onChange={(e) => setType(e.target.value)}>
+          Advocacy Fund
+          </Radio>
+          <Radio value='Other' onChange={(e) => setType(e.target.value)}>
+          Other
+          </Radio>
+        </Stack>
+      </RadioGroup>
 
-        <Button onClick={handleSubmit} colorScheme="green ">
+      <FormLabel>Notes</FormLabel>
+      <Input type="text" onChange={(e) => setNotes(e.target.value)}/>
+
+      <Button onClick={handleSubmit} colorScheme="green ">
           Add Donation
         </Button>
+
       </form>
-    </div>
+      </CardBody>
+
+
+    </Card></Center></>
   )
 }
 

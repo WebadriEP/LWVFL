@@ -12,7 +12,7 @@ import {
 import { useNavigate, useParams } from "react-router-dom"
 import { Link } from "react-router-dom"
 import NavLink from "../components/navigation/NavLink"
-import { Box, Button } from "@chakra-ui/react"
+import { Box, Button, Heading } from "@chakra-ui/react"
 import DonationTable from "../components/donations/DonationTable"
 
 function Donations() {
@@ -60,7 +60,7 @@ function Donations() {
     ],
     []
   )
-  return <DonationTable columns={columns} data={donations} />
+  return <><Heading>All Donations</Heading><DonationTable columns={columns} data={donations} /></>
 }
 
 export default Donations
