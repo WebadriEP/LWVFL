@@ -7,6 +7,12 @@ const donationSchema = new Schema(
       type: String,
       required: true,
     },
+
+    memberName: {
+      type: String,
+      required: true,
+    },
+    
     date: {
       type: Date,
       required: true,

@@ -55,6 +55,7 @@ const Navbar = () => {
         <HStack justifyContent="space-between">
           <NavLink page="/" text="Dashboard" />
           <NavLink page="/members" text="Members" />
+          <NavLink page="/donations" text="Donations" />
           <NavLink page="/engagement" text="Engagement" />
           <NavLink page="/users" text="Users" />
         </HStack>

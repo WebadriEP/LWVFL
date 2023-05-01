@@ -53,7 +53,7 @@ const updateDonation = async (req, res) => {
 
 //create new donation
 const createDonation = async(req,res) => {
-    const {donorID, date, amount, type, notes} = req.body
+    const {donorID, memberName, date, amount, type, notes} = req.body
     let emptyFields = []
 
     if(!donorID){
@@ -61,6 +61,9 @@ const createDonation = async(req,res) => {
     }
     if(!date){
         emptyFields.push('date')
+    }
+    if(!memberName){
+        emptyFields.push('memberName')
     }
     if(!amount){
         emptyFields.push('amount')
@@ -71,7 +74,7 @@ const createDonation = async(req,res) => {
     }
     
     try{
-        const donation = await Donations.create({donorID, date, amount, type, notes})
+        const donation = await Donations.create({donorID, memberName, date, amount, type, notes})
         res.status(200).json(donation)
     } catch (error) {
         res.status(400).json({ error: error.message })

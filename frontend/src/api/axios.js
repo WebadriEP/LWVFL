@@ -72,6 +72,14 @@ export const getMemberDonations = async (id) => {
   return response.data
 }
 
+// Get all donations
+export const getDonations = async () => {
+  const response = await api.get(
+    process.env.REACT_APP_BACKEND_URL + "/api/donations/"
+  )
+  return response.data
+}
+
 // Create donation
 export const createDonation = async (id, donation) => {
   const response = await api.post(

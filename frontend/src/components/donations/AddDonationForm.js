@@ -3,6 +3,8 @@ import React from "react"
 import { useNavigate, useParams } from "react-router-dom"
 import { createDonation } from "../../api/axios"
 import { Button } from "@chakra-ui/react"
+import { getSingleMember } from "../../api/axios"
+import { useEffect } from "react"
 
 const AddDonationForm = () => {
   const donorID = useParams()
@@ -11,12 +13,29 @@ const AddDonationForm = () => {
   const [type, setType] = useState("")
   const [notes, setNotes] = useState("")
   const [emptyFields, setEmptyFields] = useState([])
+  const [member, setMember] = useState({})
 
   const [error, setError] = useState(null)
   //console.log(donorID);
 
   const navigate = useNavigate()
   const homelink = "/member/" + donorID.id
+
+  useEffect(() => {
+    getSingleMember(donorID.id)
+      // Set member state
+      .then((json) => {
+        setMember(json) // set member state
+      })
+
+      // Error handling
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [])
+
+  const name = member.firstName + " " + member.lastName
+  console.log(name)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -25,6 +44,7 @@ const AddDonationForm = () => {
       console.log(donorID)
       await createDonation(donorID.id, {
         donorID: donorID.id,
+        memberName: name,
         amount: amount,
         date: date,
         type: type,
@@ -67,11 +87,21 @@ const AddDonationForm = () => {
 
         <div className="form-email">
           <label>Type of Donation</label>
-          <input
-            type="String"
-            value={type}
+          Education Fund <input
+            type="radio"
+            value="Education Fund"
             onChange={(e) => setType(e.target.value)}
-          />
+          /> 
+          Advocacy Fund <input
+            type="radio"
+            value="Advocacy Fund"
+            onChange={(e) => setType(e.target.value)}
+          /> 
+          Other <input
+            type="radio"
+            value="Other"
+            onChange={(e) => setType(e.target.value)}
+          /> 
         </div>
 
         <div className="form-email">

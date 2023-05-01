@@ -24,6 +24,7 @@ import UpdatePassword from "./components/users/UpdatePassword"
 import ImportMembers from "./pages/ImportMembers"
 import UserDashboard from "./pages/UserDashboard"
 import Redirected from "./pages/Redirected"
+import DonationsAll from "./pages/DonationsAll"
 
 // css
 import "./App.css"
@@ -72,6 +73,11 @@ function App() {
             <Route
               path="/donations/add/:id"
               element={user ? <AddDonation /> : <Navigate to="/" />}
+            />
+
+            <Route
+              path="/donations"
+              element={user ? <DonationsAll /> : <Navigate to="/" />}
             />
 
             {/* Member Routes */}
